@@ -1,0 +1,94 @@
+<?php
+
+namespace snow;
+use snow\config;
+use snow\log;
+use snow\req;
+use snow\user;
+
+error_reporting("E_ALL");
+
+class application {
+	private $_configs;
+	private $app_path;
+	public function __construct($config) {
+		$this->_configs = $config;
+
+		$domain = $_SERVER["SERVER_NAME"];
+		$app_path = $this->_configs["domain"][$domain];
+		$this->app_path = $app_path;
+		$configs = require_once __DIR__ . "/../{$app_path}/configs/web.php";
+		$configs["app"]["path"] = $app_path;
+		$this->_configs = $configs;
+		config::init($this->_configs);
+		$this->error_handler();
+		$this->exception_handler();
+	}
+
+	public function run() {
+		$ctl = req::item("ctl");
+		$act = req::item("act");
+		ob_start();
+		if (user::is_login() == false) {
+			if (!empty($this->_configs["public"][$ctl])) {
+				$public_acts = $this->_configs["public"][$ctl];
+				if (in_array($act, $public_acts)) {
+					goto call;
+				}
+			}
+			$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
+			if ($login_verify == true) {
+				echo "<script>top.location.href='{$this->_configs["app"]["login"]}'</script>";
+				exit;
+			}
+
+		}
+		call:
+		$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+		(new $call_ctl())->$act();
+	}
+
+	public function error_handler() {
+		set_error_handler(function ($error_level, $error_message, $file, $line) {
+			$EXIT = FALSE;
+			switch ($error_level) {
+			case E_NOTICE:
+			case E_USER_NOTICE:
+				$error_type = 'Notice';
+				break;
+			case E_WARNING:
+			case E_USER_WARNING:
+				$error_type = 'Warning';
+				break;
+			case E_ERROR:
+			case E_USER_ERROR:
+				$error_type = 'Fatal Error';
+				$EXIT = TRUE;
+				break;
+			default:
+				$error_type = 'Unknown';
+				$EXIT = TRUE;
+				break;
+			}
+			log::set_errr($error_message, $file, $line);
+		});
+	}
+	public function exception_handler() {
+		set_exception_handler(function ($e) {
+			$info = $e->getTrace();
+			log::set_errr($e->getMessage(), $info[0]["file"], $info[0]["line"], $e->getTrace());
+		});
+		register_shutdown_function(function () {
+			if (!empty($this->_configs["shutdown_call"])) {
+				$call_function = $this->_configs["shutdown_call"];
+				if (!empty($call_function)) {
+					call_user_func($call_function);
+				}
+			}
+		});
+	}
+	public function __destruct() {
+
+	}
+
+}

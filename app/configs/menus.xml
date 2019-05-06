@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<menu name="用户管理" style="fa fa-fw fa-user">
+		<menu display="1" ctl="admin" act="index" name="用户管理" default="1"></menu>
+		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
+		<menu display="0" ctl="admin" act="add" name="添加用户"></menu>
+		<menu display="0" ctl="admin_group" act="add" name="添加用户组"></menu>
+		<menu display="1" ctl="admin" act="logs" name="操作日志" ></menu>
+		
+	</menu>
+	<menu name="系统信息" style="fa fa-fw fa-windows">
+	
+		<menu display="1" ctl="sysmsg" act="online" name="在线用户" ></menu>
+		<menu display="0" ctl="sysmsg" act="user_logs" name="用户操作日志" ></menu>
+		<menu display="0" ctl="sysmsg" act="del_logs" name="清空用户日志" ></menu>
+		<menu display="1" ctl="sysmsg" act="my_info" name="我的信息" ></menu>
+	</menu>
+	<menu name="模块" display="0" style="fa fa-fw fa-reorder">
+		<menu display="0" ctl="test" act="index" name="excel操作" ></menu>
+		<menu display="0" ctl="test" act="index" name="邮箱发送" ></menu>
+		<menu display="0" ctl="test" act="index" name="文件上传" ></menu>
+	</menu>
+</menu>
