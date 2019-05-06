@@ -32,7 +32,7 @@
             <div class="col-sm-4">
          
                 <p class="form-control-static">
-                    <img src="{{infos.img}}" id="show_img" height="50" width="50" align="middle">
+                    <img src="{{infos.img}}" id="show_img" height="50" width="50" align="middle" style="border-radius:50%">
                     <input type="file" name="photo" accept="image/*" multiple="false">
                 </p>
             </div>

@@ -81,17 +81,6 @@
         $("#content-iframes").width(parseInt(width)-parseInt(main_sidebar_width));
           $("#content-iframes iframe").attr("width","100%");
     }
-    function frame_load(obj)
-    {
-      
-      var frame_height = obj.contentWindow.document.body.scrollHeight;
-      if(frame_height<height)
-      {
-         obj.height = height;
-       }else{
-         obj.height = frame_height;
-       }
-    }
     function click_tab(obj)
     {
          var id = $(".nav_tab_active").attr("id");
@@ -138,6 +127,14 @@
             var _html = '  <iframe onload="frame_load(this)" id="iframe'+id+'" frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes” width="100%"  height="'+height+'px" src="' + href + '"></iframe>';
             $("#content-iframes iframe").addClass("hide");
             $("#content-iframes").prepend(_html);
+            window.setTimeout(function(){
+                var iframe_height = document.getElementById('iframe'+id).contentWindow.document.body.scrollHeight;
+                var body_height = $("body").height();
+                if(body_height<iframe_height)
+                {
+                    $('#iframe'+id).attr("width",iframe_height+"px");
+                }
+                },1000);;
             return false;
         });
         $("#refresh").click(function(){
@@ -164,8 +161,9 @@
         $("#menus-li"+parent_id).addClass("menu-open");
          $("#menus-li"+parent_id).find(".treeview-menu").css("display","block");
          $(".active-li-a").click();
+    });
 
-    })
+
     </script>
 </body>
 </html>

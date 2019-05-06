@@ -30,7 +30,7 @@
                     <div class="col-sm-4">
                        
                         <p class="form-control-static">
-                            <img src="" id="show_img" class="hide" height="50" width="50" align="middle">
+                            <img src="" id="show_img" class="hide" height="50" width="50" align="middle" style="border-radius:50%">
                             <input type="file" name="photo" accept="image/*" multiple="false">
                         </p>
                     </div>
