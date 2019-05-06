@@ -62,7 +62,7 @@ class db_verify {
 		if (empty($tables_rules)) {
 			return $db_datas;
 		}
-		$data_rules = $tables_rules["rules"];
+		$data_rules = $tables_rules;
 		foreach ($db_datas as $key => $value) {
 			if (empty($data_rules[$key])) {
 				$err_str = "<span  style='color:red'>{$key}</span> does not exist in the <span  style='color:red'>{$this->table_name}</span> table";
@@ -88,7 +88,7 @@ class db_verify {
 		if (empty($tables_rules)) {
 			return false;
 		}
-		$table_rules = $tables_rules["rules"];
+		$table_rules = $tables_rules;
 		if (empty($table_rules[$field])) {
 			$err_str = "<span  style='color:red'>{$key}</span> does not exist in the <span  style='color:red'>{$this->table_name}</span> table";
 			throw new \Exception($err_str, 2);
@@ -108,7 +108,7 @@ class db_verify {
 		if (empty($tables_rules)) {
 			return $db_datas;
 		}
-		$data_rules = $tables_rules["rules"];
+		$data_rules = $tables_rules;
 		foreach ($data_rules as $key => $value) {
 			$data_types = explode("|", $value[0]);
 			if (in_array('required', $data_types)) {
@@ -141,7 +141,7 @@ class db_verify {
 		}
 		if (is_array($db_datas)) {
 			//新增 更新的验证
-			$data_rules = $tables_rules["rules"];
+			$data_rules = $tables_rules;
 			if ($is_insert == true) {
 				foreach ($data_rules as $key => $value) {
 					if (!empty($value["message"])) {

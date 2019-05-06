@@ -6,14 +6,18 @@ class db {
 	protected static $objs;
 	protected static $open_tran = false;
 	protected static $verify_err_info = [];
-	private static function get_configs(string $tables_name, string $select_db = "default") {
+	private static function get_configs(string $tables_name, string $select_db = "") {
 		if (empty($select_db)) {
-			$db_info = config::$obj->tables->get($tables_name);
-			if (empty($db_info)) {
-				$dbs_key = "default";
-			} else {
-				$dbs_key = $db_info["select_db"];
+			$dbs_key = "default";
+			$dbs = config::$obj->table_db->get();
+
+			foreach ($dbs as $key => $value) {
+				if (in_array($tables_name, $value)) {
+					$dbs_key = $key;
+					break;
+				}
 			}
+
 		} else {
 			$dbs_key = $select_db;
 		}

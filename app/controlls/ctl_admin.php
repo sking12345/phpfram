@@ -33,16 +33,17 @@ class ctl_admin {
 			if ($data["password"] != $data["password1"]) {
 				tpl::redirect(-1, "两次密码不一样");
 			}
-			$tmp_name = $_FILES["photo"]["tmp_name"];
-			$name = $_FILES["photo"]["name"];
-			$uploads_dir = "./upload/img/";
-			if (move_uploaded_file($tmp_name, $uploads_dir . $name) == false) {
-				tpl::redirect(-1, "文件上传失败");
+			if (!empty($_FILES["photo"]["tmp_name"])) {
+				$tmp_name = $_FILES["photo"]["tmp_name"];
+				$name = $_FILES["photo"]["name"];
+				$uploads_dir = "./upload/img/" . util::create_uniqid(16) . substr($name, strripos($name, "."));
+				if (move_uploaded_file($tmp_name, $uploads_dir) == false) {
+					tpl::redirect(-1, "文件上传失败");
+				}
+				$data["img"] = $uploads_dir;
 			}
-
 			$data["id"] = util::create_uniqid();
 			$data["create_time"] = time();
-			$data["img"] = $uploads_dir . $name;
 			unset($data["password1"]);
 			db::insert("admin")->set($data)->execute();
 			tpl::redirect("?ctl=admin&act=index", "用户添加成功");
@@ -66,6 +67,15 @@ class ctl_admin {
 			if ($groups_val == false) {
 				$err_info = db_verify::get_err();
 				tpl::redirect(-1, "请选择分组");
+			}
+			if (!empty($_FILES["photo"]["tmp_name"])) {
+				$tmp_name = $_FILES["photo"]["tmp_name"];
+				$name = $_FILES["photo"]["name"];
+				$uploads_dir = "./upload/img/" . util::create_uniqid(16) . substr($name, strripos($name, "."));
+				if (move_uploaded_file($tmp_name, $uploads_dir) == false) {
+					tpl::redirect(-1, "文件上传失败");
+				}
+				$data["img"] = $uploads_dir;
 			}
 			$statu = db::update("admin")->set($data)->where(["id" => $id])->echo_sql(1)->execute();
 			if ($statu == false) {

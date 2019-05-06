@@ -17,7 +17,7 @@ return [
 		"user_name" => "root",
 		"password" => "123456",
 		'charset' => 'utf8',
-		"db_name" => "test",
+		"db_name" => "phpframe",
 		"prefix" => "sp",
 		"open_slave" => false,
 		"master" => "127.0.0.1:3306",

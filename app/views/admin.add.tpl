@@ -28,8 +28,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">头像:</label>
                     <div class="col-sm-4">
-                        <div class="col-sm-4">
-                        </div>
+                       
                         <p class="form-control-static">
                             <img src="" id="show_img" class="hide" height="50" width="50" align="middle">
                             <input type="file" name="photo" accept="image/*" multiple="false">

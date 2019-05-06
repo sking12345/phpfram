@@ -22,7 +22,7 @@
             <li><a href="?ctl=admin&act=infos&id=<?=snow\req::item('id')?>"><i class="fa fa-fw fa-search"></i>查看用户信息</a></li>
             <li class="active"><i class="fa fa-fw fa-edit"></i>编辑用户信息</li>
         </ol>
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data">
             <?=snow\tpl::from_token()?>
             <div class="box content" style="min-height:100px">
                 <div class="box-body">
@@ -30,9 +30,11 @@
                         <div class="form-group">
             <label  class="col-sm-2 control-label">头像:</label>
             <div class="col-sm-4">
-               <p class="form-control-static">
-               <img src="{{infos.img}}" class="img-circle" style="width: 50px"> 
-            </p>
+         
+                <p class="form-control-static">
+                    <img src="{{infos.img}}" id="show_img" height="50" width="50" align="middle">
+                    <input type="file" name="photo" accept="image/*" multiple="false">
+                </p>
             </div>
             <label  class="col-sm-2 control-label">用户名:</label>
             <div class="col-sm-4">
@@ -75,6 +77,17 @@
     <script type="text/javascript">
     $(document).ready(function() {
         rendering('msg', true);
+        $("input[name=photo]").change(function(){
+        var files = this.files[0];
+        console.log(files);
+        var reader = new FileReader();
+         reader.readAsDataURL(files);
+         reader.onload=function(e){
+            $('#show_img').get(0).src = e.target.result;
+            $('#show_img').removeClass("hide");
+         }
+       
+    })
 
     });
     </script>
