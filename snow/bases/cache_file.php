@@ -44,15 +44,16 @@ class cache_file implements cache_interface {
 		$str = fread($this->fp, $size);
 
 		if (!empty($str)) {
-			$str = gzuncompress($str);
-			return json_decode($str, true);
+			return unserialize($str);
+			// $str = gzuncompress($str);
+			// return json_decode($str, true);
 		}
 		return null;
 	}
 
 	private function write_contents($data) {
-		$json_data = json_encode($data);
-		$gz_data = gzcompress($json_data);
+		// $json_data = json_encode($data);
+		$gz_data = serialize($data);
 		fseek($this->fp, 0);
 		fwrite($this->fp, $gz_data, strlen($gz_data));
 		return true;

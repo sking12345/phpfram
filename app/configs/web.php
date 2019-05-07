@@ -16,7 +16,7 @@ return [
 		"class" => "snow\bases\cache_file",
 		// "class" => "snow\bases\cache_redis",
 		"file" => [
-			"path" => "/Users/sking/code/web/phpframe/cache", //文件缓存路径
+			"path" => __DIR__ . "/../../cache", //文件缓存路径
 		],
 		"redis" => [
 			"open_slave" => false, //是否开启从服务器配置
