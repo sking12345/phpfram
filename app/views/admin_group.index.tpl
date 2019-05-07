@@ -44,7 +44,7 @@
                             <tr>
                                   <td>{{item.id}}</td>
                                   <td>{{item.name}}</td>
-                                  <td> 0 </td>
+                                  <td> {{item.admin_num}} </td>
                                 
                                   <td>{{item.create_time}}</td>
                                   <td>

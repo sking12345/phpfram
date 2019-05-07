@@ -81,7 +81,7 @@ class util {
 	public static function create_uniqid(int $len = 16) {
 		$pid = getmypid(); //进程id
 		$pid_str = "{$pid}";
-		$_number_str = "qwertyuiopasdfghjklzxcvbnm23456789";
+		$_number_str = "qwertyuiopasdfghjklzxcvbnm123456789";
 		$uniqid_str = '';
 		for ($i = 0; $i < strlen($pid_str); $i++) {
 			$uniqid_str .= $_number_str[$i];

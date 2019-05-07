@@ -47,7 +47,7 @@
         </form>
           <div class="box-footer">
           <label class="col-sm-1 control-label"></label>
-          <a href="?ctl=admin_group&act=del&id=<?=snow\req::item('id')?>>" class="btn btn-danger  btn-sm"><i class="fa fa-fw fa-remove"></i>删除</a>
+          <a href="?ctl=admin_group&act=del&id=<?=snow\req::item('id')?>" class="btn btn-danger  btn-sm"><i class="fa fa-fw fa-remove"></i>删除</a>
            <a href="?ctl=admin_group&act=edit&id=<?=snow\req::item('id')?>" class="btn btn-primary  btn-sm"><i class="fa fa-fw fa-edit"></i>编辑</a>
         </div>
       </div>

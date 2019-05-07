@@ -4,6 +4,7 @@ namespace snow;
 use snow\config;
 use snow\log;
 use snow\req;
+use snow\tpl;
 use snow\user;
 
 error_reporting("E_ALL");
@@ -41,7 +42,15 @@ class application {
 				echo "<script>top.location.href='{$this->_configs["app"]["login"]}'</script>";
 				exit;
 			}
-
+		}
+		$purview_check = $this->_configs["app"]["purview_check"];
+		if (!empty($purview_check) && call_user_func($purview_check)) {
+			if (req::is_browser()) {
+				tpl::redirect(-1, "权限不足(Insufficient permissions)");
+			} else {
+				echo json_encode(["code" => "-1", "msg" => "权限不足(Insufficient permissions)"]);
+			}
+			exit;
 		}
 		call:
 		$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";

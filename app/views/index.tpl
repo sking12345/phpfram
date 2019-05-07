@@ -73,7 +73,10 @@
     <script type="text/javascript" src="public/js/main.js"></script>
     <script type="text/javascript">
     var height = $(".main-sidebar").height();
-   
+   function frame_load(obj)
+   {
+        return true;
+   }
     function content_width()
     {
         var main_sidebar_width = $(".main-sidebar").width();
@@ -129,10 +132,12 @@
             $("#content-iframes").prepend(_html);
             window.setTimeout(function(){
                 var iframe_height = document.getElementById('iframe'+id).contentWindow.document.body.scrollHeight;
-                var body_height = $("body").height();
+                var body_height = $(window).height();
                 if(body_height<iframe_height)
                 {
-                    $('#iframe'+id).attr("width",iframe_height+"px");
+                    $('#iframe'+id).attr("height",iframe_height+"px");
+                }else{
+                     $('#iframe'+id).attr("height",body_height+"px");
                 }
                 },1000);;
             return false;

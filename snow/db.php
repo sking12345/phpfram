@@ -17,17 +17,18 @@ class db {
 					break;
 				}
 			}
-
 		} else {
 			$dbs_key = $select_db;
 		}
 		if (!empty(self::$objs[$dbs_key])) {
 			$obj = self::$objs[$dbs_key]["obj"];
 		} else {
+
 			$db_config = config::$obj->dbs->get($dbs_key);
 			$obj = new $db_config["class"]($db_config);
 			self::$objs[$dbs_key]["obj"] = $obj;
 			self::$objs[$dbs_key]["open_tran"] = false;
+
 		}
 		if (self::$open_tran == true) {
 			foreach (self::$objs as $key => $value) {
@@ -38,6 +39,7 @@ class db {
 				}
 			}
 		}
+
 		return $obj;
 	}
 	/**
@@ -80,7 +82,7 @@ class db {
 	public static function commit() {
 		if (self::$open_tran == true) {
 			foreach (self::$objs as $key => $value) {
-				if ($value["open_tran"] == false) {
+				if ($value["open_tran"] == true) {
 					$_obj = $value["obj"];
 					$_obj->commit();
 					self::$objs[$key]["open_tran"] = false;
@@ -93,7 +95,7 @@ class db {
 	public static function ranback() {
 		if (self::$open_tran == true) {
 			foreach (self::$objs as $key => $value) {
-				if ($value["open_tran"] == false) {
+				if ($value["open_tran"] == true) {
 					$_obj = $value["obj"];
 					$_obj->ranback();
 					self::$objs[$key]["open_tran"] = false;

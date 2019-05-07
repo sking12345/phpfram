@@ -19,6 +19,17 @@ class tpl {
 		return self::$assign_data[$key];
 	}
 	/**
+	 *	用于接口回复消息
+	 */
+	public static function response($msg, $code = 1) {
+		if ($code > 0) {
+			echo json_encode(["code" => $code, "msg" => $msg, "data" => self::$assign_data]);
+		} else {
+			echo json_encode(["code" => $code, "msg" => $msg]);
+		}
+		exit();
+	}
+	/**
 	 * [get_json_assign 返回jsong格式数据]
 	 * @return [type] [description]
 	 */

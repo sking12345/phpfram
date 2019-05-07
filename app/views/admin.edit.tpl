@@ -52,7 +52,11 @@
               <select class="form-control select2 select2-hidden-accessible" name="groups" style="width: 95%;">
                 <option value="">请选择用户组</option>
                 {{each groups_info as item i}}
-                  <option value="{{item.id}}">{{item.name}}</option>
+                    {{if item.id == infos.groups}}
+                    <option value="{{item.id}}" selected>{{item.name}}</option>
+                    {{else}}
+                    <option value="{{item.id}}">{{item.name}}</option>
+                    {{/if}}
                 {{/each}}
                 </select>
               </div>

@@ -11,6 +11,7 @@ class mysql implements db_interface {
 	private $slave_con = null;
 	private $option_code = 0x00; //0x01:insert 0x02:delete 0x03:update 0x04:select
 	private $echo_sql_status = false;
+	private $bool_set = false;
 
 	public function __construct($configs) {
 		$this->db_congis = $configs;
@@ -81,7 +82,8 @@ class mysql implements db_interface {
 
 	public function update(string $table_name) {
 		$this->option_code = 0x03;
-		$this->_sql = "update {$table_name}";
+		$this->bool_set = false;
+		$this->_sql = "update {$table_name} set ";
 		return $this;
 	}
 	public function delete(string $table_name) {
@@ -107,9 +109,19 @@ class mysql implements db_interface {
 
 				$_update_arr = [];
 				foreach ($data as $key => $value) {
-					$_update_arr[] = "{$key}='{$value}'";
+					if (is_array($value)) {
+						$_update_arr[] = "{$key}={$key}{$value[0]}'{$value[1]}'";
+					} else {
+						$_update_arr[] = "{$key}='{$value}'";
+					}
+
 				}
-				$this->_sql .= " set " . implode(",", $_update_arr);
+				if ($this->bool_set == false) {
+					$this->_sql .= implode(",", $_update_arr);
+					$this->bool_set = true;
+				} else {
+					$this->_sql .= "," . implode(",", $_update_arr);
+				}
 			}
 		} else {
 			$keys_arr = array_keys($data[0]);

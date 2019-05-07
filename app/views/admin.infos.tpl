@@ -54,9 +54,9 @@
         </form>
           <div class="box-footer">
           <label class="col-sm-1 control-label"></label>
-          <a href="?ctl=admin&act=del&id=<?=snow\req::item('id')?>>" class="btn btn-danger  btn-sm"><i class="fa fa-fw fa-remove"></i>删除</a>
+          <a href="?ctl=admin&act=del&id=<?=snow\req::item('id')?>" class="btn btn-danger  btn-sm"><i class="fa fa-fw fa-remove"></i>删除</a>
            <a href="?ctl=admin&act=edit&id=<?=snow\req::item('id')?>" class="btn btn-primary  btn-sm"><i class="fa fa-fw fa-edit"></i>编辑</a>
-            <a href="?ctl=admin&act=set_purview&id=<?=snow\req::item('id')?>" class="btn btn-info  btn-sm"><i class="fa fa-gears"></i>设置独立权限</a>
+      
         </div>
       </div>
     

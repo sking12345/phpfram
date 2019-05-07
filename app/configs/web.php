@@ -2,6 +2,7 @@
 
 return [
 	"app" => [
+		"purview_check" => "", //权限验证
 		"login_verify" => true, //token 验证
 		'short_title' => "snow", //项目名称简写
 		"title" => "snow测试", //项目名称
@@ -53,10 +54,6 @@ return [
 	],
 	"tables_rules" => [
 		"admin" => [
-			// "select_db" => "default",
-			// "rules" => [
-
-			// ],
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 21]],
 			'username' => ['required|string|unique', 'max' => 24, 'min' => 4, 'default' => '1', 'message' => '请输入4-24个字符', 'name' => '用户名'],
 			'groups' => ['table|required|string', 'field' => 'id', 'table' => "admin_group", 'message' => "请选择分组", 'name' => '分组'],
