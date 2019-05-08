@@ -13,13 +13,14 @@ class application {
 	private $_configs;
 	private $app_path;
 	public function __construct($config) {
+		$snow_config = require_once __DIR__ . "/configs/config.php";
 		$this->_configs = $config;
-
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $this->_configs["domain"][$domain];
-		$this->app_path = $app_path;
 		$configs = require_once __DIR__ . "/../{$app_path}/configs/web.php";
+		$this->_configs = array_merge($configs, $snow_config);
 		$configs["app"]["path"] = $app_path;
+		$this->app_path = $app_path;
 		$this->_configs = $configs;
 		config::init($this->_configs);
 		$this->error_handler();

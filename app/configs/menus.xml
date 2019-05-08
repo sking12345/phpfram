@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
-	<menu name="用户管理" style="fa fa-fw fa-user">
-		
-	</menu>
 	<menu name="系统信息" style="fa fa-fw fa-windows">
 		<menu display="1" ctl="admin" act="index" name="用户管理" default="1"></menu>
 		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
