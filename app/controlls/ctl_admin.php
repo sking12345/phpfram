@@ -17,7 +17,7 @@ class ctl_admin {
 		$where["delete_time"] = 0;
 		$row = db::select("admin", "count(*) count")->where($where)->one();
 		$page = cls_pages::get_pages($row["count"], 10);
-		$admin_list = db::select("admin", "*")->where($where)->limit($page["start"], $page["num"])->all();
+		$admin_list = db::select("admin", "*")->where($where)->limit($page["start"], $page["num"])->echo_sql(0)->all();
 		$groups_id = db::get_resource_fields($admin_list, "groups");
 		$groups_info = db::select("admin_group", "id,name")->where(["id" => ["in", $groups_id]])->all("id");
 		tpl::assign("groups_info", $groups_info);
