@@ -41,7 +41,7 @@
            <div class="form-group">
               <label  class="col-sm-2 control-label">创建时间:</label>
             <div class="col-sm-4">
-              <p class="form-control-static">{{infos.create_time}}</p>
+              <p class="form-control-static">{{infos.create_time|date_format 'Y-m-d h:i:s'}}</p>
             </div>
           </div>
         </form>

@@ -46,7 +46,7 @@
                                   <td>{{item.name}}</td>
                                   <td> {{item.admin_num}} </td>
                                 
-                                  <td>{{item.create_time}}</td>
+                                  <td>{{item.create_time|date_format 'Y-m-d h:i:s'}}</td>
                                   <td>
                                     <a href="?ctl=admin_group&act=infos&id={{item.id}}" class="btn  btn-info  btn-sm"><i class="fa fa-fw fa-search"></i>查看</a> 
                                     <a href="?ctl=admin_group&act=edit&id={{item.id}}" class="btn btn-primary  btn-sm"><i class="fa fa-fw fa-edit"></i>编辑</a>
