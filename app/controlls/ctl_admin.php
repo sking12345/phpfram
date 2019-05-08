@@ -28,6 +28,8 @@ class ctl_admin {
 	public function infos() {
 		$id = req::item("id");
 		$infos = db::select("admin", "*")->where(["id" => $id])->one();
+		$groups = db::select("admin_group", "id,name")->where(["id" => $infos["groups"]])->one();
+		$infos["groups"] = $groups["name"];
 		tpl::assign("infos", $infos);
 		tpl::display("admin.infos.tpl");
 	}

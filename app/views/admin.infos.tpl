@@ -28,26 +28,32 @@
           <script type="text/html" id="infos">
             
           <div class="form-group">
+               <label  class="col-sm-2 control-label">用户名:</label>
+            <div class="col-sm-4">
+              <p class="form-control-static">{{infos.username}}</p>
+            </div>
+              <label  class="col-sm-2 control-label">昵称:</label>
+            <div class="col-sm-4">
+              <p class="form-control-static">{{infos.nickname}}</p>
+            </div>
+          </div>
+           <div class="form-group">
+        
+            <label  class="col-sm-2 control-label">用户组:</label>
+            <div class="col-sm-4">
+              <p class="form-control-static">{{infos.groups}}</p>
+            </div>
+            <label  class="col-sm-2 control-label">创建时间:</label>
+            <div class="col-sm-4">
+              <p class="form-control-static">{{infos.create_time}}</p>
+            </div>
+          </div>
+              <div class="form-group">
             <label  class="col-sm-2 control-label">头像:</label>
             <div class="col-sm-4">
                <p class="form-control-static">
                <img src="{{infos.img}}" class="img-circle" style="width: 50px"> 
             </p>
-            </div>
-               <label  class="col-sm-2 control-label">用户名:</label>
-            <div class="col-sm-4">
-              <p class="form-control-static">{{infos.username}}</p>
-            </div>
-          </div>
-           <div class="form-group">
-        
-            <label  class="col-sm-2 control-label">昵称:</label>
-            <div class="col-sm-4">
-              <p class="form-control-static">{{infos.nickname}}</p>
-            </div>
-            <label  class="col-sm-2 control-label">创建时间:</label>
-            <div class="col-sm-4">
-              <p class="form-control-static">{{infos.create_time}}</p>
             </div>
           </div>
            </script>
