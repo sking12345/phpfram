@@ -38,6 +38,7 @@ class application {
 	public function run() {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
+		date_default_timezone_set($this->_configs["timezone"]);
 		ob_start();
 		if (user::is_login() == false) {
 			if (!empty($this->_configs["public"][$ctl])) {
@@ -48,7 +49,7 @@ class application {
 			}
 			$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
 			if ($login_verify == true) {
-				echo "<script>top.location.href='{$this->_configs["app"]["login"]}'</script>";
+				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
 				exit;
 			}
 		}
