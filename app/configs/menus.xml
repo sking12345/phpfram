@@ -5,7 +5,6 @@
 		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
 		<menu display="0" ctl="admin" act="add" name="添加用户"></menu>
 		<menu display="0" ctl="admin_group" act="add" name="添加用户组"></menu>
-
 		<menu display="0" ctl="sysmsg" act="user_logs" name="用户操作日志" ></menu>
 		<menu display="0" ctl="sysmsg" act="del_logs" name="清空用户日志" ></menu>
 		<menu display="0" ctl="admin" act="my_info" name="我的信息" ></menu>

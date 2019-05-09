@@ -5,7 +5,7 @@ defined('_ENV_') or define('_ENV_', 'dev');
 
 require __DIR__ . '/../snow/autoload.php';
 
-$configs["domain"] = [
+$configs["domain_app"] = [
 	"www.phpframe.com" => "app",
 ];
 

@@ -37,8 +37,14 @@ class tpl {
 		return json_encode(self::$assign_data);
 	}
 	public static function run_controller(string $ctl, string $act, $args = null) {
-		$path = config::$obj->app->get("path");
-		req::set_call_args($args);
+		$ctls_app = config::$obj->ctls_app->get();
+		if (!empty($ctls_app["{$ctl}_*"])) {
+			$path = $ctls_app["{$ctl}_*"];
+		} else if (!empty($ctls_app["{$ctl}_{$act}"])) {
+			$path = $ctls_app["{$ctl}_{$act}"];
+		} else {
+			$path = config::$obj->app->get("path");
+		}
 		$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
 		(new $call_ctl())->$act();
 	}

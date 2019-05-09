@@ -14,14 +14,22 @@ class application {
 	private $app_path;
 	public function __construct($config) {
 		$snow_config = require_once __DIR__ . "/configs/config.php";
-		$this->_configs = $config;
+
+		$ctl = req::item("ctl", "index");
+		$act = req::item("act", "login");
+		if (!empty($snow_config["ctls_app"]["{$ctl}_*"])) {
+			$this->app_path = $snow_config["ctls_app"]["{$ctl}_*"];
+		} else if (!empty($snow_config["ctls_app"]["{$ctl}_{$act}"])) {
+			$this->app_path = $snow_config["ctls_app"]["{$ctl}_{$act}"];
+		} else {
+			$domain = $_SERVER["SERVER_NAME"];
+			$this->app_path = $config["domain_app"][$domain];
+		}
 		$domain = $_SERVER["SERVER_NAME"];
-		$app_path = $this->_configs["domain"][$domain];
-		$configs = require_once __DIR__ . "/../{$app_path}/configs/web.php";
-		$this->_configs = array_merge($configs, $snow_config);
+		$app_path = $config["domain_app"][$domain];
+		$configs = require_once __DIR__ . "/../{$this->app_path}/configs/web.php";
 		$configs["app"]["path"] = $app_path;
-		$this->app_path = $app_path;
-		$this->_configs = $configs;
+		$this->_configs = array_merge($configs, $snow_config);
 		config::init($this->_configs);
 		$this->error_handler();
 		$this->exception_handler();
@@ -54,6 +62,7 @@ class application {
 			exit;
 		}
 		call:
+
 		$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
 		(new $call_ctl())->$act();
 	}

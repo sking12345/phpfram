@@ -29,7 +29,6 @@
     }
     </style>
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <?=snow\tpl::display("index.header.tpl")?>
