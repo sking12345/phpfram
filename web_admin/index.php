@@ -9,7 +9,6 @@ $configs["domain_app"] = [
 	"www.phpframe.com" => "app",
 	"www.shop.com" => "shop",
 ];
-
 (new \snow\application($configs))->run();
 
 ?>

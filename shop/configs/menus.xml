@@ -1,7 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
-	<menu name="系统信息" style="fa fa-fw fa-windows">
-		<menu display="1" ctl="admin" act="index" name="用户管理" default="1"></menu>
+	<menu name="商品管理" style="fa fa-fw fa-calendar-check-o">
+		<menu display="1" ctl="admin" act="index" name="商品列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="添加商品"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品分类"></menu>
+		<menu display="1" ctl="admin" act="index" name="用户评论"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品品牌"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品类型"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品回收站"></menu>
+		<menu display="1" ctl="admin" act="index" name="图片批量处理"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品批量上传"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品批量导出"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品批量修改"></menu>
+		<menu display="1" ctl="admin" act="index" name="生成商品代码"></menu>
+		<menu display="1" ctl="admin" act="index" name="标签管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="虚拟商品列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="添加虚拟商品"></menu>
+		<menu display="1" ctl="admin" act="index" name="更改加密串"></menu>
+		<menu display="1" ctl="admin" act="index" name="商品自动上下架"></menu>
+	</menu>
+	<menu name="促销管理" style="fa fa-fw fa-windows">
+		<menu display="1" ctl="admin" act="index" name="红包类型"></menu>
+		<menu display="1" ctl="admin" act="index" name="祝贺卡"></menu>
+		<menu display="1" ctl="admin" act="index" name="团购活动"></menu>
+		<menu display="1" ctl="admin" act="index" name="专题管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="拍卖活动"></menu>
+		<menu display="1" ctl="admin" act="index" name="优惠活动"></menu>
+		<menu display="1" ctl="admin" act="index" name="批发管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="超值礼包"></menu>
+		<menu display="1" ctl="admin" act="index" name="积分商城商品"></menu>
+	</menu>
+	<menu name="订单管理" style="fa fa-fw fa-reorder">
+		<menu display="1" ctl="admin" act="index" name="订单列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="订单查询"></menu>
+		<menu display="1" ctl="admin" act="index" name="合并订单"></menu>
+		<menu display="1" ctl="admin" act="index" name="订单打印"></menu>
+		<menu display="1" ctl="admin" act="index" name="缺货登记"></menu>
+		<menu display="1" ctl="admin" act="index" name="添加订单"></menu>
+		<menu display="1" ctl="admin" act="index" name="发货单列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="退货单列表"></menu>
+	</menu>
+	<menu name="广告管理" style="fa fa-fw fa-windows">
+		<menu display="1" ctl="admin" act="index" name="广告列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="广告位置"></menu>
+	</menu>
+	<menu name="报表统计" style="fa fa-pie-chart">
+		<menu display="1" ctl="admin" act="index" name="流量分析"></menu>
+		<menu display="1" ctl="admin" act="index" name="客户统计"></menu>
+		<menu display="1" ctl="admin" act="index" name="订单统计"></menu>
+		<menu display="1" ctl="admin" act="index" name="销售概括"></menu>
+		<menu display="1" ctl="admin" act="index" name="会员排行"></menu>
+		<menu display="1" ctl="admin" act="index" name="销售明细"></menu>
+		<menu display="1" ctl="admin" act="index" name="搜索引擎"></menu>
+		<menu display="1" ctl="admin" act="index" name="销售排行"></menu>
+		<menu display="1" ctl="admin" act="index" name="访问购买率"></menu>
+		<menu display="1" ctl="admin" act="index" name="站外投放js"></menu>
+	</menu>
+	<menu name="文章管理" style="fa fa-book">
+		<menu display="1" ctl="admin" act="index" name="文章分类"></menu>
+		<menu display="1" ctl="admin" act="index" name="文章列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="文章自动发布"></menu>
+		<menu display="1" ctl="admin" act="index" name="在线调查"></menu>
+	</menu>
+	<menu name="会员管理" style="fa fa-fw fa-user">
+		<menu display="1" ctl="admin" act="index" name="会员列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="添加会员"></menu>
+		<menu display="1" ctl="admin" act="index" name="会员等级"></menu>
+		<menu display="1" ctl="admin" act="index" name="会员调整"></menu>
+		<menu display="1" ctl="admin" act="index" name="会员留言"></menu>
+		<menu display="1" ctl="admin" act="index" name="充值和提现申请"></menu>
+		<menu display="1" ctl="admin" act="index" name="资金管理"></menu>
+	</menu>
+	<menu name="权限管理" style="fa fa-fw fa-unlock-alt">
+		<menu display="1" ctl="admin" act="index" name="管理员列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="角色管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="管理员日志"></menu>
+		<menu display="1" ctl="admin" act="index" name="办事处列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="供应商列表"></menu>
+	</menu>
+	<menu name="系统设置" style="fa fa-fw fa-cog">
+		<menu display="1" ctl="admin" act="index" name="商店设置"></menu>
+		<menu display="1" ctl="admin" act="index" name="会员注册项设置"></menu>
+		<menu display="1" ctl="admin" act="index" name="支付方式"></menu>
+		<menu display="1" ctl="admin" act="index" name="配送方式"></menu>
+		<menu display="1" ctl="admin" act="index" name="邮件服务器设置"></menu>
+		<menu display="1" ctl="admin" act="index" name="地区列表"></menu>
+		<menu display="1" ctl="admin" act="index" name="计划任务"></menu>
+		<menu display="1" ctl="admin" act="index" name="友情链接"></menu>
+		<menu display="1" ctl="admin" act="index" name="验证码管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="文件权限检测"></menu>
+		<menu display="1" ctl="admin" act="index" name="文件检验"></menu>
+		<menu display="1" ctl="admin" act="index" name="自定义导航栏"></menu>
+		<menu display="1" ctl="admin" act="index" name="站点地图"></menu>
+	</menu>
+	<menu name="模版管理" style="fa fa-fw fa-reorder">
+		<menu display="1" ctl="admin" act="index" name="模版选择"></menu>
+		<menu display="1" ctl="admin" act="index" name="设置模版"></menu>
+		<menu display="1" ctl="admin" act="index" name="项目管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="语言项编辑"></menu>
+		<menu display="1" ctl="admin" act="index" name="模版设置备份"></menu>
+		<menu display="1" ctl="admin" act="index" name="邮件模版"></menu>
+	</menu>
+	<menu name="数据库管理" style="fa fa-fw fa-database">
+		<menu display="1" ctl="admin" act="index" name="数据备份"></menu>
+		<menu display="1" ctl="admin" act="index" name="数据表优化"></menu>
+		<menu display="1" ctl="admin" act="index" name="sql查询"></menu>
+		<menu display="1" ctl="admin" act="index" name="体验数据清除"></menu>
+		<menu display="1" ctl="admin" act="index" name="转换数据"></menu>
+	</menu>
+	<menu name="短信管理" style="fa fa-envelope">
+		<menu display="1" ctl="admin" act="index" name="发送短信"></menu>
+		<menu display="1" ctl="admin" act="index" name="短信签名"></menu>
+	</menu>
+	<menu name="推荐管理" style="fa fa-fw fa-thumbs-o-up">
+		<menu display="1" ctl="admin" act="index" name="推荐设置"></menu>
+		<menu display="1" ctl="admin" act="index" name="分成管理"></menu>
+	</menu>
+	<menu name="邮件群发管理" style="fa fa-fw fa-send">
+		<menu display="1" ctl="admin" act="index" name="关注管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="邮件订阅管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="杂志管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="邮件队列管理"></menu>
+	</menu>
+	<menu name="移动端管理" style="fa fa-fw fa-mobile-phone">
+		<menu display="1" ctl="admin" act="index" name="移动端广告配置"></menu>
+		<menu display="1" ctl="admin" act="index" name="H5应用配置"></menu>
+		<menu display="1" ctl="admin" act="index" name="H5店铺二维码"></menu>
+		<menu display="1" ctl="admin" act="index" name="APP推送管理"></menu>
+		<menu display="1" ctl="admin" act="index" name="APP应用配置"></menu>
+		<menu display="1" ctl="admin" act="index" name="小程序应用配置"></menu>
+	</menu>
+
+
+	<!-- <menu name="系统信息" style="fa fa-fw fa-windows">
+		<menu display="1" ctl="admin" act="index" name="用户管理"></menu>
 		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
 		<menu display="0" ctl="admin" act="add" name="添加用户"></menu>
 		<menu display="0" ctl="admin_group" act="add" name="添加用户组"></menu>
@@ -13,5 +145,12 @@
 		<menu display="0" ctl="test" act="index" name="excel操作" ></menu>
 		<menu display="0" ctl="test" act="index" name="邮箱发送" ></menu>
 		<menu display="0" ctl="test" act="index" name="文件上传" ></menu>
-	</menu>
+	</menu> -->
 </menu>
+
+
+
+
+
+
+
