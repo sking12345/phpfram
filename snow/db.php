@@ -23,12 +23,10 @@ class db {
 		if (!empty(self::$objs[$dbs_key])) {
 			$obj = self::$objs[$dbs_key]["obj"];
 		} else {
-
 			$db_config = config::$obj->dbs->get($dbs_key);
 			$obj = new $db_config["class"]($db_config);
 			self::$objs[$dbs_key]["obj"] = $obj;
 			self::$objs[$dbs_key]["open_tran"] = false;
-
 		}
 		if (self::$open_tran == true) {
 			foreach (self::$objs as $key => $value) {

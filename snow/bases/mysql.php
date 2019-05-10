@@ -69,7 +69,7 @@ class mysql implements db_interface {
 
 	public function insert(string $table_name) {
 		$this->option_code = 0x01;
-		$this->_sql = "insert into {$table_name}";
+		$this->_sql = "insert into {$this->db_congis["prefix"]}{$table_name}";
 		return $this;
 	}
 
@@ -83,13 +83,13 @@ class mysql implements db_interface {
 	public function update(string $table_name) {
 		$this->option_code = 0x03;
 		$this->bool_set = false;
-		$this->_sql = "update {$table_name} set ";
+		$this->_sql = "update {$this->db_congis["prefix"]}{$table_name} set ";
 		return $this;
 	}
 	public function delete(string $table_name) {
 
 		$this->option_code = 0x02;
-		$this->_sql = "delete from {$table_name}";
+		$this->_sql = "delete from {$this->db_congis["prefix"]}{$table_name}";
 		return $this;
 	}
 	/**
@@ -141,7 +141,7 @@ class mysql implements db_interface {
 		return $this->query($this->_sql);
 	}
 	public function from(string $table_name) {
-		$this->_sql .= " from {$table_name} ";
+		$this->_sql .= " from {$this->db_congis["prefix"]}{$table_name} ";
 		return $this;
 	}
 	public function where(array $where) {

@@ -33,7 +33,6 @@
     <div class="wrapper">
         <?=snow\tpl::display("index.header.tpl")?>
         <?=snow\tpl::run_controller("index","menus")?>
-
         <div class="content-wrapper" style="background-color:#ffffff">
             <div class="tab" style="background: #FFFFFF;height: 40px;width: 100%;border-bottom: 1px solid #ccc">
                 <div style="float: left;">

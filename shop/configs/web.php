@@ -51,7 +51,7 @@ return [
 	"dbs" => require __DIR__ . '/db.php',
 	"table_db" => [
 		"default" => [],
-		"user_center" => [],
+		"user_center" => ["admin", "admin_group", "admin_logs"],
 	],
 	"tables_rules" => [
 		"admin" => [
