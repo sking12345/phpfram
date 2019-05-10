@@ -27,7 +27,11 @@ class application {
 		}
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
+
 		$configs = require_once __DIR__ . "/../{$this->app_path}/configs/web.php";
+		if (file_exists(__DIR__ . "/../{$app_path}/configs/menus.xml")) {
+			$configs["menus_xml_file"] = __DIR__ . "/../{$app_path}/configs/menus.xml";
+		}
 		$configs["app"]["path"] = $app_path;
 		$this->_configs = array_merge($configs, $snow_config);
 		config::init($this->_configs);

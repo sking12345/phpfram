@@ -3,7 +3,7 @@
 	<menu name="商品管理" style="fa fa-fw fa-calendar-check-o">
 		<menu display="1" ctl="admin" act="index" name="商品列表"></menu>
 		<menu display="1" ctl="admin" act="index" name="添加商品"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品分类"></menu>
+		<menu display="1" ctl="cate_msg" act="index" name="商品分类"></menu>
 		<menu display="1" ctl="admin" act="index" name="用户评论"></menu>
 		<menu display="1" ctl="admin" act="index" name="商品品牌"></menu>
 		<menu display="1" ctl="admin" act="index" name="商品类型"></menu>
