@@ -25,6 +25,7 @@ class application {
 			$domain = $_SERVER["SERVER_NAME"];
 			$this->app_path = $config["domain_app"][$domain];
 		}
+
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
 

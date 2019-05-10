@@ -35,11 +35,11 @@
                 {{each purview as item i}}
                 <div class="form-group">
                  <label class="col-sm-2 control-label"><input type="checkbox" class="parent" id="parent{{item.id}}" parent-id="{{item.id}}">&nbsp;{{item.name}}:</label>
-                 <p class="form-control-static">
+                 <div class="col-sm-9" style="margin-top: 7px">
                      {{each item.children as item1 i1}}
                      <label style="font-weight: 400"><input type="checkbox" parent-id="{{item.id}}" class="parent{{item.id}} menus" name="purviews[{{item1.ctl}}_{{item1.act}}]">&nbsp;{{item1.name}}</label>&nbsp;&nbsp;&nbsp;&nbsp;
                      {{/each}}
-                 </p>
+                 </div>
                </div>
                {{/each}}
                 </script>
