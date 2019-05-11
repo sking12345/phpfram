@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-    <section class="sidebar">
+    <section class="sidebar" style="background-color:#222d32">
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="<?=snow\user::get('img')?>" class="img-circle" alt="User Image">

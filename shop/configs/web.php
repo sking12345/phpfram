@@ -9,6 +9,7 @@ return [
 		"default_url" => "?ctl=index&act=login",
 		'login_status_time' => '600', //登录多长时间就退出，秒 ,0 永久
 		'session_key' => false, //存session_id 的key值,如果是app 应用程序设置xxx,如果是web,可设置为false,用于兼容多个场景的用户登录验证
+		"index_tpl" => "index.tpl",
 	],
 	'timezone' => "Asia/Phnom_Penh",
 	"cookieValidationKey" => "123456",

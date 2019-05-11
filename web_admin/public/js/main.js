@@ -121,20 +121,25 @@ function table_pages_hander() {
     });
 }
 function form_hander() {
-    $("form").submit(function() {
+  
+  $("form").submit(function() {
+         var data = {};
         if ($(this).attr("method") == "POST"||$(this).attr("method")=="post") {
-
             return true;
+        }else{
+           var href = window.location.href;
+          var t = $(this).serializeArray();
+          $.each(t, function() {
+              data[this.name] = this.value;
+              href += "&" + this.name + "=" + this.value;
+          });
+          window.location.href = href;
         }
-        var href = window.location.href;
-        var data = {};
-        var t = $(this).serializeArray();
-        $.each(t, function() {
-            data[this.name] = this.value;
-            href += "&" + this.name + "=" + this.value;
-        });
-        window.location.href = href;
         return false;
+    });
+    $("form").Validform({
+            tiptype: 4,
+            showAllError: true,
     });
 }
 

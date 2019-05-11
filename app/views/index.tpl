@@ -30,38 +30,36 @@
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        <?=snow\tpl::display("index.header.tpl")?>
-        <?=snow\tpl::run_controller("index","menus")?>
-        <div class="content-wrapper" style="background-color:#ffffff">
-            <div class="tab" style="background: #FFFFFF;height: 40px;width: 100%;border-bottom: 1px solid #ccc">
-                <div style="float: left;">
-                    <label class="pull-left nav_tab btn" style="width: 40px"><i class="fa fa-backward"></i></label>
-                </div>
-                <div id="content_tab" style="overflow: hidden;height: 50px;float: left;">
-                </div>
-                <div class="pull-right">
-                    <label class="pull-right nav_tab btn" style="width: 100px" data-toggle="dropdown">关闭操作<span class="caret"></span></label>
-                    <label class="pull-right nav_tab btn" id="refresh" style="width: 40px"><i class="fa fa-refresh"></i>
-                    </label>
-                    <label class="pull-right nav_tab btn" id="next_iframe" style="border-left: 1px solid #ccc;width: 40px"><i class="fa fa-forward"></i>
-                    </label>
-                    <ul role="menu" class="dropdown-menu dropdown-menu-right" style="top:87px">
-                        <li class="J_tabShowActive"><a>定位当前选项卡</a> </li>
-                        <li class="divider"></li>
-                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a> </li>
-                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a> </li>
-                    </ul>
-                </div>
+    <?=snow\tpl::display("index.header.tpl")?>
+   
+    <div class="content-wrapper" style="background-color:#ffffff">
+         <?=snow\tpl::run_controller("index","menus")?>
+        <div class="tab" style="background: #FFFFFF;height: 40px;width: 100%;border-bottom: 1px solid #ccc">
+            <div style="float: left;">
+                <label class="pull-left nav_tab btn" style="width: 40px"><i class="fa fa-backward"></i></label>
             </div>
-            <div style="position:absolute;height: auto;" id="content-iframes">
+            <div id="content_tab" style="overflow: hidden;height: 50px;float: left;">
+            </div>
+            <div class="pull-right">
+                <label class="pull-right nav_tab btn" style="width: 100px" data-toggle="dropdown">关闭操作<span class="caret"></span></label>
+                <label class="pull-right nav_tab btn" id="refresh" style="width: 40px"><i class="fa fa-refresh"></i>
+                </label>
+                <label class="pull-right nav_tab btn" id="next_iframe" style="border-left: 1px solid #ccc;width: 40px"><i class="fa fa-forward"></i>
+                </label>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right" style="top:87px">
+                    <li class="J_tabShowActive"><a>定位当前选项卡</a> </li>
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a> </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a> </li>
+                </ul>
             </div>
         </div>
-    
-        <?=snow\tpl::display("index.right.tpl")?>
-        <div id="msg" class="hidden">
-            <?=snow\tpl::get_json_assign()?>
+        <div style="position:absolute;height: auto;" id="content-iframes">
         </div>
+    </div>
+    <?=snow\tpl::display("index.right.tpl")?>
+    <div id="msg" class="hidden">
+        <?=snow\tpl::get_json_assign()?>
     </div>
     <script src="public/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
@@ -106,7 +104,7 @@
     $(document).ready(function() {
         rendering('msg', true);
         content_width();
-        $(".content-wrapper").height(1000)
+        $(".main-sidebar").height(1000)
         $(".menu-li").click(function() {
             var href = $(this).attr("href");
             var name = $(this).text();
@@ -126,18 +124,18 @@
             _html += '<span id="'+id+'" onclick="click_tab(this)">' + name + '</span>';
             $(".nav_tab").removeClass("nav_tab_active");
             $("#content_tab").prepend(_html);
-            var _html = '  <iframe onload="frame_load(this)" id="iframe'+id+'" frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes” width="100%"  height="'+height+'px" src="' + href + '"></iframe>';
+            var _html = '  <iframe onload="frame_load(this)" id="iframe'+id+'" frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes” width="100%"  height="'+(height-100)+'px" src="' + href + '"></iframe>';
             $("#content-iframes iframe").addClass("hide");
             $("#content-iframes").prepend(_html);
             window.setTimeout(function(){
                 var iframe_height = document.getElementById('iframe'+id).contentWindow.document.body.scrollHeight;
-                var body_height = $(window).height();
-                if(body_height<iframe_height)
+                var body_height = $(".main-sidebar").height();
+                if(iframe_height<body_height)
                 {
-                    $('#iframe'+id).attr("height",iframe_height+"px");
-                }else{
                      $('#iframe'+id).attr("height",body_height+"px");
-                }
+                 }else{
+                     $(".main-sidebar").height(iframe_height);
+                 }
                 },1000);;
             return false;
         });
