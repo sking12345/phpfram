@@ -120,6 +120,9 @@ function table_pages_hander() {
         window.location.href = href;
     });
 }
+
+
+
 function form_hander() {
   
   $("form").submit(function() {
@@ -137,10 +140,17 @@ function form_hander() {
         }
         return false;
     });
-    $("form").Validform({
+  $(".Validform").each(function(){
+      $(this).Validform({
+            btnReset:".btn_reset",
             tiptype: 4,
             showAllError: true,
-    });
+            tipSweep:true,
+            label:".label",
+            postonce:true,
+            ignoreHidden:true,  //对hidden项不做验证
+      });
+  });
 }
 
 function isJSON(str) {

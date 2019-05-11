@@ -23,14 +23,14 @@
         <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>分类列表</a></li>
         <li class="active"><i class="fa fa-fw fa-search"></i>添加分类</li>
     </ul>
-    <form class="form-horizontal" method="POST">
+    <form class="form-horizontal Validform" method="POST" ajax=true>
         <?=snow\tpl::from_token()?>
         <div class="box content" style="min-height:100px">
             <div class="box-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><code >*</code>分类名称:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control" errormsg="sss" nullmsg="ddd" datatype="n" name="cate_name" placeholder="分类名称">
+                         <input type="text" class="form-control" errormsg="sss" nullmsg="ddd" datatype="/\w{3,6}/i" maxlength="6" name="cate_name" placeholder="分类名称">
                     </div>
                     <label class="col-sm-2 control-label">顶级分类:</label>
                     <div class="col-sm-4">
@@ -68,7 +68,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     rendering('msg', true);
-    
 });
 </script>
 </body>
