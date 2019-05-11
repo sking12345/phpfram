@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
 	<menu name="商品管理" style="fa fa-fw fa-calendar-check-o">
-		<menu display="1" ctl="admin" act="index" name="商品列表"></menu>
-		<menu display="1" ctl="admin" act="index" name="添加商品"></menu>
+		<menu display="1" ctl="" act="" name="商品列表"></menu>
+		<menu display="1" ctl="" act="" name="添加商品"></menu>
 		<menu display="1" ctl="cate_msg" act="index" name="商品分类"></menu>
-		<menu display="1" ctl="admin" act="index" name="用户评论"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品品牌"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品类型"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品回收站"></menu>
-		<menu display="1" ctl="admin" act="index" name="图片批量处理"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品批量上传"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品批量导出"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品批量修改"></menu>
-		<menu display="1" ctl="admin" act="index" name="生成商品代码"></menu>
-		<menu display="1" ctl="admin" act="index" name="标签管理"></menu>
-		<menu display="1" ctl="admin" act="index" name="虚拟商品列表"></menu>
-		<menu display="1" ctl="admin" act="index" name="添加虚拟商品"></menu>
-		<menu display="1" ctl="admin" act="index" name="更改加密串"></menu>
-		<menu display="1" ctl="admin" act="index" name="商品自动上下架"></menu>
+		<menu display="1" ctl="" act="" name="用户评论"></menu>
+		<menu display="1" ctl="" act="" name="商品品牌"></menu>
+		<menu display="1" ctl="" act="" name="商品类型"></menu>
+		<menu display="1" ctl="" act="" name="商品回收站"></menu>
+		<menu display="1" ctl="" act="" name="图片批量处理"></menu>
+		<menu display="1" ctl="" act="" name="商品批量上传"></menu>
+		<menu display="1" ctl="" act="" name="商品批量导出"></menu>
+		<menu display="1" ctl="" act="" name="商品批量修改"></menu>
+		<menu display="1" ctl="" act="" name="生成商品代码"></menu>
+		<menu display="1" ctl="" act="" name="标签管理"></menu>
+		<menu display="1" ctl="" act="" name="虚拟商品列表"></menu>
+		<menu display="1" ctl="" act="" name="添加虚拟商品"></menu>
+		<menu display="1" ctl="" act="" name="更改加密串"></menu>
+		<menu display="1" ctl="" act="" name="商品自动上下架"></menu>
 	</menu>
 	<menu name="促销管理" style="fa fa-fw fa-windows">
-		<menu display="1" ctl="admin" act="index" name="红包类型"></menu>
-		<menu display="1" ctl="admin" act="index" name="祝贺卡"></menu>
-		<menu display="1" ctl="admin" act="index" name="团购活动"></menu>
-		<menu display="1" ctl="admin" act="index" name="专题管理"></menu>
-		<menu display="1" ctl="admin" act="index" name="拍卖活动"></menu>
-		<menu display="1" ctl="admin" act="index" name="优惠活动"></menu>
-		<menu display="1" ctl="admin" act="index" name="批发管理"></menu>
-		<menu display="1" ctl="admin" act="index" name="超值礼包"></menu>
-		<menu display="1" ctl="admin" act="index" name="积分商城商品"></menu>
+		<menu display="1" ctl="" act="" name="红包类型"></menu>
+		<menu display="1" ctl="" act="" name="祝贺卡"></menu>
+		<menu display="1" ctl="" act="" name="团购活动"></menu>
+		<menu display="1" ctl="" act="" name="专题管理"></menu>
+		<menu display="1" ctl="" act="" name="拍卖活动"></menu>
+		<menu display="1" ctl="" act="" name="优惠活动"></menu>
+		<menu display="1" ctl="" act="" name="批发管理"></menu>
+		<menu display="1" ctl="" act="" name="超值礼包"></menu>
+		<menu display="1" ctl="" act="" name="积分商城商品"></menu>
 	</menu>
 	<menu name="订单管理" style="fa fa-fw fa-reorder">
 		<menu display="1" ctl="admin" act="index" name="订单列表"></menu>
