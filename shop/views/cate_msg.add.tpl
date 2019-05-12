@@ -30,23 +30,76 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><code >*</code>分类名称:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control" errormsg="sss" nullmsg="ddd" datatype="/\w{3,6}/i" maxlength="6" name="cate_name" placeholder="分类名称">
+                         <input type="text" class="form-control" errormsg="请输入6个字内的分类名称" nullmsg="请输入分类名称" datatype="*" maxlength="6" name="cat_name" placeholder="分类名称">
                     </div>
                     <label class="col-sm-2 control-label">顶级分类:</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="" name="top_id" placeholder="顶级分类">
+                        
+                            <script type="text/html" id="cate_infos">
+                                <select  class="form-control" datatype="*" name="parent_id">
+                                <option value="0">顶级分类</option>>
+                                {{each cate_infos as item i}}
+                                <option value="{{item.cat_id}}">{{item.cat_name}}</option>
+                                {{/each}}
+                                 </select>
+                            </script>
+                        <!-- <input type="text" class="form-control" value="" name="top_id" placeholder="顶级分类"> -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数量单位:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control" value="" name="uint" placeholder="数量单位">
+                         <input type="text" class="form-control" value="" name="measure_unit" placeholder="数量单位">
                     </div>
                     <label class="col-sm-2 control-label">排序:</label>
                     <div class="col-sm-4">
-                        <input type="number" class="form-control" value="50" name="sort" placeholder="排序">
+                        <input type="number" class="form-control" value="50" name="sort_order" placeholder="排序">
                     </div>
                 </div>
+                 <div class="form-group">
+                   <label class="col-sm-2 control-label">是否显示:</label>
+                    <div class="col-sm-4 radio">
+                        <label class="col-sm-5">
+                            <input type="radio" name="is_show"  value="1">是
+                        </label>
+                        <label class="col-sm-5">
+                            <input type="radio" name="is_show" value="2">否
+                        </label>
+                    </div>
+                    <label class="col-sm-2 control-label">设置为首页推荐:</label>
+                    <div class="col-sm-4 checkbox">
+                        
+                            <label>
+                              <input type="checkbox" name="cat_recommend[]" value="1">
+                              精品
+                            </label>
+                            <label>
+                              <input type="checkbox" name="cat_recommend[]" value="2">
+                              最新
+                            </label>
+                             <label>
+                              <input type="checkbox" name="cat_recommend[]" value="3">
+                              热门
+                            </label>
+                   
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label">价格区间个数:</label>
+                    <div class="col-sm-4">
+                         <input type="number" class="form-control" value="0" name="grade" placeholder="价格区间个数">
+                    </div>
+                    <label class="col-sm-2 control-label">关键字:</label>
+                    <div class="col-sm-4">
+                         <input type="text" class="form-control"  name="keywords" placeholder="价格区间个数">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label">分类描述::</label>
+                     <div class="col-sm-10">
+                    <textarea class="form-control" name="cat_desc" style="resize: none;height: 100px" maxlength="250"></textarea>
+                    </div>
+                 </div>
             </div>
             <div class="box-footer">
                 <label class="col-sm-2 control-label"></label>

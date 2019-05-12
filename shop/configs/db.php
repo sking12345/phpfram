@@ -4,10 +4,10 @@ return [
 	"default" => [
 		"class" => "snow\bases\mysql",
 		"user_name" => "root",
-		"password" => "",
+		"password" => "123456",
 		'charset' => 'utf8',
-		"db_name" => "ecshop",
-		"prefix" => "ecs_",
+		"db_name" => "shop",
+		"prefix" => "xs_",
 		"open_slave" => false, //是否开启从服务器配置
 		"master" => "127.0.0.1:3306",
 		"slave" => ["127.0.0.1:3306", "127.0.0.1:3306", "127.0.0.1:3306"],
@@ -15,7 +15,7 @@ return [
 	"user_center" => [
 		"class" => "snow\bases\mysql",
 		"user_name" => "root",
-		"password" => "",
+		"password" => "123456",
 		'charset' => 'utf8',
 		"db_name" => "phpframe",
 		"prefix" => "",

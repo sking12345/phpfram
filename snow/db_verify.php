@@ -8,11 +8,17 @@ class db_verify {
 	protected $unique_where;
 	protected $err_info = [];
 	protected $field = '';
+	protected $err_call;
 	public static function table(string $table_name = "") {
 		if (self::$obj == null) {
 			self::$obj = new db_verify($table_name);
 		}
 		return self::$obj;
+	}
+
+	public function set_err_call($call_function) {
+		$this->err_call = $call_function;
+		return $this;
 	}
 
 	public static function verify($rule, $value) {
@@ -59,6 +65,7 @@ class db_verify {
 
 	public function update(array $db_datas) {
 		$tables_rules = config::$obj->tables_rules->get($this->table_name);
+
 		if (empty($tables_rules)) {
 			return $db_datas;
 		}
@@ -77,6 +84,9 @@ class db_verify {
 
 		}
 		if (!empty($this->err_info)) {
+			if (!empty($this->err_call)) {
+				call_user_func($this->err_call, $this->err_info);
+			}
 			return false;
 		}
 		$this->err_info = [];
@@ -97,6 +107,9 @@ class db_verify {
 		$data_types = explode("|", $table_rules[$field][0]);
 		$this->verify_field($field, $value, $table_rules[$field]);
 		if (!empty($this->err_info)) {
+			if (!empty($this->err_call)) {
+				call_user_func($this->err_call, $this->err_info);
+			}
 			return false;
 		}
 		$this->err_info = [];

@@ -11,6 +11,7 @@ return [
 		'session_key' => false, //存session_id 的key值,如果是app 应用程序设置xxx,如果是web,可设置为false,用于兼容多个场景的用户登录验证
 		"index_tpl" => "index.tpl",
 	],
+	"icon_path" => "./public/icon/shop.ico",
 	'timezone' => "Asia/Phnom_Penh",
 	"cookieValidationKey" => "123456",
 	"view_path" => __DIR__ . "/../views/",
@@ -55,21 +56,8 @@ return [
 		"user_center" => ["admin", "admin_group", "admin_logs"],
 	],
 	"tables_rules" => [
-		"admin" => [
-			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 21]],
-			'username' => ['required|string|unique', 'max' => 24, 'min' => 4, 'default' => '1', 'message' => '请输入4-24个字符', 'name' => '用户名'],
-			'groups' => ['table|required|string', 'field' => 'id', 'table' => "admin_group", 'message' => "请选择分组", 'name' => '分组'],
-			'sex' => ['enum|required', 'values' => [1 => "男", 2 => "女"], 'default' => '1', 'name' => '性别', 'message' => "请正确选择性别"],
-			'url' => ['url|required', 'message' => "请正确填写url", 'name' => "url"],
-			'email' => ['email|required', 'message' => '请正确填写email', 'name' => 'email'],
-			'number' => ['required|number', 'max' => '200', 'min' => '100', "message" => '请输入number', 'name' => 'number'],
-			'double' => ['required|double', 'max' => '200', 'min' => '100', "message" => '请输入double', 'name' => 'double'],
-			'integer' => ['required|integer', 'max' => '200', 'min' => '100', "message" => '请输入integer', 'name' => 'double'],
-			'date' => ['required|date', 'format' => 'Y-m-d H:i:s', "message" => '请输入日期', 'name' => 'date'],
-			'match' => ["match|required", 'pattern' => '/^[a-z]\w*$/i', "message" => '正则验证', 'name' => '正则验证'],
-			'file' => ['file', 'path' => '', 'extensions' => 'png|jpg|gif', 'max' => 1024 * 1024,
-				'min' => 1024, 'max_files' => 3, 'message' => 'error:[_name_]请选择png|jpg|gif文件',
-			],
+		'category' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
 		],
 	],
 	// "shutdown_call" => "call:func", //end call function

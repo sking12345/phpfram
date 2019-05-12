@@ -33,24 +33,61 @@
                     <thead>
                         <tr>
                             <th>编号</th>
-                            <th>商品名称</th>
-                            <th>货号</th>
-                            <th>价格</th>
-                            <th>上架</th>
-                            <th>精品</th>
-                            <th>新品</th>
-                            <th>热销</th>
-                            <th>推荐排序</th>
-                            <th>库存</th>
-                            <th>虚拟销量</th>
+                            <th>分类名称</th>
+                            <th>上级分类</th>
+                            <th>商品数量</th>
+                            <th>数量单位</th>
+                            <th>导航栏</th>
+                            <th>是否显示</th>
+                            <th>价格分级</th>
+                            <th>排序</th>
+                    
                             <th width="250px">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <script type="text/html" id="admin_list">
-                        {{each admin_list as item i}}
+                        {{each list as item i}}
                         <tr>
-                              
+                            <td>{{item.id}}</td>
+                            <td>{{item.cat_name}}</td>
+                            <td>
+                                {{if item.parent_id == 0}}
+                                    顶级分类
+                                {{else}}
+                                {{list[item.parent_id].cat_name}}
+                                {{/if}}
+                            </td>
+                            <td>0</td>
+                            <td>{{item.measure_unit}}</td>
+                            <td>
+                                {{if item.show_in_nav==1}}
+                                <img src="./public/img/yes.svg" width="20">
+                                {{else}}
+                                <img src="./public/img/no.svg" width="20">
+                               {{/if}}
+                            </td>
+                            <td>
+                                {{if item.is_show==1}}
+                                <img src="./public/img/yes.svg" width="20">
+                                {{else}}
+                                <img src="./public/img/no.svg" width="20">
+                               {{/if}}
+                            </td>
+                            <td>{{item.grade}}</td>
+                            <td>{{item.sort_order}}</td>
+                           
+                            <td>
+                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{item.id}}" class="btn  btn-info  btn-xs">
+                                <i class="fa fa-fw fa-search"></i>查看
+                            </a> 
+                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
+                                <i class="fa fa-fw fa-edit"></i>编辑
+                            </a>
+                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=transfer&id={{item.id}}" class="btn btn-warning  btn-xs">
+                                <i class="fa fa-fw fa-refresh"></i>转移商品
+                            </a>
+                            </td>
                         </tr>
                         {{/each}}
                         <tr>

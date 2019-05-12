@@ -8,3 +8,9 @@ code{
     white-space: nowrap;
     background: url(../../public/img/error.png) no-repeat left center;
 }
+.textarea{
+	resize: none;
+}
+.Validform_right{
+	display: none;
+}

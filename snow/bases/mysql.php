@@ -276,7 +276,6 @@ class mysql implements db_interface {
 		} else {
 			while ($row = mysqli_fetch_assoc($restult)) {
 				$key = $row[$index_field];
-				unset($row[$index_field]);
 				$arr_info[$key] = $row;
 			}
 		}
