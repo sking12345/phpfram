@@ -49,6 +49,13 @@ class ctl_cate_msg extends ctl_base {
 					$cat_recommend = $cat_recommend | $value;
 				}
 			}
+			if (!empty($data['parent_id'])) {
+				$parent_infos = db::select("category", "id,parents")->where(["id" => $data["parent_id"]])->one();
+				$arr = explode(",", $parent_infos["parents"]);
+				$arr[] = $data["parent_id"];
+				$data["parents"] = implode(",", $arr);
+
+			}
 			$data["cat_recommend"] = $cat_recommend;
 			if (!empty($data["filter_attr"])) {
 				$data["filter_attr"] = implode(",", $data["filter_attr"]);
@@ -100,6 +107,13 @@ class ctl_cate_msg extends ctl_base {
 			} else {
 				$data["filter_attr"] = '';
 				$data["genre_id"] = '';
+			}
+			if (!empty($data['parent_id'])) {
+				$parent_infos = db::select("category", "id,parents")->where(["id" => $data["parent_id"]])->one();
+				$arr = explode(",", $parent_infos["parents"]);
+				$arr[] = $data["parent_id"];
+				$data["parents"] = implode(",", $arr);
+
 			}
 			$data["cat_recommend"] = $cat_recommend;
 			db::update("category")->set($data)->where(["id" => $id])->execute();
