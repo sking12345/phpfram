@@ -72,8 +72,9 @@ class db_verify {
 		$data_rules = $tables_rules;
 		foreach ($db_datas as $key => $value) {
 			if (empty($data_rules[$key])) {
-				$err_str = "<span  style='color:red'>{$key}</span> does not exist in the <span  style='color:red'>{$this->table_name}</span> table";
-				throw new \Exception($err_str, 2);
+				continue;
+				// $err_str = "<span  style='color:red'>{$key}</span> does not exist in the <span  style='color:red'>{$this->table_name}</span> table";
+				// throw new \Exception($err_str, 2);
 			}
 			if (!empty($data_rules[$key]["message"])) {
 				$data_rules[$key]["message"] = "Abnormal data";

@@ -14,3 +14,7 @@ code{
 .Validform_right{
 	display: none;
 }
+.help-span{
+    color: #737373;
+    font-size: 12px
+}

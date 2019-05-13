@@ -95,7 +95,7 @@
                     </div>
                 </div>
                  <div class="form-group">
-                    <label class="col-sm-2 control-label">分类描述::</label>
+                    <label class="col-sm-2 control-label">分类描述:</label>
                      <div class="col-sm-10">
                     <textarea class="form-control" name="cat_desc" style="resize: none;height: 100px" maxlength="250"></textarea>
                     </div>

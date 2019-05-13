@@ -6,7 +6,7 @@
 		<menu display="1" ctl="cate_msg" act="index" name="商品分类"></menu>
 		<menu display="1" ctl="" act="" name="用户评论"></menu>
 		<menu display="1" ctl="" act="" name="商品品牌"></menu>
-		<menu display="1" ctl="" act="" name="商品类型"></menu>
+		<menu display="1" ctl="genre" act="index" name="商品类型"></menu>
 		<menu display="1" ctl="" act="" name="商品回收站"></menu>
 		<menu display="1" ctl="" act="" name="图片批量处理"></menu>
 		<menu display="1" ctl="" act="" name="商品批量上传"></menu>

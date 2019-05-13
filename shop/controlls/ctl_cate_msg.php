@@ -44,10 +44,18 @@ class ctl_cate_msg extends ctl_base {
 	}
 
 	public function infos() {
-
+		$id = req::item("id");
+		$infos = db::select("category", "*")->where(["id" => $id])->one();
+		tpl::assign("infos", $infos);
+		tpl::display("cate_msg.infos.tpl");
 	}
 	public function edit() {
-
+		$id = req::item("id");
+		$infos = db::select("category", "*")->where(["id" => $id])->one();
+		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true, 2);
+		tpl::assign("infos", $infos);
+		tpl::assign("cate_infos", $cate_infos);
+		tpl::display("cate_msg.edit.tpl");
 	}
 	public function transfer() {
 
