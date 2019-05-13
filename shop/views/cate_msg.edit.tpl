@@ -78,9 +78,8 @@
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                     <div class="col-sm-4 checkbox">
-                        
                             <label>
-                                {{if infos.cat_recommend&&1}}
+                                {{if infos.cat_recommend&1}}
                                  <input type="checkbox" name="cat_recommend[]" checked="true" value="1">
                                 {{else}}
                                  <input type="checkbox" name="cat_recommend[]" value="1">
@@ -88,7 +87,7 @@
                               精品
                             </label>
                             <label>
-                              {{if infos.cat_recommend&&2}}
+                              {{if infos.cat_recommend&2}}
                                  <input type="checkbox" name="cat_recommend[]" checked="true" value="2">
                                 {{else}}
                                  <input type="checkbox" name="cat_recommend[]" value="2">
@@ -96,26 +95,85 @@
                               最新
                             </label>
                              <label>
-                               {{if infos.cat_recommend&&3}}
+                               {{if infos.cat_recommend&3}}
                                  <input type="checkbox" name="cat_recommend[]" checked="true" value="3">
                                 {{else}}
                                  <input type="checkbox" name="cat_recommend[]" value="3">
                                 {{/if}}
                               热门
                             </label>
-                   
                     </div>
                 </div>
-                 <div class="form-group">
-                    <label class="col-sm-2 control-label">价格区间个数:</label>
-                    <div class="col-sm-4">
-                         <input type="number" value="{{infos.grade}}" class="form-control" value="0" name="grade" placeholder="价格区间个数">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">筛选属性:</label>
+                    <div class="col-sm-4" id="genre_select_list">
+                        {{each infos.genre_id as genre_item genre_i}}
+                        <div class="select genre_select">
+                          <div class="col-sm-5" style="padding:0px">
+                            <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
+                            <option>选择商品类型</option>
+                             {{each genre_infos as item i}}
+                                {{if genre_item == item.id}}
+                                    <option value="{{item.id}}" selected="true">{{item.name}}</option>
+                                {{else}}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                               {{/if}}
+                             {{/each}}
+                         </select>
+                       </div>
+                        <div class="col-sm-5" style="padding-left:4px;padding-right: 0px">
+                         <select class="form-control" name="filter_attr[]">
+                           <option value="0">请选择筛选属性</option>
+                           {{each genre_attr_arr[genre_item] as item i}}
+                                {{if item.id == infos.filter_attr[genre_i]}}
+                                    <option value="{{item.id}}" selected="true">{{item.name}}</option>
+                                {{else}}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                {{/if}}
+                           {{/each}}
+                         </select>
+                       </div>
+                        <div class="col-sm-1">
+                            <p class="form-control-static">
+                                {{if genre_i==0}}
+                                 <a href="javascript:void(0)" onclick="add_attr()">[+]</a>
+                                {{else}}
+                                 <a href="javascript:void(0)" onclick="del_attr(this)">[-]</a>
+                                {{/if}}
+                            </p>
+                        </div>
+                      </div>
+                      {{/each}}
+                      <div id="genre_select" class="hide">
+                        <div class="genre_select">
+                        <div class="col-sm-5" style="padding:0px;margin-top: 4px">
+                         <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
+                            <option>选择商品类型</option>
+                             {{each genre_infos as item i}}
+                               <option value="{{item.id}}">{{item.name}}</option>
+                             {{/each}}
+                  
+                         </select>
+                       </div>
+                        <div class="col-sm-5" style="padding-left:4px;padding-right: 0px;margin-top: 4px">
+                         <select class="form-control" name="filter_attr[]">
+                           <option value="0">请选择筛选属性</option>
+                         </select>
+                       </div>
+                        <div class="col-sm-1">
+                            <p class="form-control-static">
+                              <a href="javascript:void(0)" onclick="del_attr(this)">[-]</a>
+                            </p>
+                        </div>
+                      </div>
+                     </div>
                     </div>
                     <label class="col-sm-2 control-label">关键字:</label>
                     <div class="col-sm-4">
-                         <input type="text" value="{{infos.keywords}}" class="form-control"  name="keywords" placeholder="价格区间个数">
+                         <input type="text" class="form-control"  name="keywords" placeholder="关键字">
                     </div>
                 </div>
+                
                  <div class="form-group">
                     <label class="col-sm-2 control-label">分类描述:</label>
                      <div class="col-sm-10">
@@ -141,9 +199,66 @@
     <script src="public/js/template-web.js"></script>
     <script src="public/js/main.js"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-        var data = rendering('msg', true);
+    var genre_select = "";
+    function add_attr()
+    {
+      
+       $("#genre_select_list").append(genre_select);
+    }
+    function del_attr(obj)
+    {
+      $(obj).parents(".genre_select").remove();
 
+    }
+    function change_cate(obj)
+    {
+          var id = $(obj).find("option:selected").val();
+          var url = window.location.href+"&query=filter_attr";
+          $.get(url,{"genre":id},function(data){
+            var option = "<option>请选择筛选属性</option>";
+            $.each(data.data,function(index,data_obj){
+             option+="<option value='"+data_obj.id+"'>"+data_obj.name+"</option>";
+            });
+            $(obj).parent().next().find("select").html(option);
+          },"JSON");
+    }
+
+
+    $(document).ready(function() {
+        var from_data = rendering('msg', true);
+        if(genre_select=="")
+        {
+          genre_select = $("#genre_select").html();
+           $("#genre_select").remove();
+         }
+       if(from_data)
+       {
+          var url = window.location.href+"&query=filter_attr";
+          for (var i = 0; i<from_data["genre_id"].length; i++) {
+              if(i>=1)
+              {
+                $("#genre_select_list").append(genre_select);
+              }
+          }
+          var gagenre_obj = document.getElementsByName("genre_id[]");
+          $.each(from_data["genre_id"],function(index,item_data){
+            $(gagenre_obj).eq(index).find("[value="+item_data+"]").attr("selected",true);
+            var id = item_data;
+            var url = window.location.href+"&query=filter_attr";
+            $.get(url,{"genre":id},function(data){
+              var option = "<option>请选择筛选属性</option>";
+              $.each(data.data,function(index1,data_obj){
+               if(data_obj.id == from_data["filter_attr"][index])
+               {
+                 option+="<option value='"+data_obj.id+"' selected='true'>"+data_obj.name+"</option>";
+               }else{
+                 option+="<option value='"+data_obj.id+"'>"+data_obj.name+"</option>";
+               }
+              });
+              $(gagenre_obj).eq(index).parent().next().find("select").html(option);
+            },"JSON");
+          });
+       } 
     });
     </script>
 </body>

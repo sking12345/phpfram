@@ -161,7 +161,7 @@
 <script src="public/js/template-web.js"></script>
 <script src="public/js/main.js"></script>
 <script type="text/javascript">
-   var genre_select = "";
+var genre_select = "";
 function add_attr()
 {
   
