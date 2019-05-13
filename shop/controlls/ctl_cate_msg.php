@@ -44,9 +44,12 @@ class ctl_cate_msg extends ctl_base {
 			$data = db_verify::table("category")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			// $data["id"] = util::create_uniqid(18);
 			$cat_recommend = 0;
-			foreach ($data["cat_recommend"] as $key => $value) {
-				$cat_recommend = $cat_recommend | $value;
+			if (!empty($data["cat_recommend"])) {
+				foreach ($data["cat_recommend"] as $key => $value) {
+					$cat_recommend = $cat_recommend | $value;
+				}
 			}
+
 			$data["cat_recommend"] = $cat_recommend;
 			db::insert("category")->set($data)->execute();
 			tpl::redirect("?ctl=cate_msg&act=index", "成功添加分类");
@@ -73,6 +76,7 @@ class ctl_cate_msg extends ctl_base {
 		$id = req::item("id");
 		if (req::is_post()) {
 			$data = req::post_data();
+			print_r($data);
 
 			/**
 			 * [$data 如果设置了err_call]

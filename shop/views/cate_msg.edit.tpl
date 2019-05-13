@@ -69,9 +69,9 @@
                         </label>
                         <label class="col-sm-5">
                             {{if infos.is_show==2}}
-                            <input type="radio" name="is_show" checked="true" value="2">是
+                            <input type="radio" name="is_show" checked="true" value="2">否
                             {{else}}
-                            <input type="radio" name="is_show"  value="2">是
+                            <input type="radio" name="is_show"  value="2">否
                             {{/if}}
                             
                         </label>
@@ -142,7 +142,8 @@
     <script src="public/js/main.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        rendering('msg', true);
+        var data = rendering('msg', true);
+
     });
     </script>
 </body>

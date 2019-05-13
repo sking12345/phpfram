@@ -72,7 +72,8 @@
     <script src="public/js/template-web.js"></script>
     <script type="text/javascript" src="public/js/main.js"></script>
     <script type="text/javascript">
-    var height = $(".main-sidebar").height();
+    
+
    function frame_load(obj)
    {
         return true;
@@ -108,6 +109,8 @@
         rendering('msg', true);
         content_width();
         $(".main-sidebar").height(1000)
+        var height = $(".main-sidebar").height();
+
         $(".menu-li").click(function() {
             var href = $(this).attr("href");
             var name = $(this).text();

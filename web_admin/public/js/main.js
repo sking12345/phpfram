@@ -124,7 +124,7 @@ function table_pages_hander() {
 
 
 function form_hander() {
-  
+   var form_data = {};
   $("form").submit(function() {
          var data = {};
         if ($(this).attr("method") == "POST"||$(this).attr("method")=="post") {
@@ -150,8 +150,61 @@ function form_hander() {
             postonce:true,
             ignoreHidden:true,  //对hidden项不做验证
       });
+      var ctl = $(this).find("[name=ctl]").val();
+      var act = $(this).find("[name=act]").val()
+      form_data = Cookies.get(ctl+"_"+act+"_from")
+     if(form_data)
+     {
+        Cookies.remove(ctl+"_"+act+"_from", { path: '' })
+        form_data = JSON.parse(form_data);
+       $("input[type=checkbox]").attr('checked', false)
+       $.each(form_data,function(index,item_data){
+            var array_obj = document.getElementsByName(index+"[]");
+           if(array_obj.length >0)
+           {
+               if($(array_obj).is("input"))
+               {
+                  $.each(item_data,function(index1,obj){
+                    if($(array_obj).eq(index1).attr("type") == "checkbox")
+                    {
+                       $(array_obj).eq(index1).prop('checked', 'checked');
+                    }else  if($(array_obj).eq(index1).attr("type") == "text")
+                    {
+                       $(array_obj).eq(index1).val(obj);
+                    }
+                  });
+               }else if($(array_obj).is("select"))
+               {
+                   $.each(item_data,function(index1,obj){
+                      $(array_obj).eq(index1).find("[value="+item_data+"]").attr("selected",true);
+                  });
+               }
+           }else{
+            if($("[name="+index+"]").is("input"))
+            {
+              if( $("input[name="+index+"]").attr("type")=="radio")
+              {
+                $("input[name="+index+"][value="+item_data+"]").attr('checked', 'checked');
+              }else if( $("input[name="+index+"]").attr("type")=="checkbox"){
+                $("input[name="+index+"][value="+item_data+"]").attr('checked', 'checked');
+              }else{
+                 $("input[name="+index+"]").val(item_data);
+              }
+            }else if($("[name="+index+"]").is("select"))
+            {
+               $("select[name="+index+"]").find("[value="+item_data+"]").attr("selected",true);
+
+            }else if($("[name="+index+"]").is("textarea")){
+               $("textarea[name="+index+"]").val(item_data);
+            }
+           }
+       })
+     }
   });
+  return form_data;
 }
+
+
 
 function isJSON(str) {
     if (typeof str == 'string') {
@@ -162,13 +215,10 @@ function isJSON(str) {
             }else{
                 return false;
             }
-
         } catch(e) {
-            console.log('error：'+str+'!!!'+e);
             return false;
         }
     }
-    console.log('It is not a string!')
 }
 
 function json_message(json_data,status)
@@ -212,7 +262,7 @@ function message_hander() {
     if (info) {
     	var msg_status = Cookies.get("msg_status");
     	Cookies.remove('msg', { path: '' })
-		Cookies.remove('msg_status', { path: '' })
+		  Cookies.remove('msg_status', { path: '' })
         
          if(isJSON(info) == true)
          {
@@ -228,7 +278,6 @@ function rendering(msg_id, is_delete) {
     var json_str = $("#" + msg_id).text();
     if (json_str) {
     	 var json_data = JSON.parse(json_str);
-    	//console.log(json_data)
 	    $("script[type='text/html']").each(function() {
 	        var html = template(this.id, json_data);
 	        $(this).parent().append(html);
@@ -236,29 +285,11 @@ function rendering(msg_id, is_delete) {
     }
    
     table_pages_hander();
-    form_hander();
     message_hander();
+    var from_data = form_hander();
+    return from_data;
 }
 
-
- window.onresize = function(){
-  // var widht = $(window).width();
-  // $(".pull-right").each(function(index,obj){
-  //   var hide_with = $(obj).attr("hide-with");
-  //   if(hide_with)
-  //   {
-       
-  //       if(parseInt(widht)<parseInt(hide_with))
-  //      {
-  //       $(".pull-right").addClass("hide");
-  //      }else{
-  //        $(".pull-right").removeClass("hide");
-  //      }
-  //   }
-    
-  // })
-  
- }
 
  var util = {
     ajax_post:function(url,$data,call_function)

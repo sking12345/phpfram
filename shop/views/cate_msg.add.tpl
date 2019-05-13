@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>用户列表</title>
+<title>添加分类</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link rel="stylesheet" href="public/components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="public/components/font-awesome/css/font-awesome.min.css">
@@ -87,7 +87,7 @@
                     <div class="col-sm-4" id="genre_select_list">
                       <div class="select">
                           <div class="col-sm-5" style="padding:0px">
-                         <select class="form-control" onchange="change_cate(this)">
+                         <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
                            <script type="text/html" id="genre_infos">
                             <option>选择商品类型</option>
                              {{each genre_infos as item i}}
@@ -98,7 +98,7 @@
                        </div>
                         <div class="col-sm-5" style="padding-left:4px;padding-right: 0px">
                          <select class="form-control" name="filter_attr[]">
-                           <option>请选择筛选属性</option>
+                           <option value="0">请选择筛选属性</option>
                          </select>
                        </div>
                         <div class="col-sm-1">
@@ -110,7 +110,7 @@
                       <div id="genre_select" class="hide">
                         <div class="genre_select">
                         <div class="col-sm-5" style="padding:0px;margin-top: 4px">
-                         <select class="form-control" onchange="change_cate(this)">
+                         <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
                            <script type="text/html" id="genre_infos">
                             <option>选择商品类型</option>
                              {{each genre_infos as item i}}
@@ -121,7 +121,7 @@
                        </div>
                         <div class="col-sm-5" style="padding-left:4px;padding-right: 0px;margin-top: 4px">
                          <select class="form-control" name="filter_attr[]">
-                           <option>请选择筛选属性</option>
+                           <option value="0">请选择筛选属性</option>
                          </select>
                        </div>
                         <div class="col-sm-1">
@@ -134,7 +134,7 @@
                     </div>
                     <label class="col-sm-2 control-label">关键字:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control"  name="keywords" placeholder="价格区间个数">
+                         <input type="text" class="form-control"  name="keywords" placeholder="关键字">
                     </div>
                 </div>
                  <div class="form-group">
@@ -161,9 +161,10 @@
 <script src="public/js/template-web.js"></script>
 <script src="public/js/main.js"></script>
 <script type="text/javascript">
+   var genre_select = "";
 function add_attr()
 {
-   var genre_select = $("#genre_select").html();
+  
    $("#genre_select_list").append(genre_select);
 }
 function del_attr(obj)
@@ -172,7 +173,7 @@ function del_attr(obj)
 }
 function change_cate(obj)
 {
-     var id = $(obj).find("option:selected").val();
+      var id = $(obj).find("option:selected").val();
       var url = window.location.href+"&query=filter_attr";
       $.get(url,{"genre":id},function(data){
         var option = "<option>请选择筛选属性</option>";
@@ -182,9 +183,46 @@ function change_cate(obj)
         $(obj).parent().next().find("select").html(option);
       },"JSON");
 }
+
+
 $(document).ready(function() {
-    rendering('msg', true);
-  
+    var from_data = rendering('msg', true);
+    if(genre_select=="")
+    {
+      genre_select = $("#genre_select").html();
+       $("#genre_select").remove();
+     }
+    
+
+   if(from_data)
+   {
+      var url = window.location.href+"&query=filter_attr";
+      for (var i = 0; i<from_data["genre_id"].length; i++) {
+          if(i>=1)
+          {
+            $("#genre_select_list").append(genre_select);
+          }
+      }
+      var gagenre_obj = document.getElementsByName("genre_id[]");
+      $.each(from_data["genre_id"],function(index,item_data){
+        $(gagenre_obj).eq(index).find("[value="+item_data+"]").attr("selected",true);
+        var id = item_data;
+        var url = window.location.href+"&query=filter_attr";
+        $.get(url,{"genre":id},function(data){
+          var option = "<option>请选择筛选属性</option>";
+          $.each(data.data,function(index1,data_obj){
+           if(data_obj.id == from_data["filter_attr"][index])
+           {
+             option+="<option value='"+data_obj.id+"' selected='true'>"+data_obj.name+"</option>";
+           }else{
+             option+="<option value='"+data_obj.id+"'>"+data_obj.name+"</option>";
+           }
+          });
+          $(gagenre_obj).eq(index).parent().next().find("select").html(option);
+        },"JSON");
+      });
+   }
+    
 });
 </script>
 </body>
