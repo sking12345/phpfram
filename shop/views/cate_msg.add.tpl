@@ -32,18 +32,17 @@
                     <div class="col-sm-4">
                          <input type="text" class="form-control" errormsg="请输入6个字内的分类名称" nullmsg="请输入分类名称" datatype="*" maxlength="6" name="cat_name" placeholder="分类名称">
                     </div>
-                    <label class="col-sm-2 control-label">顶级分类:</label>
+                    <label class="col-sm-2 control-label">所属分类:</label>
                     <div class="col-sm-4">
                         
                             <script type="text/html" id="cate_infos">
                                 <select  class="form-control" datatype="*" name="parent_id">
                                 <option value="0">顶级分类</option>>
                                 {{each cate_infos as item i}}
-                                <option value="{{item.cat_id}}">{{item.cat_name}}</option>
+                                <option value="{{item.id}}">{{item.cat_name}}</option>
                                 {{/each}}
                                  </select>
                             </script>
-                        <!-- <input type="text" class="form-control" value="" name="top_id" placeholder="顶级分类"> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -68,7 +67,6 @@
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                     <div class="col-sm-4 checkbox">
-                        
                             <label>
                               <input type="checkbox" name="cat_recommend[]" value="1">
                               精品
@@ -85,9 +83,54 @@
                     </div>
                 </div>
                  <div class="form-group">
-                    <label class="col-sm-2 control-label">价格区间个数:</label>
-                    <div class="col-sm-4">
-                         <input type="number" class="form-control" value="0" name="grade" placeholder="价格区间个数">
+                    <label class="col-sm-2 control-label">筛选属性:</label>
+                    <div class="col-sm-4" id="genre_select_list">
+                      <div class="select">
+                          <div class="col-sm-5" style="padding:0px">
+                         <select class="form-control" onchange="change_cate(this)">
+                           <script type="text/html" id="genre_infos">
+                            <option>选择商品类型</option>
+                             {{each genre_infos as item i}}
+                               <option value="{{item.id}}">{{item.name}}</option>
+                             {{/each}}
+                           </script>
+                         </select>
+                       </div>
+                        <div class="col-sm-5" style="padding-left:4px;padding-right: 0px">
+                         <select class="form-control" name="filter_attr[]">
+                           <option>请选择筛选属性</option>
+                         </select>
+                       </div>
+                        <div class="col-sm-1">
+                            <p class="form-control-static">
+                              <a href="javascript:void(0)" onclick="add_attr()">[+]</a>
+                            </p>
+                        </div>
+                      </div>
+                      <div id="genre_select" class="hide">
+                        <div class="genre_select">
+                        <div class="col-sm-5" style="padding:0px;margin-top: 4px">
+                         <select class="form-control" onchange="change_cate(this)">
+                           <script type="text/html" id="genre_infos">
+                            <option>选择商品类型</option>
+                             {{each genre_infos as item i}}
+                               <option value="{{item.id}}">{{item.name}}</option>
+                             {{/each}}
+                           </script>
+                         </select>
+                       </div>
+                        <div class="col-sm-5" style="padding-left:4px;padding-right: 0px;margin-top: 4px">
+                         <select class="form-control" name="filter_attr[]">
+                           <option>请选择筛选属性</option>
+                         </select>
+                       </div>
+                        <div class="col-sm-1">
+                            <p class="form-control-static">
+                              <a href="javascript:void(0)" onclick="del_attr(this)">[-]</a>
+                            </p>
+                        </div>
+                      </div>
+                     </div>
                     </div>
                     <label class="col-sm-2 control-label">关键字:</label>
                     <div class="col-sm-4">
@@ -117,12 +160,39 @@
 <script src="public/dist/js/adminlte.min.js"></script>
 <script src="public/js/template-web.js"></script>
 <script src="public/js/main.js"></script>
-
 <script type="text/javascript">
+function add_attr()
+{
+   var genre_select = $("#genre_select").html();
+   $("#genre_select_list").append(genre_select);
+}
+function del_attr(obj)
+{
+  $(obj).parents(".genre_select").remove();
+}
+function change_cate(obj)
+{
+     var id = $(obj).find("option:selected").val();
+      var url = window.location.href+"&query=filter_attr";
+      $.get(url,{"genre":id},function(data){
+        var option = "<option>请选择筛选属性</option>";
+        $.each(data.data,function(index,data_obj){
+         option+="<option value='"+data_obj.id+"'>"+data_obj.name+"</option>";
+        });
+        $(obj).parent().next().find("select").html(option);
+      },"JSON");
+}
 $(document).ready(function() {
     rendering('msg', true);
+  
 });
 </script>
 </body>
+
+
+
+
+
+
 
 </html>

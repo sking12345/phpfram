@@ -34,9 +34,15 @@
                     <div class="col-sm-4">
                          <p class="form-control-static">{{infos.cat_name}}</p>
                     </div>
-                    <label class="col-sm-2 control-label">顶级分类:</label>
+                    <label class="col-sm-2 control-label">所属分类:</label>
                      <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.parent_id}}</p>
+                         <p class="form-control-static">
+                            {{if infos.parent_id==0}}
+                            顶级分类
+                            {{else}}
+                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{parent_info.id}}">{{parent_info["cat_name"]}}</a>
+                            {{/if}}
+                        </p>
                     </div>
                 </div>
                   <div class="form-group">

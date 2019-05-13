@@ -260,6 +260,13 @@ function rendering(msg_id, is_delete) {
   
  }
 
+ var util = {
+    ajax_post:function(url,$data,call_function)
+    {
+      alert("xx");
+    }
+ }
+
 
 
 

@@ -23,7 +23,9 @@ class tpl {
 	 */
 	public static function response($msg, $code = 1) {
 		if ($code > 0) {
-			echo json_encode(["code" => $code, "msg" => $msg, "data" => self::$assign_data]);
+			self::$assign_data["code"] = $code;
+			self::$assign_data["msg"] = $msg;
+			echo json_encode(self::$assign_data);
 		} else {
 			echo json_encode(["code" => $code, "msg" => $msg]);
 		}

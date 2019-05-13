@@ -3,13 +3,13 @@
 $db_host   = "localhost:3306";
 
 // database name
-$db_name   = "ecshop";
+$db_name   = "ecshop1";
 
 // database username
 $db_user   = "root";
 
 // database password
-$db_pass   = "123456";
+$db_pass   = "";
 
 // table prefix
 $prefix    = "ecs_";
@@ -32,6 +32,6 @@ define('OLD_AUTH_KEY', '');
 
 define('API_TIME', '');
 
-define('STORE_KEY','51b830f0ccc2c8d2d22eb1595725c4e1');
+define('STORE_KEY','a95ee74c5ff35875857ee1de50de4d39');
 
 ?>

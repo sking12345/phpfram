@@ -33,12 +33,16 @@
                     <div class="col-sm-4">
                          <input type="text" class="form-control" errormsg="请输入6个字内的分类名称" nullmsg="请输入分类名称" datatype="*" maxlength="6" value="{{infos.cat_name}}" name="cat_name" placeholder="分类名称">
                     </div>
-                    <label class="col-sm-2 control-label">顶级分类:</label>
+                    <label class="col-sm-2 control-label">所属分类:</label>
                     <div class="col-sm-4">
                         <select  class="form-control" datatype="*" name="parent_id">
                         <option value="0">顶级分类</option>>
                         {{each cate_infos as item i}}
-                        <option value="{{item.cat_id}}">{{item.cat_name}}</option>
+                        {{if infos.parent_id == item.id}}
+                          <option value="{{item.id}}" selected="true">{{item.cat_name}}</option>
+                        {{else}}
+                        <option value="{{item.id}}">{{item.cat_name}}</option>
+                        {{/if}}
                         {{/each}}
                          </select>
                     </div>
@@ -57,25 +61,46 @@
                    <label class="col-sm-2 control-label">是否显示:</label>
                     <div class="col-sm-4 radio">
                         <label class="col-sm-5">
+                            {{if infos.is_show==1}}
+                            <input type="radio" name="is_show" checked="true" value="1">是
+                            {{else}}
                             <input type="radio" name="is_show"  value="1">是
+                            {{/if}}
                         </label>
                         <label class="col-sm-5">
-                            <input type="radio" name="is_show" value="2">否
+                            {{if infos.is_show==2}}
+                            <input type="radio" name="is_show" checked="true" value="2">是
+                            {{else}}
+                            <input type="radio" name="is_show"  value="2">是
+                            {{/if}}
+                            
                         </label>
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                     <div class="col-sm-4 checkbox">
                         
                             <label>
-                              <input type="checkbox" name="cat_recommend[]" value="1">
+                                {{if infos.cat_recommend&&1}}
+                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="1">
+                                {{else}}
+                                 <input type="checkbox" name="cat_recommend[]" value="1">
+                                {{/if}}
                               精品
                             </label>
                             <label>
-                              <input type="checkbox" name="cat_recommend[]" value="2">
+                              {{if infos.cat_recommend&&2}}
+                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="2">
+                                {{else}}
+                                 <input type="checkbox" name="cat_recommend[]" value="2">
+                                {{/if}}
                               最新
                             </label>
                              <label>
-                              <input type="checkbox" name="cat_recommend[]" value="3">
+                               {{if infos.cat_recommend&&3}}
+                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="3">
+                                {{else}}
+                                 <input type="checkbox" name="cat_recommend[]" value="3">
+                                {{/if}}
                               热门
                             </label>
                    

@@ -25,20 +25,35 @@ class ctl_cate_msg extends ctl_base {
 	 * 添加分类
 	 */
 	public function add() {
+		$query = req::item("query");
+		if ($query == "filter_attr") {
+			$id = req::item("genre");
+			if (empty($id)) {
+				tpl::response("genre id is null", "-1");
+			}
+			$info = db::select("genre_attr", "id,name")->where(["genre_id" => $id])->all();
+			tpl::assign("data", $info);
+			tpl::response("sucuess", "1");
+		}
 		if (req::is_post()) {
 			$data = req::post_data();
-
 			/**
 			 * [$data 如果设置了err_call]
 			 * @var [type]
 			 */
 			$data = db_verify::table("category")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			// $data["id"] = util::create_uniqid(18);
-			$data["cat_recommend"] = implode(",", $data["cat_recommend"]);
-			db::insert("category")->set($data)->echo_sql(1)->execute();
+			$cat_recommend = 0;
+			foreach ($data["cat_recommend"] as $key => $value) {
+				$cat_recommend = $cat_recommend | $value;
+			}
+			$data["cat_recommend"] = $cat_recommend;
+			db::insert("category")->set($data)->execute();
 			tpl::redirect("?ctl=cate_msg&act=index", "成功添加分类");
 		}
+		$genre_infos = db::select("genre", "id,name")->all();
 		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true, 2);
+		tpl::assign("genre_infos", $genre_infos);
 		tpl::assign("cate_infos", $cate_infos);
 		tpl::display("cate_msg.add.tpl");
 	}
@@ -46,11 +61,34 @@ class ctl_cate_msg extends ctl_base {
 	public function infos() {
 		$id = req::item("id");
 		$infos = db::select("category", "*")->where(["id" => $id])->one();
+		if ($infos["parent_id"] != "0") {
+			$parent_info = db::select("category", "id,cat_name")->where(["id" => $infos["parent_id"]])->one();
+			tpl::assign("parent_info", $parent_info);
+
+		}
 		tpl::assign("infos", $infos);
 		tpl::display("cate_msg.infos.tpl");
 	}
 	public function edit() {
 		$id = req::item("id");
+		if (req::is_post()) {
+			$data = req::post_data();
+
+			/**
+			 * [$data 如果设置了err_call]
+			 * @var [type]
+			 */
+			$data = db_verify::table("category")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
+			// $data["id"] = util::create_uniqid(18);
+			$cat_recommend = 0;
+			foreach ($data["cat_recommend"] as $key => $value) {
+				$cat_recommend = $cat_recommend | $value;
+			}
+			$data["cat_recommend"] = $cat_recommend;
+			db::update("category")->set($data)->where(["id" => $id])->execute();
+			tpl::redirect("?ctl=cate_msg&act=index", "成功添加分类");
+
+		}
 		$infos = db::select("category", "*")->where(["id" => $id])->one();
 		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true, 2);
 		tpl::assign("infos", $infos);
