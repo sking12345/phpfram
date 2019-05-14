@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `xs_brand`
+--
+
+DROP TABLE IF EXISTS `xs_brand`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `xs_brand` (
+  `id` varchar(45) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `url` varchar(150) DEFAULT NULL,
+  `logo` varchar(150) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL COMMENT '排序',
+  `is_show` tinyint(1) DEFAULT NULL COMMENT '是否显示',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='品牌';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xs_brand`
+--
+
+LOCK TABLES `xs_brand` WRITE;
+/*!40000 ALTER TABLE `xs_brand` DISABLE KEYS */;
+INSERT INTO `xs_brand` VALUES ('qwer5cd984cb859ffo','ppp','www.baidu.com','./upload/img/qwercd984cb85a14.png','sss',10,1),('qwer5cd98515b6892y','ppp','nnn','./upload/img/qwercd98515b68a7.png','pp',10,1),('qwer5cd9a86e15228s','ppp','dd','./upload/img/qwercd9a8c998467.png','pppp',20,1);
+/*!40000 ALTER TABLE `xs_brand` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `xs_category`
 --
 
@@ -28,6 +57,7 @@ CREATE TABLE `xs_category` (
   `keywords` varchar(255) NOT NULL DEFAULT '',
   `cat_desc` varchar(255) NOT NULL DEFAULT '',
   `parent_id` varchar(45) NOT NULL DEFAULT '0',
+  `parents` varchar(255) NOT NULL DEFAULT '0' COMMENT '上级目录',
   `sort_order` tinyint(1) unsigned NOT NULL DEFAULT '50',
   `template_file` varchar(50) DEFAULT '',
   `measure_unit` varchar(15) DEFAULT '',
@@ -35,6 +65,7 @@ CREATE TABLE `xs_category` (
   `style` varchar(150) DEFAULT NULL,
   `is_show` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `grade` tinyint(4) DEFAULT '0',
+  `genre_id` varchar(255) DEFAULT NULL,
   `filter_attr` varchar(255) DEFAULT '0',
   `cat_recommend` varchar(45) DEFAULT NULL,
   `create_user` varchar(35) DEFAULT NULL,
@@ -53,7 +84,7 @@ CREATE TABLE `xs_category` (
 
 LOCK TABLES `xs_category` WRITE;
 /*!40000 ALTER TABLE `xs_category` DISABLE KEYS */;
-INSERT INTO `xs_category` VALUES ('qwer5cd73c1a41e35h','xxx','11','111','0',50,'','11',1,NULL,1,0,'0','1,2',NULL,NULL,NULL,NULL,NULL,NULL),('qwer5cd73c896809b6','xxx1','111','sdasf','qwer5cd73c1a41e35h',50,'','111',1,NULL,1,0,'0','1,2',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `xs_category` VALUES ('qwer5cd95fa386b63n','xxx','11','sss','0','0',50,'','111',1,NULL,1,0,'qwer5cd854e33951av','qwer5cd871328aa46l','3',NULL,NULL,NULL,NULL,NULL,NULL),('qwer5cd95fb3d6fde8','ddd','dd','ssss','qwer5cd95fa386b63n','0,qwer5cd95fa386b63n',50,'','aaa',1,NULL,1,0,'qwer5cd854e33951av','qwer5cd871328aa46l','0',NULL,NULL,NULL,NULL,NULL,NULL),('qwer5cd960187cabeu','ppp','','','qwer5cd95fb3d6fde8','0,qwer5cd95fa386b63n,qwer5cd95fb3d6fde8',50,'','11',1,NULL,1,0,'qwer5cd854e33951av','qwer5cd871328aa46l','3',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `xs_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-13 10:16:04
+-- Dump completed on 2019-05-14 10:05:58
