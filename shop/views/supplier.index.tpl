@@ -16,17 +16,16 @@
     <div class="content">
       <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
         <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>类型列表</a></li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>属性列表</li>
+        <li class="active"><i class="fa fa-fw fa-search"></i>供应商</li>
         <div class="pull-right">
-      
+        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加供应商</a>
         </div>
       </ul>
         <div class="box">
             <div class="box-header with-border">
                 <form method="GET" action="" class="form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入用户名">
+                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入名称">
                         <button type="submit" class="btn btn-default">搜索</button>
                     </div>
                 </form>
@@ -37,9 +36,10 @@
                         <tr>
                             <th width="200px">编号</th>
                             <th>名称</th>
-
-                            <th>所属类型</th>
-                            <th>可选属性</th>
+                            <th>tel</th>
+                            <th>联系人</th>
+                            <th>phone</th>
+                            <th>状态</th>
                             <th width="250px">操作</th>
                         </tr>
                     </thead>
@@ -49,20 +49,22 @@
                         <tr>
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
+                            <td>{{item.tel}}</td>
+                            <td>{{item.contact}}</td>
+                            <td>{{item.phone}}</td>
                             <td>
-                                {{genre_infos[item.genre_id]["name"]}}
+                                {{if item.status==1}}
+                                    正常
+                                {{else}}
+                                    暂停
+                                {{/if}}
                             </td>
-                            <td>{{item.select_list}}</td>
-                            
                             <td>
-                             <a class="btn  btn-info  btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_infos&id={{item.id}}">
+                                <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{item.id}}" class="btn  btn-info  btn-xs">
                                 <i class="fa fa-fw fa-search"></i>查看
                             </a> 
-                            <a class="btn btn-primary  btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_edit&id={{item.id}}">
+                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
                                 <i class="fa fa-fw fa-edit"></i>编辑
-                            </a>
-                             <a  class="btn btn-danger btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_del&id={{item.id}}">
-                                <i class="fa fa-fw fa-remove"></i>删除
                             </a>
                             </td>
                         </tr>

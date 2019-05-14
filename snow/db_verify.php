@@ -80,7 +80,7 @@ class db_verify {
 				$data_rules[$key]["message"] = "Abnormal data";
 			}
 			if (!empty($value)) {
-				$this->verify_field($key, $value, $data_rules[$key]);
+				$db_datas[$key] = $this->verify_field($key, $value, $data_rules[$key]);
 			}
 
 		}
@@ -139,7 +139,7 @@ class db_verify {
 					}
 				}
 			} else if (!empty($db_datas[$key])) {
-				$this->verify_field($key, $db_datas[$key], $value);
+				$db_datas[$key] = $this->verify_field($key, $db_datas[$key], $value);
 			}
 		}
 		if (!empty($this->err_info)) {
@@ -176,7 +176,7 @@ class db_verify {
 							}
 						}
 					} else {
-						$this->verify_field($key, $db_datas[$key], $value);
+						$db_datas[$key] = $this->verify_field($key, $db_datas[$key], $value);
 					}
 				}
 			} else {
@@ -189,7 +189,7 @@ class db_verify {
 						$data_rules[$key]["message"] = "Abnormal data";
 					}
 					if (!empty($value)) {
-						$this->verify_field($key, $value, $data_rules[$key]);
+						$db_datas[$key] = $this->verify_field($key, $value, $data_rules[$key]);
 					}
 				}
 			}
@@ -291,11 +291,16 @@ class db_verify {
 			}
 		}
 		if (in_array('date', $data_where)) {
-			if (strtotime($value) == false) {
+			$time = strtotime($value);
+			if ($time == false) {
 				$this->err_info[$key] = $field_rule["message"];
 			} else {
 				if (!empty($field_rule["format"])) {
-					$db_datas[$key] = date($field_rule["format"], strtotime($value));
+					if ($field_rule["format"] == "time") {
+						$value = $time;
+					} else {
+						$value = date($field_rule["format"], strtotime($value));
+					}
 				}
 			}
 		}
@@ -342,7 +347,7 @@ class db_verify {
 				}
 			}
 		}
-		return true;
+		return $value;
 	}
 
 	public function verify_file(string $file, $min_size, $max_size, $extensions) {

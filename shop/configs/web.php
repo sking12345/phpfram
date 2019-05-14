@@ -68,6 +68,21 @@ return [
 		'brand' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
 		],
+		'supplier' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+		],
+		'supplier_status' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+		],
+		'merchandise' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+			'promotion_start_time' => ['date', "format" => "time", "message" => '请输入日期',
+				'name' => '促销开始日期',
+			],
+			'promotion_start_time' => ['date', "format" => "time", "message" => '请输入日期',
+				'name' => '促销结束日期',
+			],
+		],
 	],
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法

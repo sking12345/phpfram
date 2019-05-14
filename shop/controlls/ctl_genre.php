@@ -97,7 +97,13 @@ class ctl_genre extends ctl_base {
 			db::update("genre_attr")->set($data)->where(["id" => $id])->execute();
 			db::insert("genre_attr_list")->set($attr_list_arr, true)->execute();
 			db::commit();
-			tpl::redirect("?ctl=genre&act=infos&id={$genre_id}", "属性编辑成功");
+			$back_act = req::item("back", "infos");
+			if ($back_act == "attr_info") {
+				tpl::redirect("?ctl=genre&act=attr_info&id={$id}", "属性编辑成功");
+			} else {
+				tpl::redirect("?ctl=genre&act=infos&id={$genre_id}", "属性编辑成功");
+			}
+
 		}
 		$infos = db::select("genre_attr", "*")->where(["id" => $id])->one();
 		$genre_info = db::select("genre", "id,name")->where(["id" => $infos["genre_id"]])->one();
@@ -126,6 +132,48 @@ class ctl_genre extends ctl_base {
 		tpl::assign("list", $list);
 		tpl::assign("genre_infos", $genre_infos);
 		tpl::display("genre.attr_index.tpl");
+	}
+
+	public function attr_infos() {
+
+		$id = req::item("id");
+		$infos = db::select("genre_attr", "*")->where(["id" => $id])->one();
+		$genre_info = db::select("genre", "id,name")->where(["id" => $infos["genre_id"]])->one();
+		tpl::assign("genre", $genre_info);
+		tpl::assign("infos", $infos);
+		tpl::display("genre.attr_infos.tpl");
+	}
+
+	public function attr_edit() {
+		$id = req::item("id");
+		if (req::is_post()) {
+			$data = req::post_data();
+			$data = db_verify::table("genre_attr")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
+			$attr_list_arr = [];
+			foreach (explode("|", $data["select_list"]) as $key => $value) {
+				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $id, "name" => $value];
+			}
+			db::delete("genre_attr_list")->where(["id" => ["!=", null], "attr_id" => $id])->execute();
+			db::start();
+			db::update("genre_attr")->set($data)->where(["id" => $id])->execute();
+			db::insert("genre_attr_list")->set($attr_list_arr, true)->execute();
+			db::commit();
+			$back_act = req::item("back", "attr_index");
+			tpl::redirect("?ctl=genre&act={$back_act}&id={$id}", "属性编辑成功");
+		}
+		$infos = db::select("genre_attr", "*")->where(["id" => $id])->one();
+		tpl::assign("infos", $infos);
+		tpl::display("genre.attr_edit.tpl");
+	}
+
+	public function attr_del() {
+		$id = req::item("id");
+		$genre_id = req::item("genre_id");
+		db::start();
+		db::delete("genre_attr")->where(["id" => $id])->execute();
+		db::update("genre")->set(["attr_num" => ["-", "1"]])->where(["id" => $genre_id])->execute();
+		db::commit();
+		tpl::redirect("?ctl=genre&act=attr_index", "属性删除成功");
 	}
 }
 ?>

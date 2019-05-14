@@ -11,4 +11,9 @@ class ctl_merchandise {
 
 		tpl::display("merchandise.index.tpl");
 	}
+
+	public function add() {
+
+		tpl::display("merchandise.add.tpl");
+	}
 }

@@ -45,13 +45,13 @@
                     <textarea class="form-control" name="select_list"  datatype="*" nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250"></textarea>
                     <span class="help-span">多个属性已|分开</span>
                     </div>
-                    <label class="col-sm-2 control-label">属性可选方式:</label>
+                    <label class="col-sm-2 control-label">可选方式:</label>
                     <div class="col-sm-4 radio">
                         <label class="col-sm-5">
-                            <input type="radio" name="select_type" checked="true"  value="1"> 单选属性
+                            <input type="radio" name="select_type" checked="true"  value="1"> 单选
                         </label>
                         <label class="col-sm-5">
-                            <input type="radio" name="select_type" value="2">复选属性
+                            <input type="radio" name="select_type" value="2">复选
                         </label>
                     </div>
                  </div>

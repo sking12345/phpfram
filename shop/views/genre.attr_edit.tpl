@@ -20,7 +20,8 @@
    <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
         <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
         <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>类型列表</a></li>
-        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=<?=snow\req::item('genre_id')?>"><i class="fa fa-fw fa-search"></i>查看类型</a></li>
+        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=attr_index"><i class="fa fa-fw fa-search"></i>属性列表</a></li>
+        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=attr_infos&id=<?=snow\req::item('id')?>"><i class="fa fa-fw fa-search"></i>查看属性</a></li>
         <li class="active"><i class="fa fa-fw fa-search"></i>编辑属性</li>
     </ul>
     <form class="form-horizontal Validform" method="POST" ajax=true>

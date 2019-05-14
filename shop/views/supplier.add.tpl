@@ -4,6 +4,7 @@
 <head>
   <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>添加供应商</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link rel="stylesheet" href="public/components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="public/components/font-awesome/css/font-awesome.min.css">
@@ -17,50 +18,61 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="content">
-   <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
+    <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
         <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>类型列表</a></li>
-        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=<?=snow\req::item('genre_id')?>"><i class="fa fa-fw fa-search"></i>查看类型</a></li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>编辑属性</li>
+        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>供应商</a></li>
+        <li class="active"><i class="fa fa-fw fa-search"></i>添加供应商</li>
     </ul>
     <form class="form-horizontal Validform" method="POST" ajax=true>
         <?=snow\tpl::from_token()?>
-        <input type="hidden" name="genre_id" value="<?=snow\req::item('genre_id')?>">
+
         <div class="box content" style="min-height:100px">
             <div class="box-body">
-                <script type="text/html" id="infos">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><code >*</code>属性名称:</label>
+                    <label class="col-sm-2 control-label"><code >*</code>名称:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control" errormsg="请输入6个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="6" name="name" value="{{infos.name}}" placeholder="属性名称">
+                         <input type="text" class="form-control" errormsg="请输入20个字内的名称" nullmsg="请输入名称" datatype="*" maxlength="20" name="name" placeholder="名称">
                     </div>
-                 <label class="col-sm-2 control-label">商品类型:</label>
-                    <div class="col-sm-4">
-                        <p class="form-control-static"><?=snow\tpl::get_assign("name")?></p>
+                    <label class="col-sm-2 control-label"><code >*</code>办公电话:</label>
+                     <div class="col-sm-4">
+                         <input type="text" class="form-control"  name="tel" placeholder="办公电话">
                     </div>
-                </div>
-                    <div class="form-group">
-                    <label class="col-sm-2 control-label">可选值列表:</label>
-                    <div class="col-sm-4">
-                         <textarea class="form-control" name="select_list"  nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250">{{infos.select_list}}</textarea>
-                    </div>
-                 <label class="col-sm-2 control-label">可选方式:</label>
-                     <div class="col-sm-4 radio">
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" checked="true"  value="1"> 单选
-                        </label>
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" value="2">复选
-                        </label>
-                    </div>
+                    
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">描述:</label>
+                     <label class="col-sm-2 control-label"><code >*</code>联系人:</label>
+                    <div class="col-sm-4">
+                         <input type="text" class="form-control" errormsg="请输入联系人" nullmsg="请输入联系人" datatype="*" maxlength="6" name="contact" placeholder="联系人">
+                    </div>
+                    <label class="col-sm-2 control-label"><code >*</code>手机号:</label>
+                     <div class="col-sm-4">
+                         <input type="text" class="form-control"  name="phone" placeholder="手机号">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">状态:</label>
+                    <div class="col-sm-4 radio">
+                        <label class="col-sm-5">
+                            <input type="radio" name="status" checked="true"  value="1">正常
+                        </label>
+                        <label class="col-sm-5">
+                            <input type="radio" name="status" value="2">暂停
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="col-sm-2 control-label">地址:</label>
                      <div class="col-sm-10">
-                    <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250">{{infos.remarks}}</textarea>
+                         <input type="text" class="form-control"  name="addr" placeholder="地址">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">描述::</label>
+                     <div class="col-sm-10">
+                    <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250"></textarea>
                     </div>
                  </div>
-             </script>
             </div>
             <div class="box-footer">
                 <label class="col-sm-2 control-label"></label>

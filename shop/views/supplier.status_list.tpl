@@ -14,33 +14,22 @@
 
 <body>
     <div class="content">
-      <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
-        <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>类型列表</a></li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>属性列表</li>
-        <div class="pull-right">
-      
-        </div>
-      </ul>
+        <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
+            <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
+            <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>供应商</a></li>
+            <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=<?=snow\req::item('id')?>">
+                <i class="fa fa-fw fa-search"></i>查看供应商</a></li>
+            <li class="active"><i class="fa fa-fw fa-search"></i>供应商状态</li>
+        </ul>
         <div class="box">
-            <div class="box-header with-border">
-                <form method="GET" action="" class="form-inline">
-                    <div class="form-group">
-                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入用户名">
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </div>
-                </form>
-            </div>
             <div class="box-body">
                 <table class="table table-bordered table-hover dataTable text-center">
                     <thead>
                         <tr>
                             <th width="200px">编号</th>
-                            <th>名称</th>
-
-                            <th>所属类型</th>
-                            <th>可选属性</th>
-                            <th width="250px">操作</th>
+                            <th>状态</th>
+                            <th>时间</th>
+                            <th>描述</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,23 +37,15 @@
                         {{each list as item i}}
                         <tr>
                             <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
                             <td>
-                                {{genre_infos[item.genre_id]["name"]}}
+                                {{if item.status==1}}
+                                    <span class="text-success">恢复正常</span>
+                                {{else}}
+                                   <span class="text-warning">暂停使用</span>
+                                {{/if}}
                             </td>
-                            <td>{{item.select_list}}</td>
-                            
-                            <td>
-                             <a class="btn  btn-info  btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_infos&id={{item.id}}">
-                                <i class="fa fa-fw fa-search"></i>查看
-                            </a> 
-                            <a class="btn btn-primary  btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_edit&id={{item.id}}">
-                                <i class="fa fa-fw fa-edit"></i>编辑
-                            </a>
-                             <a  class="btn btn-danger btn-xs" href="?ctl=<?=snow\req::item('ctl')?>&act=attr_del&id={{item.id}}">
-                                <i class="fa fa-fw fa-remove"></i>删除
-                            </a>
-                            </td>
+                            <td>{{item.create_time|date_format 'Y-m-d h:i:s'}}</td>
+                            <td>{{item.remarks}}</td>
                         </tr>
                         {{/each}}
                         <tr>
