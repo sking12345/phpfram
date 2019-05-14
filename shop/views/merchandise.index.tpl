@@ -16,10 +16,9 @@
     <div class="content">
       <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
         <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>类型列表</li>
+        <li class="active"><i class="fa fa-fw fa-search"></i>商品列表</li>
         <div class="pull-right">
-        <a href="?ctl=<?=snow\req::item('ctl')?>&act=attr_index" class="btn btn-xs  btn-info "><i class="fa fa-fw fa-reorder"></i>属性列表</a>
-        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加类型</a>
+        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加商品</a>
         </div>
       </ul>
         <div class="box">
@@ -35,37 +34,23 @@
                 <table class="table table-bordered table-hover dataTable text-center">
                     <thead>
                         <tr>
-                            <th width="200px">编号</th>
-                            <th>类型名称</th>
-                            <th>属性数</th>
-                            <th>状态</th>
-                            <th width="250px">操作</th>
+                            <th width="180px">编号</th>
+                            <th>商品名称</th>
+                            <th>货号</th>
+                            <th>价格</th>
+                            <th>上架</th>
+                            <th>精品</th>
+                            <th>新品</th>
+                            <th>热销</th>
+                            <th>推荐排序</th>
+                            <th>库存</th>
+                            <th>销量</th>
+                            <th width="200px">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <script type="text/html" id="admin_list">
-                        {{each list as item i}}
-                        <tr>
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.attr_num}}</td>
-                            <td>
-                                 {{if item.enabled==1}}
-                                <img src="./public/img/yes.svg" width="20">
-                                {{else}}
-                                <img src="./public/img/no.svg" width="20">
-                               {{/if}}
-                            </td>
-                            <td>
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{item.id}}" class="btn  btn-info  btn-xs">
-                                <i class="fa fa-fw fa-search"></i>查看
-                            </a> 
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
-                                <i class="fa fa-fw fa-edit"></i>编辑
-                            </a>
-                            </td>
-                        </tr>
-                        {{/each}}
+                        
                         <tr>
                           <th colspan="20">
                              <?=\html::create_table_pages("public/table.pages.tpl","pages")?>

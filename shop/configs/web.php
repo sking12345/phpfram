@@ -65,6 +65,9 @@ return [
 		'genre_attr' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
 		],
+		'brand' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+		],
 	],
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法

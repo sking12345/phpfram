@@ -18,7 +18,6 @@ class ctl_cate_msg extends ctl_base {
 		$list = db::select("category", "id, cat_name, keywords, cat_desc, parent_id, sort_order, template_file, measure_unit, show_in_nav, style, is_show, grade, filter_attr, cat_recommend")->limit($page["start"], $page["num"])->all("id");
 		tpl::assign("list", $list);
 		tpl::assign("pages", $page);
-
 		tpl::display("cate_msg.index.tpl");
 	}
 	/**

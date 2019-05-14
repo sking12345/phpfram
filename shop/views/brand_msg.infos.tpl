@@ -18,11 +18,10 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="content">
-       <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
-        <li><i class="fa fa-fw fa-calendar-check-o"></i>分类管理</li>
-         <li ><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-reorder"></i>分类列表</a></li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>查看分类</li>
-       
+         <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
+        <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
+         <li ><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-reorder"></i>品牌列表</a></li>
+        <li class="active"><i class="fa fa-fw fa-search"></i>查看品牌</li>
       </ul>
        
             <div class="box content" style="min-height:100px">
@@ -30,57 +29,51 @@
             <div class="box-body">
                 <form class="form-horizontal">
                    <div class="form-group">
-                    <label class="col-sm-2 control-label">分类名称:</label>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">名称:</label>
                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.cat_name}}</p>
+                         <p class="form-control-static">{{infos.name}}</p>
                     </div>
-                    <label class="col-sm-2 control-label">所属分类:</label>
+                    <label class="col-sm-2 control-label">logo:</label>
                      <div class="col-sm-4">
                          <p class="form-control-static">
-                            {{if infos.parent_id==0}}
-                            顶级分类
-                            {{else}}
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{parent_info.id}}">{{parent_info["cat_name"]}}</a>
-                            {{/if}}
+                         <img src="{{infos.logo}}" height="35px">
                         </p>
                     </div>
-                </div>
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label">数量单位:</label>
+                 </div>
+                 <div class="form-group">
+                      <label class="col-sm-2 control-label">网址:</label>
                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.measure_unit}}</p>
+                         <p class="form-control-static">
+                         <a href="{{infos.url}}">{{infos.url}}</a>
+                        </p>
                     </div>
                     <label class="col-sm-2 control-label">排序:</label>
                      <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.sort_order}}</p>
+                         <p class="form-control-static">
+                         {{infos.sort}}
+                        </p>
                     </div>
                  </div>
                 <div class="form-group">
                       <label class="col-sm-2 control-label">是否显示:</label>
                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.is_show}}</p>
-                    </div>
-                    <label class="col-sm-2 control-label">设置为首页推荐:</label>
-                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.show_in_nav}}</p>
+                         <p class="form-control-static">
+                         {{if infos.is_show==1}}
+                         是
+                         {{else}}
+                         否
+                         {{/if}}
+                        </p>
                     </div>
                  </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">价格区间个数:</label>
+                 <div class="form-group">
+                      <label class="col-sm-2 control-label">描述:</label>
                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.grade}}</p>
+                         <p class="form-control-static">
+                            {{infos.remarks}}
+                        </p>
                     </div>
-                    <label class="col-sm-2 control-label">关键字:</label>
-                     <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.keywords}}</p>
-                    </div>
-                 </div>
-                     <div class="form-group">
-                      <label class="col-sm-2 control-label">分类描述:</label>
-                    <div class="col-sm-10">
-                         <p class="form-control-static">{{infos.cat_desc}}</p>
-                    </div>
-                    
                  </div>
                 </form>
             </div>
@@ -88,9 +81,6 @@
                 <label class="col-sm-1 control-label"></label>
                 <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{infos.id}}&back=infos" class="btn btn-sm btn-primary">
                     <i class="fa fa-fw fa-edit"></i>编辑
-                </a>
-                <a href="?ctl=<?=snow\req::item('ctl')?>&act=add_attr&id={{infos.id}}" class="btn  btn-sm btn-info">
-                    <i class="fa fa-plus-circle"></i>转移商品
                 </a>
                  <a href="?ctl=<?=snow\req::item('ctl')?>&act=del&id={{infos.id}}" class="btn  btn-sm  btn-danger">
                     <i class="fa fa-fw fa-remove"></i>移除

@@ -16,10 +16,9 @@
     <div class="content">
       <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
         <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>类型列表</li>
+        <li class="active"><i class="fa fa-fw fa-search"></i>品牌列表</li>
         <div class="pull-right">
-        <a href="?ctl=<?=snow\req::item('ctl')?>&act=attr_index" class="btn btn-xs  btn-info "><i class="fa fa-fw fa-reorder"></i>属性列表</a>
-        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加类型</a>
+        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加品牌</a>
         </div>
       </ul>
         <div class="box">
@@ -36,9 +35,11 @@
                     <thead>
                         <tr>
                             <th width="200px">编号</th>
-                            <th>类型名称</th>
-                            <th>属性数</th>
-                            <th>状态</th>
+                            <th>品牌名称</th>
+                            <th>网址</th>
+                            <th>logo</th>
+                            <th>排序</th>
+                            <th>是否显示</th>
                             <th width="250px">操作</th>
                         </tr>
                     </thead>
@@ -48,9 +49,11 @@
                         <tr>
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.attr_num}}</td>
+                            <td>{{item.url}}</td>
+                            <td><img src="{{item.logo}}" width="35px"></td>
+                            <td>{{item.sort}}</td>
                             <td>
-                                 {{if item.enabled==1}}
+                                 {{if item.is_show==1}}
                                 <img src="./public/img/yes.svg" width="20">
                                 {{else}}
                                 <img src="./public/img/no.svg" width="20">
