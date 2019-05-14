@@ -76,10 +76,10 @@ return [
 		],
 		'merchandise' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
-			'promotion_start_time' => ['date', "format" => "time", "message" => '请输入日期',
+			'promotion_start_time' => ['date', "message" => '请输入日期',
 				'name' => '促销开始日期',
 			],
-			'promotion_start_time' => ['date', "format" => "time", "message" => '请输入日期',
+			'promotion_start_time' => ['date', "message" => '请输入日期',
 				'name' => '促销结束日期',
 			],
 		],
