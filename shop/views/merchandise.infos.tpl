@@ -21,10 +21,9 @@
         <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
             <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>商品列表</a></li>
-            <li class="active"><i class="fa fa-fw fa-search"></i>添加商品</li>
+            <li class="active"><i class="fa fa-fw fa-search"></i>查看商品信息</li>
         </ul>
-        <form class="form-horizontal Validform" method="POST" enctype="multipart/form-data">
-            <?=snow\tpl::from_token()?>
+        <form class="form-horizontal">
             <div class="box content" style="min-height:100px">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#activity" style="color: #444" data-toggle="tab">通用信息</a></li>
@@ -231,63 +230,21 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <label class="col-sm-2 control-label"></label>
-                    <button type="submit" class="btn btn-info">提交</button>
+                      <label class="col-sm-1 control-label"></label>
+                        <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{infos.id}}&back=infos" class="btn btn-sm btn-primary">
+                            <i class="fa fa-fw fa-edit"></i>编辑
+                        </a>
+                        <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit_details&id={{infos.id}}" class="btn  btn-sm btn-info">
+                            <i class="fa fa-plus-circle"></i>设置详细描述
+                        </a>
+                         <a href="?ctl=<?=snow\req::item('ctl')?>&act=del&id={{infos.id}}" class="btn  btn-sm  btn-danger">
+                            <i class="fa fa-fw fa-remove"></i>回收站
+                        </a>
                 </div>
                 </script>
             </div>
         </form>
-    </div>
-    <script type="text/html" id="genre_attr_list" render="no">
-        {{each attr_infos as item i}}
-
-            <div class="form-group">
-            <label class="col-sm-2 control-label">{{item.name}}:</label>
-            {{if item.input_type==1}}
-            <div class="col-sm-4">
-                 <input type="text" class="form-control"  name="attr_list[{{item.id}}]" placeholder="{{item.name}}">
-             </div>
-            {{else if item.input_type==2}}
-                <div class="col-sm-8 radio">
-                {{each attr_list[item.id] as item1 j}}
-                     <label>
-                            <input type="radio" name="attr_list[{{item.id}}]"   value="{{item1.name}}"> {{item1.name}}
-                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                {{/each}}
-                </div>
-            {{else}}
-                 <div class="col-sm-8 checkbox">
-                {{each attr_list[item.id] as item1 j}}
-                     <label>
-                            <input type="checkbox" name="attr_list[{{item.id}}][]"   value="{{item1.name}}"> {{item1.name}}
-                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                {{/each}}
-                </div>
-            {{/if}}
-            </div>
-         </div>
-        {{/each}}
-    </script>
-    <script type="text/html" id="product_img_script" render="no">
-        <div class="form-group">
-            <label class="col-sm-2 control-label"></label>
-            <div class="col-sm-4">
-                 <div class="col-sm-1" style="padding: 0px">
-                    <p class="form-control-static" onclick="del_prouduct_img(this)">[-]</p>
-                 </div>
-                <div class="col-sm-4" style="padding: 0px">
-                  <input type="file" class="form-control-static imgs" onchange="file_change(this)" name="imgs[]">
-                </div>
-                 <div class="col-sm-4 pull-right">
-                    <img src="" class="show_img" height="35px" class="hide">
-                </div>
-            </div>
-             <label class="col-sm-2 control-label">图片描述:</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" errormsg="请输入25个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="25" name="img_remarks[]" placeholder="属性名称">
-            </div>
-        </div>
-    </script>
+    </div>  
     </div>
     <div id="msg" class="hidden">
         <?=snow\tpl::get_json_assign()?>
@@ -302,49 +259,9 @@
     <script src="public/js/template-web.js"></script>
     <script src="public/js/main.js"></script>
     <script type="text/javascript">
-    function add_prouduct_img()
-    {
-        var _html = util.rendering_local("product_img_script",[]);
-        $("#product-album").append(_html);
-    }
-    function del_prouduct_img(obj)
-    {
-        $(obj).parents(".form-group").remove();
-    }
-    function file_change(obj)
-    {
-        var files = obj.files[0];
-        var reader = new FileReader();
-         reader.readAsDataURL(files);
-         var obj1 = obj;
-         reader.onload=function(e){
-            var show_img_obj = $(obj1).parent("div").next().find(".show_img");
-            show_img_obj.get(0).src =  e.target.result;
-            show_img_obj.removeClass("hide");
-         }
-    }
     $(document).ready(function() {
         rendering('msg', true);
-        $('.datepicker').datepicker({
-            language: "cn",
-            autoclose: true,
-            clearBtn: true, //清除按钮
-            todayHighlight: true,
-            format: "yyyy-mm-dd"
-        });
-        $("select[name=genre_id]").change(function(){
-            var id = $(this).find("option:selected").val();
-            var url =  window.location.href+"&query=get_genre_attr";
-            $("#genre_attr_input").html("");
-            util.ajax_get(url,{"genre":id},function(data){
-               if(data.status<0)
-               {
-                    return false;
-               }
-               var _html = util.rendering_local("genre_attr_list",data,"#genre_attr_input");
-               
-            },"JSON")
-        })
+
         //CKEDITOR.replace('edit_details');
     });
     </script>

@@ -148,7 +148,7 @@ function form_hander() {
             tipSweep:true,
             label:".label",
             postonce:true,
-            ignoreHidden:true,  //对hidden项不做验证
+            ignoreHidden:false,  //对hidden项不做验证
       });
       var ctl = $(this).find("[name=ctl]").val();
       var act = $(this).find("[name=act]").val()
@@ -279,8 +279,12 @@ function rendering(msg_id, is_delete) {
     if (json_str) {
     	 var json_data = JSON.parse(json_str);
 	    $("script[type='text/html']").each(function() {
-	        var html = template(this.id, json_data);
-	        $(this).parent().append(html);
+          if($(this).attr("render")!="no"&&$(this).attr("render")!="No")
+          {
+             var html = template(this.id, json_data);
+          $(this).parent().append(html);
+          }
+	       
 	    });
     }
    
@@ -295,6 +299,23 @@ function rendering(msg_id, is_delete) {
     ajax_post:function(url,$data,call_function)
     {
       alert("xx");
+    },
+    ajax_get:function(url,data,call_function,back_type)
+    {
+      if(!back_type)
+      {
+        back_type = "html"
+      }
+      $.get(url,data,call_function,back_type);
+    },
+    rendering_local:function(script_id,json_data,append_id)
+    {
+       var html = template(script_id, json_data);
+       if(append_id)
+       {
+          $(append_id).append(html);
+       }
+       return html;
     }
  }
 

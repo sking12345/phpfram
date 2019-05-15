@@ -4,7 +4,7 @@ return [
 	"default" => [
 		"class" => "snow\bases\mysql",
 		"user_name" => "root",
-		"password" => "123456",
+		"password" => "",
 		'charset' => 'utf8',
 		"db_name" => "shop",
 		"prefix" => "xs_",
@@ -15,7 +15,7 @@ return [
 	"user_center" => [
 		"class" => "snow\bases\mysql",
 		"user_name" => "root",
-		"password" => "123456",
+		"password" => "",
 		'charset' => 'utf8',
 		"db_name" => "phpframe",
 		"prefix" => "",

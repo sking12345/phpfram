@@ -76,12 +76,15 @@ return [
 		],
 		'merchandise' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+			"name" => ["required", 'max' => 24, 'message' => '请输入25个字符内的名称'],
 			'promotion_start_time' => ['date', "message" => '请输入日期',
 				'name' => '促销开始日期',
 			],
 			'promotion_start_time' => ['date', "message" => '请输入日期',
 				'name' => '促销结束日期',
 			],
+			'weight_type' => ["enum|required", "values" => ["1" => "千克", "2" => "克"]],
+			'recommend' => ["enum", "values" => ["1" => "精品", "2" => "最新", "3" => "热门"]],
 		],
 	],
 	// "shutdown_call" => "call:func", //end call function

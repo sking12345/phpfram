@@ -39,10 +39,8 @@
                             <th>货号</th>
                             <th>价格</th>
                             <th>上架</th>
-                            <th>精品</th>
-                            <th>新品</th>
-                            <th>热销</th>
-                            <th>推荐排序</th>
+                            <th>推荐</th>
+                            
                             <th>库存</th>
                             <th>销量</th>
                             <th width="200px">操作</th>
@@ -50,7 +48,27 @@
                     </thead>
                     <tbody>
                         <script type="text/html" id="admin_list">
-                        
+                        {{each list as item i}}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.number}}</td>
+                                <td>{{item.shop_price}}</td>
+                                 <td>{{item.is_shelf}}</td>
+                                <td>精品,热门</td>             
+                               
+                                <td>{{item.stock_num}}</td>
+                                <td>{{item.sales_num}}</td>
+                                <td>
+                                    <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{item.id}}" class="btn  btn-info  btn-xs">
+                                        <i class="fa fa-fw fa-search"></i>查看
+                                    </a> 
+                                    <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
+                                        <i class="fa fa-fw fa-edit"></i>编辑
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
                         <tr>
                           <th colspan="20">
                              <?=\html::create_table_pages("public/table.pages.tpl","pages")?>

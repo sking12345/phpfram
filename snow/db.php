@@ -129,6 +129,36 @@ class db {
 		}
 		return $data;
 	}
+	/**
+	 * 获取数据表中配置的enum
+	 */
+	public static function get_table_enum(string $tables_name, string $field, array $default = []) {
+		$tables_rules = config::$obj->tables_rules->get($tables_name);
+		if (empty($tables_rules[$field]["values"])) {
+			if (empty($default)) {
+				return [];
+			}
+			return $default;
+		}
+		return $tables_rules[$field]["values"];
+	}
+	public static function get_table_default(string $tables_name, string $field, $default = "") {
+		$tables_rules = config::$obj->tables_rules->get($tables_name);
+		if (empty($tables_rules[$field]["default"])) {
+			return $default;
+		}
+		return $tables_rules[$field]["default"];
+	}
+	/**
+	 * 获取某个配置
+	 */
+	public static function get_table_rules(string $tables_name, string $field = "") {
+		$rules = config::$obj->tables_rules->get($tables_name);
+		if (empty($field)) {
+			return $rules;
+		}
+		return empty($rules[$field]) ? [] : $rules[$field];
+	}
 }
 ?>
 

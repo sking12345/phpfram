@@ -239,11 +239,16 @@ class db_verify {
 		}
 		if (in_array('enum', $data_where)) {
 			$enum_vals = $field_rule["values"];
-			if (empty($enum_vals[$value])) {
+			if (is_array($value)) {
+				foreach ($value as $key => $val) {
+					if (empty($enum_vals[$val])) {
+						$this->err_info[$key] = $field_rule["message"];
+					}
+				}
+			} elseif (empty($enum_vals[$value])) {
 				$this->err_info[$key] = $field_rule["message"];
 			}
 		}
-
 		if (in_array('url', $data_where)) {
 			if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $value)) {
 				$this->err_info[$key] = $field_rule["message"];

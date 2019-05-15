@@ -40,21 +40,42 @@
                         <p class="form-control-static"><?=snow\tpl::get_assign("name")?></p>
                     </div>
                 </div>
-                    <div class="form-group">
-                    <label class="col-sm-2 control-label">可选值列表:</label>
-                    <div class="col-sm-4">
-                         <textarea class="form-control" name="select_list"  nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250">{{infos.select_list}}</textarea>
-                    </div>
-                 <label class="col-sm-2 control-label">可选方式:</label>
-                     <div class="col-sm-4 radio">
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" checked="true"  value="1"> 单选
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">录入方式:</label>
+                    <div class="col-sm-10 radio">
+                        <label class="col-sm-3">
+                            {{if infos.input_type == 1}}
+                             <input type="radio" name="input_type" checked="true"  value="1"> 手工
+                            {{else}}
+                             <input type="radio" name="input_type"  value="1"> 手工
+                            {{/if}}
                         </label>
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" value="2">复选
+                         <label class="col-sm-3">
+                             {{if infos.input_type == 2}}
+                             <input type="radio" name="input_type"  checked="true"  value="2"> 从可选值单选
+                            {{else}}
+                            <input type="radio" name="input_type" checked="true"   value="2"> 从可选值单选
+                            {{/if}}
+                            
+                        </label>
+                        <label class="col-sm-3">
+                             {{if infos.input_type == 3}}
+                             <input type="radio" name="input_type" checked="true"  value="3">从可选值单选复选
+                            {{else}}
+                              <input type="radio" name="input_type" checked="true"  value="3">从可选值单选复选
+                            {{/if}}
+                           
                         </label>
                     </div>
                 </div>
+                   <div class="form-group">
+                     <label class="col-sm-2 control-label">可选值列表:</label>
+                    <div class="col-sm-4">
+                    <textarea class="form-control" name="select_list"  datatype="*" nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250">{{infos.select_list}}</textarea>
+                    <span class="help-span">多个属性用|分开</span>
+                    </div>
+                </div>
+               
                 <div class="form-group">
                     <label class="col-sm-2 control-label">描述:</label>
                      <div class="col-sm-10">

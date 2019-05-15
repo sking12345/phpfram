@@ -67,7 +67,7 @@ class ctl_genre extends ctl_base {
 			$data = db_verify::table("genre_attr")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			$attr_list_arr = [];
 			foreach (explode("|", $data["select_list"]) as $key => $value) {
-				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $data["id"], "name" => $value];
+				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $data["id"], "name" => $value, "genre_id" => $data["genre_id"]];
 			}
 
 			db::start();
@@ -90,7 +90,7 @@ class ctl_genre extends ctl_base {
 			$data = db_verify::table("genre_attr")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
 			$attr_list_arr = [];
 			foreach (explode("|", $data["select_list"]) as $key => $value) {
-				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $id, "name" => $value];
+				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $id, "name" => $value, "genre_id" => $data["genre_id"]];
 			}
 			db::delete("genre_attr_list")->where(["id" => ["!=", null], "attr_id" => $id])->execute();
 			db::start();
@@ -151,7 +151,7 @@ class ctl_genre extends ctl_base {
 			$data = db_verify::table("genre_attr")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
 			$attr_list_arr = [];
 			foreach (explode("|", $data["select_list"]) as $key => $value) {
-				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $id, "name" => $value];
+				$attr_list_arr[] = ["id" => util::create_uniqid(18), "attr_id" => $id, "name" => $value, "genre_id" => $data["genre_id"]];
 			}
 			db::delete("genre_attr_list")->where(["id" => ["!=", null], "attr_id" => $id])->execute();
 			db::start();

@@ -32,29 +32,35 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><code >*</code>属性名称:</label>
                     <div class="col-sm-4">
-                         <input type="text" class="form-control" errormsg="请输入6个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="6" name="name" placeholder="属性名称">
+                         <input type="text" class="form-control" errormsg="请输入20个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="20" name="name" placeholder="属性名称">
                     </div>
                  <label class="col-sm-2 control-label">商品类型:</label>
                     <div class="col-sm-4">
                         <p class="form-control-static"><?=snow\tpl::get_assign("name")?></p>
                     </div>
                 </div>
+                   <div class="form-group">
+                    <label class="col-sm-2 control-label">录入方式:</label>
+                    <div class="col-sm-10 radio">
+                        <label class="col-sm-3">
+                            <input type="radio" name="input_type" checked="true"  value="1"> 手工
+                        </label>
+                         <label class="col-sm-3">
+                            <input type="radio" name="input_type"   value="2"> 从可选值单选
+                        </label>
+                        <label class="col-sm-3">
+                            <input type="radio" name="input_type" value="3">从可选值单选复选
+                        </label>
+                    </div>
+                </div>
                  <div class="form-group">
                      <label class="col-sm-2 control-label">可选值列表:</label>
                     <div class="col-sm-4">
                     <textarea class="form-control" name="select_list"  datatype="*" nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250"></textarea>
-                    <span class="help-span">多个属性已|分开</span>
+                    <span class="help-span">多个属性用|分开</span>
                     </div>
-                    <label class="col-sm-2 control-label">可选方式:</label>
-                    <div class="col-sm-4 radio">
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" checked="true"  value="1"> 单选
-                        </label>
-                        <label class="col-sm-5">
-                            <input type="radio" name="select_type" value="2">复选
-                        </label>
-                    </div>
-                 </div>
+                </div>
+              
                 <div class="form-group">
                     <label class="col-sm-2 control-label">描述::</label>
                      <div class="col-sm-10">

@@ -21,7 +21,10 @@
         <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
             <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>商品列表</a></li>
-            <li class="active"><i class="fa fa-fw fa-search"></i>添加商品</li>
+            <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=?=snow\req::item('id')?>">
+                <i class="fa fa-fw fa-search"></i>查看商品信息</a>
+            </li>
+            <li class="active"><i class="fa fa-fw fa-search"></i>编辑商品</li>
         </ul>
         <form class="form-horizontal Validform" method="POST" enctype="multipart/form-data">
             <?=snow\tpl::from_token()?>
