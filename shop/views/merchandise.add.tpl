@@ -27,12 +27,12 @@
             <?=snow\tpl::from_token()?>
             <div class="box content" style="min-height:100px">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#activity" data-toggle="tab">通用信息</a></li>
-                    <li><a href="#detailed-description" data-toggle="tab">详情描述</a></li>
-                    <li><a href="#details" data-toggle="tab">详细信息</a></li>
-                    <li><a href="#product-attribute" data-toggle="tab">商品属性</a></li>
-                    <li><a href="#product-album" data-toggle="tab">商品相册</a></li>
-                    <li><a href="#accessories" data-toggle="tab">配件</a></li>
+                    <li class="active"><a href="#activity" style="color: #444" data-toggle="tab">通用信息</a></li>
+                    <li><a href="#detailed-description" style="color: #444" data-toggle="tab">详细信息</a></li>
+                    <li><a href="#details" style="color: #444" data-toggle="tab">详情描述</a></li>
+                    <li><a href="#product-attribute"  style="color: #444" data-toggle="tab">商品属性</a></li>
+                    <li><a href="#product-album" style="color: #444" data-toggle="tab">商品相册</a></li>
+                    <li><a href="#accessories" style="color: #444" data-toggle="tab">配件</a></li>
                 </ul>
                 <script type="text/html" id="infos">
                 <div class="box-body tab-content">
@@ -118,20 +118,103 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">描述::</label>
+                            <label class="col-sm-2 control-label">描述:</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="detailed-description">
-                        ssss
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">商品重量:</label>
+                            <div class="col-sm-4">
+                                <div class="col-sm-8" style="padding-left: 0px">
+                                <input type="text" class="form-control" value="" name="username" placeholder="商品重量">
+                                </div>
+                               <div class="col-sm-4" style="padding: 0px">
+                                <select class="form-control">
+                                    <option value="1">千克</option>
+                                     <option value="2">克</option>
+                                </select>
+                               </div>
+                            </div>
+                             <label class="col-sm-2 control-label">商品库存数量:</label>
+                             <div class="col-sm-4">
+                                <input type="number" class="form-control"  value="1" name="username" placeholder="商品库存数量">
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">库存警告数量:</label>
+                             <div class="col-sm-4">
+                                <input type="number" class="form-control"  value="1" name="username" placeholder="库存警告数量">
+                             </div>
+                             <label class="col-sm-2 control-label">加入推荐:</label>
+                             <div class="col-sm-4 checkbox">
+                                 <label>
+                                  <input type="checkbox" name="cat_recommend[]" value="1">
+                                  精品
+                                </label>
+                                <label>
+                                  <input type="checkbox" name="cat_recommend[]" value="2">
+                                  最新
+                                </label>
+                                 <label>
+                                  <input type="checkbox" name="cat_recommend[]" value="3">
+                                  热门
+                                </label>
+                             </div>
+                        </div>
+                        <div class="form-group">
+                             <label class="col-sm-2 control-label">上架:</label>
+                             <div class="col-sm-10">
+                                <label><input type="checkbox" value="1" name="username" >
+                                <span class="help-span">打勾表示允许销售，否则不允许销售。</span>
+                            </label>
+                             </div>
+                        </div>
+                        <div class="form-group">
+                             <label class="col-sm-2 control-label">能作为普通商品销售:</label>
+                             <div class="col-sm-10">
+                                <label><input type="checkbox" value="1" name="username" >
+                                <span class="help-span">打勾表示能作为普通商品销售，否则只能作为配件或赠品销售</span>
+                                </label>
+                             </div>
+                        </div>
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">是否为免运费商品:</label>
+                             <div class="col-sm-10">
+                                <label><input type="checkbox" value="1" name="username" >
+                                <span class="help-span">打勾表示此商品不会产生运费花销，否则按照正常运费计算。</span>
+                                </label>
+                             </div>
+                        </div>
+                        <div class="form-group">
+                             <label class="col-sm-2 control-label">商品关键词:</label>
+                             <div class="col-sm-10">
+                                <div class="col-sm-6" style="padding-left: 0px">
+                                 <input type="text" class="form-control"  value="1" name="username" placeholder="商品关键词">
+                                 </div>
+                                 <div class="col-sm-6" style="padding: 0px">
+                                      <p class="form-control-static help-span">用|分隔</p>
+                                 </div>
+                             </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="details">
-                        ddd
+                        
                     </div>
                     <div class="tab-pane" id="product-attribute">
-                        xxx
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">商品类型:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control">
+                                    <option>请选择商品类型</option>
+                                    {{each genre as item i}}
+                                        <option value="{{item.id}}">{{item.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="product-album">
                         ddd

@@ -39,9 +39,11 @@ class ctl_merchandise {
 			tpl::redirect("?ctl=merchandise&act=index", "商品添加成功");
 			//print_r($data);
 		}
+		$genre = db::select("genre", "id,name")->all();
 		$suppliers = db::select("supplier", "id,name")->all();
 		$brands = db::select("brand", "id,name")->order_by("sort asc")->all();
 		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true);
+		tpl::assign("genre", $genre);
 		tpl::assign("suppliers", $suppliers);
 		tpl::assign("brands", $brands);
 		tpl::assign("cate_infos", $cate_infos);
