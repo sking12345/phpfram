@@ -132,6 +132,11 @@ class ctl_merchandise {
 	public function edit() {
 		tpl::display("merchandise.edit.tpl");
 	}
+
+	public function edit_details() {
+		$id = req::item("id");
+		tpl::display("merchandise.edit_details.tpl");
+	}
 }
 ?>
 

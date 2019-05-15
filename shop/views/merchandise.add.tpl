@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="details">
-                        <textarea id="edit_details" rows="10" name="product_details" class="form-control"></textarea>
+                        
                     </div>
                     <div class="tab-pane" id="product-attribute">
                         <div class="form-group">
@@ -297,7 +297,7 @@
     <script src="public/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="public/components/fastclick/lib/fastclick.js"></script>
     <script src="public/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-    <!-- <script src="public/components/ckeditor/ckeditor.js"></script> -->
+   
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/js/template-web.js"></script>
     <script src="public/js/main.js"></script>

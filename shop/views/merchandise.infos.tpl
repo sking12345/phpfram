@@ -22,7 +22,13 @@
             <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>商品列表</a></li>
             <li class="active"><i class="fa fa-fw fa-search"></i>查看商品信息</li>
+            <div class="pull-right">
+                 <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit_details&id=<?=snow\req::item('id')?>" class="btn  btn-sm btn-info">
+                            <i class="fa fa-plus-circle"></i>设置详细描述
+                </a>
+            </div>
         </ul>
+        
         <form class="form-horizontal">
             <div class="box content" style="min-height:100px">
                 <ul class="nav nav-tabs">
@@ -37,80 +43,63 @@
                 <div class="box-body tab-content">
                     <div class="active tab-pane" id="activity">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><code>*</code>名称:</label>
+                            <label class="col-sm-2 control-label">名称:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" class="form-control" errormsg="请输入20个字内的名称" nullmsg="请输入名称" datatype="*" maxlength="20" placeholder="名称">
+                                <p class="form-control-static">{{infos.name}}</p>
                             </div>
-                            <label class="col-sm-2 control-label"><code>*</code>商品分类:</label>
+                            <label class="col-sm-2 control-label">商品分类:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" name="cate_id">
-                                    <option value="">请选择分类</option>
-                                    {{each cate_infos as item i}}
-                                    <option value="{{item.id}}">{{item.cat_name}}</option>
-                                    {{/each}}
-                                </select>
+                                <p class="form-control-static">{{infos.cate_id}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品货号:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="number" class="form-control" maxlength="40" placeholder="商品货号">
-                                <span class="help-span">如果您不输入商品货号,则系统将自动生成一个唯一的货号</span>
+                                 <p class="form-control-static">{{infos.number}}</p>
                             </div>
                             <label class="col-sm-2 control-label">商品品牌:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" name="brand_id">
-                                    <option value="">请选择品牌</option>
-                                    {{each brands as item i}}
-                                     <option value="{{item.id}}">{{item.name}}</option>
-                                    {{/each}}
-                                </select>
+                             
+                                 <p class="form-control-static">{{infos.brand_id}}</p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><code>*</code>供应商:</label>
+                            <label class="col-sm-2 control-label">供应商:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" name="supplier_id">
-                                    <option value="">请选择供应商</option>
-                                    {{each suppliers as item i}}
-                                     <option value="{{item.id}}">{{item.name}}</option>
-                                    {{/each}}
-                                </select>
+                                <p class="form-control-static">{{infos.supplier_id}}</p>
+                               
                             </div>
                             <label class="col-sm-2 control-label">售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="shop_price" class="form-control" nullmsg="请输入售价" datatype="n" placeholder="售价">
+                                <p class="form-control-static">{{infos.shop_price}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">会员价格:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="member_price" class="form-control" nullmsg="会员价格" datatype="n" placeholder="会员价格">
+                                <p class="form-control-static">{{infos.member_price}}</p>
                             </div>
                             <label class="col-sm-2 control-label">vip售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="vip_price" class="form-control" nullmsg="vip售价" datatype="n" placeholder="vip售价">
+                                 <p class="form-control-static">{{infos.vip_price}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">促销价:</label>
                             <div class="col-sm-4">
-                                <input type="number" name="promotion_price" class="form-control" placeholder="vip售价">
+                                 <p class="form-control-static">{{infos.promotion_price}}</p>
                             </div>
                             <label class="col-sm-2 control-label">促销日期:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" name="promotion_start_time" class="form-control datepicker" placeholder="促销开始日期">
-                                </div>
-                                <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" name="promotion_end_time" class="form-control datepicker" placeholder="促销结束日期">
+                                     <p class="form-control-static">{{infos.promotion_start_time}}-{{infos.promotion_end_time}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">描述:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250"></textarea>
+                                 <p class="form-control-static">{{infos.remarks}}</p>
                             </div>
                         </div>
                     </div>
@@ -119,26 +108,18 @@
                             <label class="col-sm-2 control-label">商品重量:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-8" style="padding-left: 0px">
-                                <input type="text" class="form-control" value="" name="weight" placeholder="商品重量">
+                                 <p class="form-control-static">{{infos.weight}}</p>
                                 </div>
-                               <div class="col-sm-4" style="padding: 0px">
-                                <select class="form-control" name="weight_type">
-                                    {{each weight_type as item i}}
-                                    <option value="{{i}}">{{item}}</option>
-                                    {{/each}}
-                                    
-                                </select>
-                               </div>
                             </div>
                              <label class="col-sm-2 control-label">商品库存数量:</label>
                              <div class="col-sm-4">
-                                <input type="number" class="form-control"  value="1" name="stock_num" placeholder="商品库存数量">
+                                 <p class="form-control-static">{{infos.stock_num}}</p>
                              </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">库存警告数量:</label>
                              <div class="col-sm-4">
-                                <input type="number" class="form-control"  value="1" name="stock_waring_num" placeholder="库存警告数量">
+                                 <p class="form-control-static">{{infos.stock_waring_num}}</p>
                              </div>
                              <label class="col-sm-2 control-label">加入推荐:</label>
                              <div class="col-sm-4 checkbox">
@@ -179,10 +160,7 @@
                              <label class="col-sm-2 control-label">商品关键词:</label>
                              <div class="col-sm-10">
                                 <div class="col-sm-6" style="padding-left: 0px">
-                                 <input type="text" class="form-control"  name="keyword" placeholder="商品关键词">
-                                 </div>
-                                 <div class="col-sm-6" style="padding: 0px">
-                                      <p class="form-control-static help-span">用|分隔</p>
+                                    <p class="form-control-static">{{infos.keyword}}<span class="help-span">(多个用|分隔)</span></p>
                                  </div>
                              </div>
                         </div>
@@ -234,11 +212,9 @@
                         <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{infos.id}}&back=infos" class="btn btn-sm btn-primary">
                             <i class="fa fa-fw fa-edit"></i>编辑
                         </a>
-                        <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit_details&id={{infos.id}}" class="btn  btn-sm btn-info">
-                            <i class="fa fa-plus-circle"></i>设置详细描述
-                        </a>
+                       
                          <a href="?ctl=<?=snow\req::item('ctl')?>&act=del&id={{infos.id}}" class="btn  btn-sm  btn-danger">
-                            <i class="fa fa-fw fa-remove"></i>回收站
+                            <i class="fa fa-fw fa-remove"></i>移除
                         </a>
                 </div>
                 </script>
