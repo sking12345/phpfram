@@ -21,13 +21,14 @@
         <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
             <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>商品列表</a></li>
-            <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=?=snow\req::item('id')?>">
+            <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=<?=snow\req::item('id')?>">
                 <i class="fa fa-fw fa-search"></i>查看商品信息</a>
             </li>
             <li class="active"><i class="fa fa-fw fa-search"></i>编辑商品</li>
         </ul>
         <form class="form-horizontal Validform" method="POST" enctype="multipart/form-data">
             <?=snow\tpl::from_token()?>
+
             <div class="box content" style="min-height:100px">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#activity" style="color: #444" data-toggle="tab">通用信息</a></li>
@@ -38,12 +39,13 @@
                     <!-- <li><a href="#accessories" style="color: #444" data-toggle="tab">配件</a></li> -->
                 </ul>
                 <script type="text/html" id="infos">
+                <input type="hidden" name="{{infos.id}}">
                 <div class="box-body tab-content">
                     <div class="active tab-pane" id="activity">
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><code>*</code>名称:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" class="form-control" errormsg="请输入20个字内的名称" nullmsg="请输入名称" datatype="*" maxlength="20" placeholder="名称">
+                                <input type="text" value="{{infos.name}}" name="name" class="form-control" errormsg="请输入20个字内的名称" nullmsg="请输入名称" datatype="*" maxlength="20" placeholder="名称">
                             </div>
                             <label class="col-sm-2 control-label"><code>*</code>商品分类:</label>
                             <div class="col-sm-4">
@@ -58,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品货号:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="number" class="form-control" maxlength="40" placeholder="商品货号">
+                                <input type="text" value="{{infos.number}}" name="number" class="form-control" maxlength="40" placeholder="商品货号">
                                 <span class="help-span">如果您不输入商品货号,则系统将自动生成一个唯一的货号</span>
                             </div>
                             <label class="col-sm-2 control-label">商品品牌:</label>
@@ -83,38 +85,38 @@
                             </div>
                             <label class="col-sm-2 control-label">售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="shop_price" class="form-control" nullmsg="请输入售价" datatype="n" placeholder="售价">
+                                <input type="text" value="{{infos.shop_price}}" name="shop_price" class="form-control" nullmsg="请输入售价" datatype="n" placeholder="售价">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">会员价格:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="member_price" class="form-control" nullmsg="会员价格" datatype="n" placeholder="会员价格">
+                                <input type="text" value="{{infos.member_price}}" name="member_price" class="form-control" nullmsg="会员价格" datatype="n" placeholder="会员价格">
                             </div>
                             <label class="col-sm-2 control-label">vip售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="vip_price" class="form-control" nullmsg="vip售价" datatype="n" placeholder="vip售价">
+                                <input type="text" value="{{infos.vip_price}}"  name="vip_price" class="form-control" nullmsg="vip售价" datatype="n" placeholder="vip售价">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">促销价:</label>
                             <div class="col-sm-4">
-                                <input type="number" name="promotion_price" class="form-control" placeholder="vip售价">
+                                <input type="number" value="{{infos.promotion_price}}" name="promotion_price" class="form-control" placeholder="vip售价">
                             </div>
                             <label class="col-sm-2 control-label">促销日期:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" name="promotion_start_time" class="form-control datepicker" placeholder="促销开始日期">
+                                    <input type="text" value="{{infos.promotion_start_time}}" name="promotion_start_time" class="form-control datepicker" placeholder="促销开始日期">
                                 </div>
                                 <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" name="promotion_end_time" class="form-control datepicker" placeholder="促销结束日期">
+                                    <input type="text" value="{{infos.promotion_end_time}}" name="promotion_end_time" class="form-control datepicker" placeholder="促销结束日期">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">描述:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250"></textarea>
+                                <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250">{{infos.remarks}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
                             <label class="col-sm-2 control-label">商品重量:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-8" style="padding-left: 0px">
-                                <input type="text" class="form-control" value="" name="weight" placeholder="商品重量">
+                                <input type="text" value="{{infos.weight}}" class="form-control" value="" name="weight" placeholder="商品重量">
                                 </div>
                                <div class="col-sm-4" style="padding: 0px">
                                 <select class="form-control" name="weight_type">
@@ -136,13 +138,13 @@
                             </div>
                              <label class="col-sm-2 control-label">商品库存数量:</label>
                              <div class="col-sm-4">
-                                <input type="number" class="form-control"  value="1" name="stock_num" placeholder="商品库存数量">
+                                <input type="number" value="{{infos.stock_num}}" class="form-control"  value="1" name="stock_num" placeholder="商品库存数量">
                              </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">库存警告数量:</label>
                              <div class="col-sm-4">
-                                <input type="number" class="form-control"  value="1" name="stock_waring_num" placeholder="库存警告数量">
+                                <input type="number" value="{{infos.stock_waring_num}}" class="form-control"  value="1" name="stock_waring_num" placeholder="库存警告数量">
                              </div>
                              <label class="col-sm-2 control-label">加入推荐:</label>
                              <div class="col-sm-4 checkbox">
@@ -183,7 +185,7 @@
                              <label class="col-sm-2 control-label">商品关键词:</label>
                              <div class="col-sm-10">
                                 <div class="col-sm-6" style="padding-left: 0px">
-                                 <input type="text" class="form-control"  name="keyword" placeholder="商品关键词">
+                                 <input type="text" value="{{infos.keyword}}" class="form-control"  name="keyword" placeholder="商品关键词">
                                  </div>
                                  <div class="col-sm-6" style="padding: 0px">
                                       <p class="form-control-static help-span">用|分隔</p>

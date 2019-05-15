@@ -188,9 +188,7 @@
                              </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="details">
-                        
-                    </div>
+               
                     <div class="tab-pane" id="product-attribute">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品类型:</label>
@@ -222,7 +220,7 @@
                             </div>
                              <label class="col-sm-2 control-label">图片描述:</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" errormsg="请输入25个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="25" name="img_remarks[]" placeholder="属性名称">
+                                <input type="text" class="form-control" maxlength="25" name="img_remarks[]" placeholder="属性名称">
                             </div>
                         </div>
                     </div>
@@ -297,7 +295,7 @@
     <script src="public/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="public/components/fastclick/lib/fastclick.js"></script>
     <script src="public/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-   
+    <!-- <script src="public/components/ckeditor/ckeditor.js"></script> -->
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/js/template-web.js"></script>
     <script src="public/js/main.js"></script>

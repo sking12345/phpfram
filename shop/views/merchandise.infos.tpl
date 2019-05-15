@@ -92,7 +92,8 @@
                             <label class="col-sm-2 control-label">促销日期:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-6" style="padding: 0px">
-                                     <p class="form-control-static">{{infos.promotion_start_time}}-{{infos.promotion_end_time}}</p>
+                                     <p class="form-control-static">开始日前 {{infos.promotion_start_time|date_format 'Y-m-d'}}</p>
+                                     <p class="form-control-static">结束日期 {{infos.promotion_end_time|date_format 'Y-m-d'}}</p>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +109,7 @@
                             <label class="col-sm-2 control-label">商品重量:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-8" style="padding-left: 0px">
-                                 <p class="form-control-static">{{infos.weight}}</p>
+                                 <p class="form-control-static">{{infos.weight}} {{infos.weight_type}}</p>
                                 </div>
                             </div>
                              <label class="col-sm-2 control-label">商品库存数量:</label>
@@ -135,7 +136,13 @@
                         <div class="form-group">
                              <label class="col-sm-2 control-label">上架:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_shelf" >
+                                <label>
+                                    {{if infos.is_shelf == 1}}
+                                     <input type="checkbox" disabled="true" checked="true"  name="is_shelf" >
+                                    {{else}}
+                                     <input type="checkbox" disabled="true"  name="is_shelf" >
+                                    {{/if}}
+                                   
                                 <span class="help-span">打勾表示允许销售，否则不允许销售。</span>
                             </label>
                              </div>
@@ -143,7 +150,13 @@
                         <div class="form-group">
                              <label class="col-sm-2 control-label">能作为普通商品销售:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_general_goods" >
+                                <label>
+                                    
+                                     {{if infos.is_general_goods == 1}}
+                                     <input type="checkbox" disabled="true" checked="true"  name="is_general_goods" >
+                                    {{else}}
+                                     <input type="checkbox" disabled="true"  name="is_general_goods" >
+                                    {{/if}}
                                 <span class="help-span">打勾表示能作为普通商品销售，否则只能作为配件或赠品销售</span>
                                 </label>
                              </div>
@@ -151,11 +164,17 @@
                          <div class="form-group">
                              <label class="col-sm-2 control-label">是否为免运费商品:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_free_shipping" >
+                                <label>
+                                      {{if infos.is_free_shipping == 1}}
+                                     <input type="checkbox" disabled="true" checked="true"  name="is_free_shipping" >
+                                    {{else}}
+                                     <input type="checkbox" disabled="true"  name="is_free_shipping" >
+                                    {{/if}}
                                 <span class="help-span">打勾表示此商品不会产生运费花销，否则按照正常运费计算。</span>
                                 </label>
                              </div>
                         </div>
+
                         <div class="form-group">
                              <label class="col-sm-2 control-label">商品关键词:</label>
                              <div class="col-sm-10">
@@ -172,40 +191,36 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品类型:</label>
                             <div class="col-sm-4">
-                                <select class="form-control" name="genre_id">
-                                    <option value="">请选择商品类型</option>
-                                    {{each genre as item i}}
-                                        <option value="{{item.id}}">{{item.name}}</option>
-                                    {{/each}}
-                                </select>
+                                  <p class="form-control-static">{{infos.genre_id}}</p>
                             </div>
                         </div>
                         <div id="genre_attr_input">
+                            {{each merchandise_attrs as item i}}
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{genre_attrs[item.attr_id].name}}:</label>
+                                    <div class="col-sm-4">
+                                          <p class="form-control-static">{{item.attr_val}}</p>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
                     </div>
                     <div class="tab-pane" id="product-album">
-                         <div class="form-group">
-                            <label class="col-sm-2 control-label">选择图片:</label>
-                            <div class="col-sm-4">
-                                 <div class="col-sm-1" style="padding: 0px">
-                                    <p class="form-control-static" onclick="add_prouduct_img()">[+]</p>
-                                 </div>
-                                <div class="col-sm-4" style="padding: 0px">
-                                  <input type="file" class="form-control-static imgs" onchange="file_change(this)" name="imgs[]">
-                                </div>
-                                 <div class="col-sm-4 pull-right">
-                                    <img src="" class="show_img" height="35px" class="hide">
-                                </div>
-                            </div>
-                             <label class="col-sm-2 control-label">图片描述:</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" errormsg="请输入25个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="25" name="img_remarks[]" placeholder="属性名称">
-                            </div>
+                        <div class="form-group">
+                        {{each merchandise_imgs as item i}}
+                        <div class="col-sm-2"  style="padding: 1px;margin: 1px;">
+                          <img src="{{item.url}}" class="col-sm-12">
+                          <p style="padding-left: 10px">
+                            {{if item.remarks}}
+                              描述:{{item.remarks}}
+                              {{elae}}
+                          {{/if}}
+                          </p>
                         </div>
-                    </div>
-                    <div class="tab-pane" id="accessories">
-                        配件
-                    </div>
+                        {{/each}}
+                            
+                        </div>
+        
                 </div>
                 <div class="box-footer">
                       <label class="col-sm-1 control-label"></label>

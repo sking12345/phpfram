@@ -16,7 +16,7 @@ class ctl_merchandise {
 	public function index() {
 		$row = db::select("merchandise", "count(*) count")->one();
 		$page = cls_pages::get_pages($row["count"], 10);
-		$list = db::select("merchandise", "*")->all();
+		$list = db::select("merchandise", "*")->order_by("id desc")->all();
 		tpl::assign("pages", $page);
 		tpl::assign("list", $list);
 		tpl::display("merchandise.index.tpl");
@@ -56,7 +56,7 @@ class ctl_merchandise {
 			$data = db_verify::table("merchandise")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			$data["promotion_end_time"] = strtotime($data["promotion_end_time"]);
 			$data["promotion_start_time"] = strtotime($data["promotion_start_time"]);
-			if (!empty($_FILES["imgs"])) {
+			if (!empty($_FILES["imgs"]["name"]) && count($_FILES["imgs"]["name"]) > 0) {
 				$product_imgs = [];
 				foreach ($_FILES["imgs"]["name"] as $key => $value) {
 					$tmp_name = $_FILES["imgs"]["tmp_name"][$key];
@@ -72,7 +72,7 @@ class ctl_merchandise {
 						"remarks" => $img_remarks[$key],
 					];
 				}
-				$data["img"] = $product_imgs[0];
+				$data["img"] = $product_imgs[0]["url"];
 				db::insert("merchandise_imgs")->set($product_imgs, true)->execute();
 			}
 			$recommend = 0;
@@ -88,6 +88,9 @@ class ctl_merchandise {
 			if (!empty($attr_list)) {
 				$add_attr_list = [];
 				foreach ($attr_list as $key => $value) {
+					if (empty($value)) {
+						continue;
+					}
 					if (is_array($value)) {
 						$str = implode(",", $value);
 					} else {
@@ -125,11 +128,59 @@ class ctl_merchandise {
 	public function infos() {
 		$id = req::item("id");
 		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();
+		$cate_info = db::select("category", "id,cat_name name")->where(["id" => $infos["cate_id"]])->one();
+		$infos["cate_id"] = $cate_info["name"];
+		$brand_info = db::select("brand", "id,name")->where(["id" => $infos["brand_id"]])->one();
+		$infos["brand_id"] = $brand_info["name"];
+		$supplier_info = db::select("supplier", "id,name")->where(["id" => $infos["supplier_id"]])->one();
+		$infos["supplier_id"] = $brand_info["name"];
+		$weight_type = db::get_table_enum("merchandise", "weight_type");
+		$infos["weight_type"] = $weight_type[$infos["weight_type"]];
+		$genre_infos = db::select("genre", "id,name")->where(["id" => $infos["genre_id"]])->echo_sql(0)->one();
+		$infos["genre_id"] = $genre_infos["name"];
+		$merchandise_attrs = db::select("merchandise_attr", "attr_id,attr_val")->where(["merchandise_id" => $id])->all();
+		$attr_ids = db::get_resource_fields($merchandise_attrs, "attr_id");
+		$genre_attrs = db::select("genre_attr", "id,name")->where(["id" => ["in", $attr_ids]])->all("id");
+		$merchandise_imgs = db::select("merchandise_imgs", "url,remarks")->where(["merchandise_id" => $id])->all();
+		tpl::assign("merchandise_attrs", $merchandise_attrs);
+		tpl::assign("genre_attrs", $genre_attrs);
+		tpl::assign("merchandise_imgs", $merchandise_imgs);
 		tpl::assign("infos", $infos);
 		tpl::display("merchandise.infos.tpl");
 	}
 
 	public function edit() {
+		$id = req::item("id");
+		$query = req::item("query");
+		if ($query == "get_genre_attr") {
+			$genre_id = req::item("genre");
+			$genre_attr_infos = db::select("genre_attr", "id,name,input_type")->where(["genre_id" => $genre_id])->all("");
+			$attr_list = db::select("genre_attr_list", "id,name,attr_id")->where(["genre_id" => $genre_id])->all();
+			$attr_list_arr = [];
+			foreach ($attr_list as $key => $value) {
+				$attr_list_arr[$value["attr_id"]][] = $value;
+			}
+			tpl::assign("attr_infos", $genre_attr_infos);
+			tpl::assign("attr_list", $attr_list_arr);
+			tpl::response("sucess", 1);
+		}
+		if (req::is_post()) {
+
+		}
+		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();
+		$recommend = db::get_table_enum("merchandise", "recommend");
+		$weight_type = db::get_table_enum("merchandise", "weight_type");
+		$genre = db::select("genre", "id,name")->all();
+		$suppliers = db::select("supplier", "id,name")->all();
+		$brands = db::select("brand", "id,name")->order_by("sort asc")->all();
+		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true);
+		tpl::assign("recommend", $recommend);
+		tpl::assign("weight_type", $weight_type);
+		tpl::assign("genre", $genre);
+		tpl::assign("suppliers", $suppliers);
+		tpl::assign("brands", $brands);
+		tpl::assign("cate_infos", $cate_infos);
+		tpl::assign("infos", $infos);
 		tpl::display("merchandise.edit.tpl");
 	}
 
