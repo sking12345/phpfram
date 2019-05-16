@@ -22,24 +22,23 @@
             <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=index"><i class="fa fa-fw fa-search"></i>商品列表</a></li>
             <li><a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id=<?=snow\req::item('id')?>">
-                <i class="fa fa-fw fa-search"></i>查看商品信息</a>
+                    <i class="fa fa-fw fa-search"></i>查看商品信息</a>
             </li>
             <li class="active"><i class="fa fa-fw fa-search"></i>编辑商品</li>
         </ul>
         <form class="form-horizontal Validform" method="POST" enctype="multipart/form-data">
             <?=snow\tpl::from_token()?>
-
             <div class="box content" style="min-height:100px">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#activity" style="color: #444" data-toggle="tab">通用信息</a></li>
                     <li><a href="#detailed-description" style="color: #444" data-toggle="tab">其他信息</a></li>
-                   <!--  <li><a href="#details" style="color: #444" data-toggle="tab">详情描述</a></li> -->
-                    <li><a href="#product-attribute"  style="color: #444" data-toggle="tab">商品属性</a></li>
+                    <!--  <li><a href="#details" style="color: #444" data-toggle="tab">详情描述</a></li> -->
+                    <li><a href="#product-attribute" style="color: #444" data-toggle="tab">商品属性</a></li>
                     <li><a href="#product-album" style="color: #444" data-toggle="tab">商品相册</a></li>
                     <!-- <li><a href="#accessories" style="color: #444" data-toggle="tab">配件</a></li> -->
                 </ul>
                 <script type="text/html" id="infos">
-                <input type="hidden" name="{{infos.id}}">
+                    <input type="hidden" name="{{infos.id}}">
                 <div class="box-body tab-content">
                     <div class="active tab-pane" id="activity">
                         <div class="form-group">
@@ -52,7 +51,11 @@
                                 <select class="form-control" name="cate_id">
                                     <option value="">请选择分类</option>
                                     {{each cate_infos as item i}}
+                                    {{if item.id == infos.cate_id}}
+                                    <option value="{{item.id}}" selected="true">{{item.cat_name}}</option>
+                                    {{else}}
                                     <option value="{{item.id}}">{{item.cat_name}}</option>
+                                    {{/if}}
                                     {{/each}}
                                 </select>
                             </div>
@@ -68,7 +71,12 @@
                                 <select class="form-control" name="brand_id">
                                     <option value="">请选择品牌</option>
                                     {{each brands as item i}}
-                                     <option value="{{item.id}}">{{item.name}}</option>
+                                    {{if item.id == infos.brand_id}}
+                                     <option value="{{item.id}}" selected="true">{{item.name}}</option>
+                                    {{else}}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {{/if}}
+                                    
                                     {{/each}}
                                 </select>
                             </div>
@@ -79,7 +87,12 @@
                                 <select class="form-control" name="supplier_id">
                                     <option value="">请选择供应商</option>
                                     {{each suppliers as item i}}
-                                     <option value="{{item.id}}">{{item.name}}</option>
+                                    {{if item.id == infos.supplier_id}}
+                                     <option value="{{item.id}}" selected="true">{{item.name}}</option>
+                                    {{else}}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {{/if}}
+                                   
                                     {{/each}}
                                 </select>
                             </div>
@@ -106,10 +119,10 @@
                             <label class="col-sm-2 control-label">促销日期:</label>
                             <div class="col-sm-4">
                                 <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" value="{{infos.promotion_start_time}}" name="promotion_start_time" class="form-control datepicker" placeholder="促销开始日期">
+                                    <input type="text" value="{{infos.promotion_start_time|date_format 'Y-m-d'}}" name="promotion_start_time" class="form-control datepicker" placeholder="促销开始日期">
                                 </div>
                                 <div class="col-sm-6" style="padding: 0px">
-                                    <input type="text" value="{{infos.promotion_end_time}}" name="promotion_end_time" class="form-control datepicker" placeholder="促销结束日期">
+                                    <input type="text" value="{{infos.promotion_end_time|date_format 'Y-m-d'}}" name="promotion_end_time" class="form-control datepicker" placeholder="促销结束日期">
                                 </div>
                             </div>
                         </div>
@@ -130,7 +143,11 @@
                                <div class="col-sm-4" style="padding: 0px">
                                 <select class="form-control" name="weight_type">
                                     {{each weight_type as item i}}
+                                     {{if i == infos.weight_type}}       
+                                      <option value="{{i}}" selected="true">{{item}}</option>
+                                    {{else}}
                                     <option value="{{i}}">{{item}}</option>
+                                    {{/if}}
                                     {{/each}}
                                     
                                 </select>
@@ -157,10 +174,16 @@
                                  
                              </div>
                         </div>
-                        <div class="form-group">
+                          <div class="form-group">
                              <label class="col-sm-2 control-label">上架:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_shelf" >
+                                <label>
+                                    {{if infos.is_shelf == 1}}
+                                     <input type="checkbox" checked="true"  name="is_shelf" >
+                                    {{else}}
+                                     <input type="checkbox"  name="is_shelf" >
+                                    {{/if}}
+                                   
                                 <span class="help-span">打勾表示允许销售，否则不允许销售。</span>
                             </label>
                              </div>
@@ -168,7 +191,12 @@
                         <div class="form-group">
                              <label class="col-sm-2 control-label">能作为普通商品销售:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_general_goods" >
+                                <label>
+                                     {{if infos.is_general_goods == 1}}
+                                     <input type="checkbox" checked="true"  name="is_general_goods" >
+                                    {{else}}
+                                     <input type="checkbox"  name="is_general_goods" >
+                                    {{/if}}
                                 <span class="help-span">打勾表示能作为普通商品销售，否则只能作为配件或赠品销售</span>
                                 </label>
                              </div>
@@ -176,7 +204,12 @@
                          <div class="form-group">
                              <label class="col-sm-2 control-label">是否为免运费商品:</label>
                              <div class="col-sm-10">
-                                <label><input type="checkbox" value="1" name="is_free_shipping" >
+                                <label>
+                                      {{if infos.is_free_shipping == 1}}
+                                     <input type="checkbox" checked="true"  name="is_free_shipping" >
+                                    {{else}}
+                                     <input type="checkbox"  name="is_free_shipping" >
+                                    {{/if}}
                                 <span class="help-span">打勾表示此商品不会产生运费花销，否则按照正常运费计算。</span>
                                 </label>
                              </div>
@@ -203,12 +236,19 @@
                                 <select class="form-control" name="genre_id">
                                     <option value="">请选择商品类型</option>
                                     {{each genre as item i}}
-                                        <option value="{{item.id}}">{{item.name}}</option>
+                                       
+                                    {{if item.id == infos.genre_id}}
+                                     <option value="{{item.id}}" selected>{{item.name}}</option>
+                                      
+                                    {{else}}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {{/if}}
                                     {{/each}}
                                 </select>
                             </div>
                         </div>
                         <div id="genre_attr_input">
+
                         </div>
                     </div>
                     <div class="tab-pane" id="product-album">
@@ -307,26 +347,25 @@
     <script src="public/js/template-web.js"></script>
     <script src="public/js/main.js"></script>
     <script type="text/javascript">
-    function add_prouduct_img()
-    {
-        var _html = util.rendering_local("product_img_script",[]);
+    function add_prouduct_img() {
+        var _html = util.rendering_local("product_img_script", []);
         $("#product-album").append(_html);
     }
-    function del_prouduct_img(obj)
-    {
+
+    function del_prouduct_img(obj) {
         $(obj).parents(".form-group").remove();
     }
-    function file_change(obj)
-    {
+
+    function file_change(obj) {
         var files = obj.files[0];
         var reader = new FileReader();
-         reader.readAsDataURL(files);
-         var obj1 = obj;
-         reader.onload=function(e){
+        reader.readAsDataURL(files);
+        var obj1 = obj;
+        reader.onload = function(e) {
             var show_img_obj = $(obj1).parent("div").next().find(".show_img");
-            show_img_obj.get(0).src =  e.target.result;
+            show_img_obj.get(0).src = e.target.result;
             show_img_obj.removeClass("hide");
-         }
+        }
     }
     $(document).ready(function() {
         rendering('msg', true);
@@ -337,25 +376,21 @@
             todayHighlight: true,
             format: "yyyy-mm-dd"
         });
-        $("select[name=genre_id]").change(function(){
+        $("select[name=genre_id]").change(function() {
             var id = $(this).find("option:selected").val();
-            var url =  window.location.href+"&query=get_genre_attr";
+            var url = window.location.href + "&query=get_genre_attr";
             $("#genre_attr_input").html("");
-            util.ajax_get(url,{"genre":id},function(data){
-               if(data.status<0)
-               {
+            util.ajax_get(url, { "genre": id }, function(data) {
+                if (data.status < 0) {
                     return false;
-               }
-               var _html = util.rendering_local("genre_attr_list",data,"#genre_attr_input");
-               
-            },"JSON")
+                }
+                var _html = util.rendering_local("genre_attr_list", data, "#genre_attr_input");
+
+            }, "JSON")
         })
         //CKEDITOR.replace('edit_details');
     });
     </script>
 </body>
+
 </html>
-
-
-
-

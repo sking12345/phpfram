@@ -174,6 +174,13 @@ class ctl_merchandise {
 		$suppliers = db::select("supplier", "id,name")->all();
 		$brands = db::select("brand", "id,name")->order_by("sort asc")->all();
 		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true);
+		$merchandise_attrs = db::select("merchandise_attr", "attr_id,attr_val")->where(["merchandise_id" => $id])->all();
+		$attr_ids = db::get_resource_fields($merchandise_attrs, "attr_id");
+		$genre_attrs = db::select("genre_attr", "id,name")->where(["id" => ["in", $attr_ids]])->all("id");
+		$merchandise_imgs = db::select("merchandise_imgs", "url,remarks")->where(["merchandise_id" => $id])->all();
+		tpl::assign("merchandise_attrs", $merchandise_attrs);
+		tpl::assign("genre_attrs", $genre_attrs);
+		tpl::assign("merchandise_imgs", $merchandise_imgs);
 		tpl::assign("recommend", $recommend);
 		tpl::assign("weight_type", $weight_type);
 		tpl::assign("genre", $genre);

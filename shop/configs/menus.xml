@@ -7,16 +7,11 @@
 		<menu display="1" ctl="brand_msg" act="index" name="商品品牌"></menu>
 		<menu display="1" ctl="genre" act="index" name="商品类型"></menu>
 		<menu display="1" ctl="supplier" act="index" name="供应商"></menu>
-		<menu display="1" ctl="" act="" name="商品回收站"></menu>
+		
 		<menu display="1" ctl="" act="" name="图片批量处理"></menu>
-		<menu display="1" ctl="" act="" name="商品批量上传"></menu>
+		
 		<menu display="1" ctl="" act="" name="商品批量导出"></menu>
 		<menu display="1" ctl="" act="" name="商品批量修改"></menu>
-		<menu display="1" ctl="" act="" name="生成商品代码"></menu>
-		<menu display="1" ctl="" act="" name="标签管理"></menu>
-		<menu display="1" ctl="" act="" name="虚拟商品列表"></menu>
-		<menu display="1" ctl="" act="" name="添加虚拟商品"></menu>
-		<menu display="1" ctl="" act="" name="更改加密串"></menu>
 		<menu display="1" ctl="" act="" name="商品自动上下架"></menu>
 	</menu>
 	<menu name="促销管理" style="fa fa-fw fa-windows">
@@ -100,13 +95,6 @@
 		<menu display="1" ctl="admin" act="index" name="语言项编辑"></menu>
 		<menu display="1" ctl="admin" act="index" name="模版设置备份"></menu>
 		<menu display="1" ctl="admin" act="index" name="邮件模版"></menu>
-	</menu>
-	<menu name="数据库管理" style="fa fa-fw fa-database">
-		<menu display="1" ctl="admin" act="index" name="数据备份"></menu>
-		<menu display="1" ctl="admin" act="index" name="数据表优化"></menu>
-		<menu display="1" ctl="admin" act="index" name="sql查询"></menu>
-		<menu display="1" ctl="admin" act="index" name="体验数据清除"></menu>
-		<menu display="1" ctl="admin" act="index" name="转换数据"></menu>
 	</menu>
 	<menu name="短信管理" style="fa fa-envelope">
 		<menu display="1" ctl="admin" act="index" name="发送短信"></menu>
