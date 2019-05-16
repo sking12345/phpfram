@@ -32,7 +32,7 @@
             <div class="box content" style="min-height:100px">
                 <div class="box-body">
                     <div class="form-group">
-                        <textarea id="edit_details" rows="10" name="product_details" class="form-control"></textarea>
+                        <textarea id="edit_details" rows="10" name="details" class="form-control"></textarea>
                        
                     </div>
                 <div class="box-footer">

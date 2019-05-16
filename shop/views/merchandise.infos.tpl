@@ -34,7 +34,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#activity" style="color: #444" data-toggle="tab">通用信息</a></li>
                     <li><a href="#detailed-description" style="color: #444" data-toggle="tab">其他信息</a></li>
-                   <!--  <li><a href="#details" style="color: #444" data-toggle="tab">详情描述</a></li> -->
+                    <li><a href="#details" style="color: #444" data-toggle="tab">详情描述</a></li>
                     <li><a href="#product-attribute"  style="color: #444" data-toggle="tab">商品属性</a></li>
                     <li><a href="#product-album" style="color: #444" data-toggle="tab">商品相册</a></li>
                     <!-- <li><a href="#accessories" style="color: #444" data-toggle="tab">配件</a></li> -->
@@ -100,7 +100,13 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">描述:</label>
                             <div class="col-sm-10">
-                                 <p class="form-control-static">{{infos.remarks}}</p>
+                                 <p class="form-control-static">
+                                  {{if infos.remarks==""}}
+                                      -
+                                  {{else}}
+                                    {{infos.remarks}}
+                                  {{/if}}
+                               </p>
                             </div>
                         </div>
                     </div>
@@ -185,7 +191,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="details">
-                        <textarea id="edit_details" rows="10" name="product_details" class="form-control"></textarea>
+                       {{infos.details}}
                     </div>
                     <div class="tab-pane" id="product-attribute">
                         <div class="form-group">

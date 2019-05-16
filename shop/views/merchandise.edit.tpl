@@ -97,17 +97,17 @@
                             </div>
                             <label class="col-sm-2 control-label">售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" value="{{infos.shop_price}}" name="shop_price" class="form-control" nullmsg="请输入售价" datatype="n" placeholder="售价">
+                                <input type="text" value="{{infos.shop_price}}" name="shop_price" class="form-control" nullmsg="请输入售价" datatype="/^\d*\.{0,1}\d{0,2}$/"  placeholder="售价">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">会员价格:</label>
                             <div class="col-sm-4">
-                                <input type="text" value="{{infos.member_price}}" name="member_price" class="form-control" nullmsg="会员价格" datatype="n" placeholder="会员价格">
+                                <input type="text" value="{{infos.member_price}}" name="member_price" class="form-control" nullmsg="会员价格" datatype="/^\d*\.{0,1}\d{0,2}$/" placeholder="会员价格">
                             </div>
                             <label class="col-sm-2 control-label">vip售价:</label>
                             <div class="col-sm-4">
-                                <input type="text" value="{{infos.vip_price}}"  name="vip_price" class="form-control" nullmsg="vip售价" datatype="n" placeholder="vip售价">
+                                <input type="text" value="{{infos.vip_price}}"  name="vip_price" class="form-control" nullmsg="vip售价" datatype="/^\d*\.{0,1}\d{0,2}$/" placeholder="vip售价">
                             </div>
                         </div>
                         <div class="form-group">
@@ -128,7 +128,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">描述:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250">{{infos.remarks}}</textarea>
+                                <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250">{{infos.remarks}}
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -178,9 +179,9 @@
                              <div class="col-sm-10">
                                 <label>
                                     {{if infos.is_shelf == 1}}
-                                     <input type="checkbox" checked="true"  name="is_shelf" >
+                                     <input type="checkbox" value="1" checked="true"  name="is_shelf" >
                                     {{else}}
-                                     <input type="checkbox"  name="is_shelf" >
+                                     <input type="checkbox" value="1" name="is_shelf" >
                                     {{/if}}
                                    
                                 <span class="help-span">打勾表示允许销售，否则不允许销售。</span>
@@ -192,9 +193,9 @@
                              <div class="col-sm-10">
                                 <label>
                                      {{if infos.is_general_goods == 1}}
-                                     <input type="checkbox" checked="true"  name="is_general_goods" >
+                                     <input type="checkbox" value="1" checked="true"  name="is_general_goods" >
                                     {{else}}
-                                     <input type="checkbox"  name="is_general_goods" >
+                                     <input type="checkbox"  value="1" name="is_general_goods" >
                                     {{/if}}
                                 <span class="help-span">打勾表示能作为普通商品销售，否则只能作为配件或赠品销售</span>
                                 </label>
@@ -205,9 +206,9 @@
                              <div class="col-sm-10">
                                 <label>
                                       {{if infos.is_free_shipping == 1}}
-                                     <input type="checkbox" checked="true"  name="is_free_shipping" >
+                                     <input type="checkbox" value="1" checked="true"  name="is_free_shipping" >
                                     {{else}}
-                                     <input type="checkbox"  name="is_free_shipping" >
+                                     <input type="checkbox"  value="1" name="is_free_shipping" >
                                     {{/if}}
                                 <span class="help-span">打勾表示此商品不会产生运费花销，否则按照正常运费计算。</span>
                                 </label>

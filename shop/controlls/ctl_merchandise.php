@@ -138,6 +138,7 @@ class ctl_merchandise {
 		$attr_ids = db::get_resource_fields($merchandise_attrs, "attr_id");
 		$genre_attrs = db::select("genre_attr", "id,name")->where(["id" => ["in", $attr_ids]])->all("id");
 		$merchandise_imgs = db::select("merchandise_imgs", "url,remarks")->where(["merchandise_id" => $id])->all();
+		$infos["details"] = htmlspecialchars_decode($infos["details"]);
 		tpl::assign("recommend", $recommend);
 		tpl::assign("merchandise_attrs", $merchandise_attrs);
 		tpl::assign("genre_attrs", $genre_attrs);
@@ -170,6 +171,15 @@ class ctl_merchandise {
 			if (!empty($data["img_remarks"])) {
 				$img_remarks = $data["img_remarks"];
 				unset($data["img_remarks"]);
+			}
+			if (empty($data["is_shelf"])) {
+				$data["is_shelf"] = "2";
+			}
+			if (empty($data["is_general_goods"])) {
+				$data["is_general_goods"] = "2";
+			}
+			if (empty($data["is_free_shipping"])) {
+				$data["is_free_shipping"] = "2";
 			}
 			$data = db_verify::table("merchandise")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
 			if (!empty($data["promotion_end_time"])) {
@@ -215,8 +225,8 @@ class ctl_merchandise {
 				foreach ($data["recommend"] as $key => $value) {
 					$recommend = $recommend | $value;
 				}
-				$data["recommend"] = $recommend;
 			}
+			$data["recommend"] = $recommend;
 			if (empty($data["number"])) {
 				$data["number"] = util::create_uniqid(18);
 			}
@@ -273,6 +283,11 @@ class ctl_merchandise {
 
 	public function edit_details() {
 		$id = req::item("id");
+		if (req::is_post()) {
+			$data = req::post_data();
+			db::update("merchandise")->set($data)->where(["id" => $id])->execute();
+			tpl::redirect("?ctl=merchandise&act=infos&id={$id}", "商品详情编辑成功");
+		}
 		tpl::display("merchandise.edit_details.tpl");
 	}
 }

@@ -9,9 +9,9 @@ class req {
 	protected static $call_args;
 	protected static function addslashes($str) {
 		if (!get_magic_quotes_gpc()) {
-			return addslashes(trim($str));
+			return htmlspecialchars(addslashes(trim($str)));
 		} else {
-			return trim($str);
+			return htmlspecialchars(trim($str));
 		}
 	}
 	public static function action() {
