@@ -126,7 +126,7 @@
                              <div class="col-sm-4 checkbox">
                                 {{each recommend as item i}}
                                 <label>
-                                  <input type="checkbox" name="recommend[]" value="{{i}}">
+                                  <input type="checkbox" disabled="true" name="recommend[]" value="{{i}}">
                                   {{item}}
                                 </label>
                                 {{/each}}

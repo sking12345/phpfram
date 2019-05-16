@@ -202,6 +202,7 @@
                             </div>
                         </div>
                         <div id="genre_attr_input">
+                            
                         </div>
                     </div>
                     <div class="tab-pane" id="product-album">
@@ -245,7 +246,7 @@
             <div class="col-sm-4">
                  <input type="text" class="form-control"  name="attr_list[{{item.id}}]" placeholder="{{item.name}}">
              </div>
-            {{else if item.input_type==2}}
+            {{else }}
                 <div class="col-sm-8 radio">
                 {{each attr_list[item.id] as item1 j}}
                      <label>
@@ -253,17 +254,8 @@
                     </label>&nbsp;&nbsp;&nbsp;&nbsp;
                 {{/each}}
                 </div>
-            {{else}}
-                 <div class="col-sm-8 checkbox">
-                {{each attr_list[item.id] as item1 j}}
-                     <label>
-                            <input type="checkbox" name="attr_list[{{item.id}}][]"   value="{{item1.name}}"> {{item1.name}}
-                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                {{/each}}
-                </div>
             {{/if}}
             </div>
-         </div>
         {{/each}}
     </script>
     <script type="text/html" id="product_img_script" render="no">

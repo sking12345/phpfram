@@ -38,7 +38,6 @@
                     <!-- <li><a href="#accessories" style="color: #444" data-toggle="tab">配件</a></li> -->
                 </ul>
                 <script type="text/html" id="infos">
-                    <input type="hidden" name="{{infos.id}}">
                 <div class="box-body tab-content">
                     <div class="active tab-pane" id="activity">
                         <div class="form-group">
@@ -227,7 +226,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="details">
-                        <textarea id="edit_details" rows="10" name="product_details" class="form-control"></textarea>
+                       
                     </div>
                     <div class="tab-pane" id="product-attribute">
                         <div class="form-group">
@@ -248,28 +247,65 @@
                             </div>
                         </div>
                         <div id="genre_attr_input">
-
+                                {{each attr_infos as item i}}
+                                <div class="form-group">
+                                <label class="col-sm-2 control-label">{{item.name}}:</label>
+                                {{if item.input_type==1}}
+                                <div class="col-sm-4">
+                                    {{if merchandise_attrs[item.id]}}
+                                     <input type="text" class="form-control" value="{{merchandise_attrs[item.id].attr_val}}"  name="attr_list[{{item.id}}]" placeholder="{{item.name}}">
+                                     {{else}}
+                                      <input type="text" class="form-control"   name="attr_list[{{item.id}}]" placeholder="{{item.name}}">
+                                     {{/if}}
+                                 </div>
+                                {{else}}
+                                    <div class="col-sm-8 radio">
+                                    {{each attr_list[item.id] as item1 j}}
+                                         <label>
+                                            {{if merchandise_attrs[item.id]}}
+                                                {{if merchandise_attrs[item.id]["attr_val"] == item1.name}}
+                                                <input type="radio" name="attr_list[{{item.id}}]"  checked value="{{item1.name}}"> {{item1.name}}
+                                                {{else}}
+                                                <input type="radio" name="attr_list[{{item.id}}]"   value="{{item1.name}}"> {{item1.name}}
+                                                {{/if}}
+                                            {{else}}
+                                             <input type="radio" name="attr_list[{{item.id}}]"   value="{{item1.name}}"> {{item1.name}}
+                                            {{/if}}
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{/each}}
+                                    </div>
+                                {{/if}}
+                                </div>
+                            {{/each}}
                         </div>
                     </div>
                     <div class="tab-pane" id="product-album">
+        
+                         {{each merchandise_imgs as item i}}
                          <div class="form-group">
                             <label class="col-sm-2 control-label">选择图片:</label>
                             <div class="col-sm-4">
                                  <div class="col-sm-1" style="padding: 0px">
+                                    {{if i==0}}
                                     <p class="form-control-static" onclick="add_prouduct_img()">[+]</p>
+                                    {{else}}
+                                         <p class="form-control-static" onclick="del_prouduct_img(this)">[-]</p>
+                                    {{/if}}
                                  </div>
                                 <div class="col-sm-4" style="padding: 0px">
-                                  <input type="file" class="form-control-static imgs" onchange="file_change(this)" name="imgs[]">
+                                  <input type="file" class="form-control-static imgs" id="{{item.id}}" onchange="file_change(this)" name="imgs[{{item.id}}]">
+                                  <input type="hidden" name="imgs_ids[]" value="{{item.id}}">
                                 </div>
                                  <div class="col-sm-4 pull-right">
-                                    <img src="" class="show_img" height="35px" class="hide">
+                                    <img src="{{item.url}}" class="show_img" height="35px" class="hide">
                                 </div>
                             </div>
                              <label class="col-sm-2 control-label">图片描述:</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" errormsg="请输入25个字内的属性名称" nullmsg="请输入属性名称" datatype="*" maxlength="25" name="img_remarks[]" placeholder="属性名称">
+                                <input type="text" value="{{item.remarks}}" class="form-control" errormsg="请输入25个字内的属性名称" nullmsg="请输入属性名称"  maxlength="25" name="img_remarks[{{item.id}}]" placeholder="属性名称">
                             </div>
                         </div>
+                        {{/each}}
                     </div>
                     <div class="tab-pane" id="accessories">
                         配件
@@ -285,26 +321,17 @@
     </div>
     <script type="text/html" id="genre_attr_list" render="no">
         {{each attr_infos as item i}}
-
             <div class="form-group">
             <label class="col-sm-2 control-label">{{item.name}}:</label>
             {{if item.input_type==1}}
             <div class="col-sm-4">
                  <input type="text" class="form-control"  name="attr_list[{{item.id}}]" placeholder="{{item.name}}">
              </div>
-            {{else if item.input_type==2}}
+            {{else}}
                 <div class="col-sm-8 radio">
                 {{each attr_list[item.id] as item1 j}}
                      <label>
                             <input type="radio" name="attr_list[{{item.id}}]"   value="{{item1.name}}"> {{item1.name}}
-                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                {{/each}}
-                </div>
-            {{else}}
-                 <div class="col-sm-8 checkbox">
-                {{each attr_list[item.id] as item1 j}}
-                     <label>
-                            <input type="checkbox" name="attr_list[{{item.id}}][]"   value="{{item1.name}}"> {{item1.name}}
                     </label>&nbsp;&nbsp;&nbsp;&nbsp;
                 {{/each}}
                 </div>
@@ -357,6 +384,8 @@
     }
 
     function file_change(obj) {
+        var id = obj.id;
+       // $("input[value="+id+"]").remove();
         var files = obj.files[0];
         var reader = new FileReader();
         reader.readAsDataURL(files);
