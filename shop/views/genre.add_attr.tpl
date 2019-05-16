@@ -48,9 +48,7 @@
                          <label class="col-sm-3">
                             <input type="radio" name="input_type"   value="2"> 从可选值单选
                         </label>
-                        <label class="col-sm-3">
-                            <input type="radio" name="input_type" value="3">从可选值单选复选
-                        </label>
+                       
                     </div>
                 </div>
                  <div class="form-group">

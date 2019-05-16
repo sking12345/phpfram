@@ -3,16 +3,10 @@
 	<menu name="商品管理" style="fa fa-fw fa-calendar-check-o">
 		<menu display="1" ctl="merchandise" act="index" name="商品列表"></menu>
 		<menu display="1" ctl="cate_msg" act="index" name="商品分类"></menu>
-		<menu display="1" ctl="" act="" name="用户评论"></menu>
+		<menu display="1" ctl="comment" act="index" name="用户评论"></menu>
 		<menu display="1" ctl="brand_msg" act="index" name="商品品牌"></menu>
 		<menu display="1" ctl="genre" act="index" name="商品类型"></menu>
 		<menu display="1" ctl="supplier" act="index" name="供应商"></menu>
-		
-		<menu display="1" ctl="" act="" name="图片批量处理"></menu>
-		
-		<menu display="1" ctl="" act="" name="商品批量导出"></menu>
-		<menu display="1" ctl="" act="" name="商品批量修改"></menu>
-		<menu display="1" ctl="" act="" name="商品自动上下架"></menu>
 	</menu>
 	<menu name="促销管理" style="fa fa-fw fa-windows">
 		<menu display="1" ctl="" act="" name="红包类型"></menu>
@@ -51,12 +45,7 @@
 		<menu display="1" ctl="admin" act="index" name="访问购买率"></menu>
 		<menu display="1" ctl="admin" act="index" name="站外投放js"></menu>
 	</menu>
-	<menu name="文章管理" style="fa fa-book">
-		<menu display="1" ctl="admin" act="index" name="文章分类"></menu>
-		<menu display="1" ctl="admin" act="index" name="文章列表"></menu>
-		<menu display="1" ctl="admin" act="index" name="文章自动发布"></menu>
-		<menu display="1" ctl="admin" act="index" name="在线调查"></menu>
-	</menu>
+
 	<menu name="会员管理" style="fa fa-fw fa-user">
 		<menu display="1" ctl="admin" act="index" name="会员列表"></menu>
 		<menu display="1" ctl="admin" act="index" name="添加会员"></menu>
@@ -73,21 +62,7 @@
 		<menu display="1" ctl="admin" act="index" name="办事处列表"></menu>
 		<menu display="1" ctl="admin" act="index" name="供应商列表"></menu>
 	</menu>
-	<menu name="系统设置" style="fa fa-fw fa-cog">
-		<menu display="1" ctl="admin" act="index" name="商店设置"></menu>
-		<menu display="1" ctl="admin" act="index" name="会员注册项设置"></menu>
-		<menu display="1" ctl="admin" act="index" name="支付方式"></menu>
-		<menu display="1" ctl="admin" act="index" name="配送方式"></menu>
-		<menu display="1" ctl="admin" act="index" name="邮件服务器设置"></menu>
-		<menu display="1" ctl="admin" act="index" name="地区列表"></menu>
-		<menu display="1" ctl="admin" act="index" name="计划任务"></menu>
-		<menu display="1" ctl="admin" act="index" name="友情链接"></menu>
-		<menu display="1" ctl="admin" act="index" name="验证码管理"></menu>
-		<menu display="1" ctl="admin" act="index" name="文件权限检测"></menu>
-		<menu display="1" ctl="admin" act="index" name="文件检验"></menu>
-		<menu display="1" ctl="admin" act="index" name="自定义导航栏"></menu>
-		<menu display="1" ctl="admin" act="index" name="站点地图"></menu>
-	</menu>
+
 	<menu name="模版管理" style="fa fa-fw fa-reorder">
 		<menu display="1" ctl="admin" act="index" name="模版选择"></menu>
 		<menu display="1" ctl="admin" act="index" name="设置模版"></menu>
@@ -110,16 +85,6 @@
 		<menu display="1" ctl="admin" act="index" name="杂志管理"></menu>
 		<menu display="1" ctl="admin" act="index" name="邮件队列管理"></menu>
 	</menu>
-	<menu name="移动端管理" style="fa fa-fw fa-mobile-phone">
-		<menu display="1" ctl="admin" act="index" name="移动端广告配置"></menu>
-		<menu display="1" ctl="admin" act="index" name="H5应用配置"></menu>
-		<menu display="1" ctl="admin" act="index" name="H5店铺二维码"></menu>
-		<menu display="1" ctl="admin" act="index" name="APP推送管理"></menu>
-		<menu display="1" ctl="admin" act="index" name="APP应用配置"></menu>
-		<menu display="1" ctl="admin" act="index" name="小程序应用配置"></menu>
-	</menu>
-
-
 	<menu name="系统信息" style="fa fa-fw fa-windows">
 		<menu display="1" ctl="admin" act="index" name="用户管理"></menu>
 		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
@@ -129,11 +94,6 @@
 		<menu display="0" ctl="sysmsg" act="del_logs" name="清空用户日志" ></menu>
 		<menu display="0" ctl="admin" act="my_info" name="我的信息" ></menu>
 	</menu>
-	<!-- <menu name="模块" display="0" style="fa fa-fw fa-reorder">
-		<menu display="0" ctl="test" act="index" name="excel操作" ></menu>
-		<menu display="0" ctl="test" act="index" name="邮箱发送" ></menu>
-		<menu display="0" ctl="test" act="index" name="文件上传" ></menu>
-	</menu> -->
 </menu>
 
 

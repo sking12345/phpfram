@@ -27,12 +27,14 @@ class application {
 		}
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
-		$configs = require_once __DIR__ . "/../{$app_path}/configs/web.php";
-		$configs["view_path"] = __DIR__ . "/../{$this->app_path}/views/";
+		$configs = include __DIR__ . "/../{$this->app_path}/configs/web.php";
+		$_configs = include __DIR__ . "/../{$app_path}/configs/web.php";
+		if ($app_path != $this->app_path) {
+			$configs["app"] = $_configs["app"];
+		}
 		if (file_exists(__DIR__ . "/../{$app_path}/configs/menus.xml")) {
 			$configs["menus_xml_file"] = __DIR__ . "/../{$app_path}/configs/menus.xml";
 		}
-		$configs["app"]["path"] = $app_path;
 		$this->_configs = array_merge($configs, $snow_config);
 		config::init($this->_configs);
 		$this->error_handler();

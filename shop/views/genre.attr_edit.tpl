@@ -58,14 +58,7 @@
                             {{/if}}
                             
                         </label>
-                        <label class="col-sm-3">
-                             {{if infos.input_type == 3}}
-                             <input type="radio" name="input_type" checked="true"  value="3">从可选值单选复选
-                            {{else}}
-                              <input type="radio" name="input_type" checked="true"  value="3">从可选值单选复选
-                            {{/if}}
-                           
-                        </label>
+                     
                     </div>
                 </div>
                    <div class="form-group">

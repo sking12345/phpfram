@@ -1,6 +1,7 @@
 <?php
 namespace snow;
 use snow\cache;
+use snow\config;
 use snow\cookie;
 use snow\req;
 use snow\util;
