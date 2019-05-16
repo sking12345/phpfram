@@ -288,6 +288,8 @@ class ctl_merchandise {
 			db::update("merchandise")->set($data)->where(["id" => $id])->execute();
 			tpl::redirect("?ctl=merchandise&act=infos&id={$id}", "商品详情编辑成功");
 		}
+		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();
+		tpl::assign("infos", $infos);
 		tpl::display("merchandise.edit_details.tpl");
 	}
 }

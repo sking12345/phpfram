@@ -31,10 +31,13 @@
             <script type="text/html" id="edit_infos">
             <div class="box content" style="min-height:100px">
                 <div class="box-body">
+                    
                     <div class="form-group">
-                        <textarea id="edit_details" rows="10" name="details" class="form-control"></textarea>
-                       
+                        <textarea id="edit_details" rows="10" name="details" class="form-control">
+                            {{infos.details}}
+                        </textarea>
                     </div>
+                   
                 <div class="box-footer">
                     <label class="col-sm-2 control-label"></label>
                     <button type="submit" class="btn btn-info">提交</button>
