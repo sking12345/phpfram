@@ -2,7 +2,7 @@
 /**
  * 品牌管理
  */
-namespace shop\controlls;
+namespace shop_admin\controlls;
 use snow\bases\cls_pages;
 use snow\db;
 use snow\db_verify;

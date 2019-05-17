@@ -1,6 +1,6 @@
 <?php
 
-namespace shop\controlls;
+namespace shop_admin\controlls;
 
 class ctl_comment {
 

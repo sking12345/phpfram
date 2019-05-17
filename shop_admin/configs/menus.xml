@@ -47,13 +47,9 @@
 	</menu>
 
 	<menu name="会员管理" style="fa fa-fw fa-user">
-		<menu display="1" ctl="admin" act="index" name="会员列表"></menu>
-		<menu display="1" ctl="admin" act="index" name="添加会员"></menu>
-		<menu display="1" ctl="admin" act="index" name="会员等级"></menu>
-		<menu display="1" ctl="admin" act="index" name="会员调整"></menu>
-		<menu display="1" ctl="admin" act="index" name="会员留言"></menu>
-		<menu display="1" ctl="admin" act="index" name="充值和提现申请"></menu>
-		<menu display="1" ctl="admin" act="index" name="资金管理"></menu>
+		<menu display="1" ctl="member" act="index" name="会员列表"></menu>
+		<menu display="0" ctl="member" act="index" name="添加会员"></menu>
+		<menu display="1" ctl="member_level" act="index" name="会员等级"></menu>
 	</menu>
 	<menu name="权限管理" style="fa fa-fw fa-unlock-alt">
 		<menu display="1" ctl="admin" act="index" name="管理员列表"></menu>

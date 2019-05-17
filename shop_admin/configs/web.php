@@ -86,6 +86,13 @@ return [
 			'weight_type' => ["enum|required", "values" => ["1" => "千克", "2" => "克"]],
 			'recommend' => ["enum", "values" => ["1" => "精品", "2" => "最新", "3" => "热门"]],
 		],
+		'member' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+			'sex' => ['required|enum', "values" => ["1" => "男", "2" => "女", "3" => "保密"], "default" => "1", "message" => "请正确选择"],
+		],
+		'member_level' => [
+			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+		],
 	],
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法

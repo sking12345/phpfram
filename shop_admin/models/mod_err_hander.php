@@ -1,5 +1,5 @@
 <?php
-namespace shop\models;
+namespace shop_admin\models;
 use snow\tpl;
 
 class mod_err_hander {

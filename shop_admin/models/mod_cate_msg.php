@@ -1,6 +1,6 @@
 <?php
 
-namespace shop\models;
+namespace shop_admin\models;
 use snow\db;
 
 class mod_cate_msg {

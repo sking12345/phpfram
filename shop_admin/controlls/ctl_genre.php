@@ -2,7 +2,7 @@
 /**
  * 商品类型添加,类型属性
  */
-namespace shop\controlls;
+namespace shop_admin\controlls;
 use app\controlls\ctl_base;
 use snow\bases\cls_pages;
 use snow\db;

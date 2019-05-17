@@ -1,5 +1,5 @@
 <?php
-namespace shop\controlls;
+namespace shop_admin\controlls;
 use app\controlls\ctl_base;
 use shop\models\mod_cate_msg;
 use snow\bases\cls_pages;
