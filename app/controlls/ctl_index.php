@@ -9,7 +9,6 @@ use snow\user;
 class ctl_index {
 	private $id = 1;
 	public function login() {
-
 		if (req::is_post()) {
 			$username = req::item("username");
 			$password = req::item("password");

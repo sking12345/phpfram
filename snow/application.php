@@ -35,7 +35,7 @@ class application {
 		if (file_exists(__DIR__ . "/../{$app_path}/configs/menus.xml")) {
 			$configs["menus_xml_file"] = __DIR__ . "/../{$app_path}/configs/menus.xml";
 		}
-		$this->_configs = array_merge($configs, $snow_config);
+		$this->_configs = array_merge($configs, $snow_config, $config);
 		config::init($this->_configs);
 		$this->error_handler();
 		$this->exception_handler();
@@ -45,6 +45,9 @@ class application {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
 		date_default_timezone_set($this->_configs["timezone"]);
+		if (empty($ctl) || empty($act)) {
+			tpl::redirect($this->_configs["app"]["default_url"], "");
+		}
 		ob_start();
 		if (user::is_login() == false) {
 			if (!empty($this->_configs["public"][$ctl])) {
@@ -69,9 +72,31 @@ class application {
 			exit;
 		}
 		call:
-
-		$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
-		(new $call_ctl())->$act();
+		$domain = $_SERVER["SERVER_NAME"];
+		$app_path = $this->_configs["domain_app"][$domain];
+		if (file_exists(__DIR__ . "/../{$app_path}/controlls/ctl_{$ctl}.php")) {
+			$call_ctl = "\\{$app_path}\\controlls\\ctl_{$ctl}";
+			$obj = new $call_ctl();
+			if (method_exists($obj, $act) == true) {
+				$obj->$act();
+			} else {
+				$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+				$obj1 = new $call_ctl();
+				if (method_exists($obj1, $act) == true) {
+					(new $call_ctl())->$act();
+				} else {
+					tpl::redirect($this->_configs["app"]["default_url"], "");
+				}
+			}
+		} else {
+			$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+			$obj1 = new $call_ctl();
+			if (method_exists($obj1, $act) == true) {
+				(new $call_ctl())->$act();
+			} else {
+				tpl::redirect($this->_configs["app"]["default_url"], "");
+			}
+		}
 	}
 
 	public function error_handler() {
