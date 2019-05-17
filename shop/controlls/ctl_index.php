@@ -1,9 +1,9 @@
 <?php
 namespace shop\controlls;
+use snow\tpl;
 
 class ctl_index {
-
 	public function index() {
-		echo "xx";
+		tpl::display("index.index.tpl");
 	}
 }
