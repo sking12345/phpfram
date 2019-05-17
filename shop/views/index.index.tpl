@@ -9,11 +9,11 @@
 <title>ECSHOP演示站 - Powered by ECShop</title>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
-<link href="themes/default/style.css" rel="stylesheet" type="text/css" />
+<link href="shop_static/themes/default/style.css" rel="stylesheet" type="text/css" />
 <link rel="alternate" type="application/rss+xml" title="RSS|ECSHOP演示站 - Powered by ECShop" href="feed.php" />
 <link rel="stylesheet" type="text/css" href="themes/default/images/swiper.min.css">
-<script language='javascript' src='themes/default/js/swiper.min.js' type='text/javascript' charset='utf-8'></script>
-<script type="text/javascript" src="js/common.js"></script><script type="text/javascript" src="js/index.js"></script></head>
+<script language='javascript' src='shop_static/shop_static/themes/default/js/swiper.min.js' type='text/javascript' charset='utf-8'></script>
+<script type="text/javascript" src="shop_static/shop_static/js/common.js"></script><script type="text/javascript" src="shop_static/js/index.js"></script></head>
 <body>
 <script type="text/javascript">
 var process_request = "正在处理您的请求...";
@@ -21,7 +21,7 @@ var process_request = "正在处理您的请求...";
 <div class="top-bar">
   <div class="fd_top fd_top1">
     <div class="bar-left">
-          <div class="top_menu1"> <script type="text/javascript" src="js/transport.js"></script><script type="text/javascript" src="js/utils.js"></script> <font id="ECS_MEMBERZONE"><div id="append_parent"></div>
+          <div class="top_menu1"> <script type="text/javascript" src="shop_static/js/transport.js"></script><script type="text/javascript" src="shop_static/js/utils.js"></script> <font id="ECS_MEMBERZONE"><div id="append_parent"></div>
  欢迎光临本店<a href="user.php">请登录 <strong></strong></a>&nbsp;|&nbsp;&nbsp;<a href="user.php?act=register">免费注册</a>  </font> </div>
     </div>
     <div class="bar-cart">
@@ -34,7 +34,7 @@ var process_request = "正在处理您的请求...";
 </div>
 <div class="nav-menu">
   <div class="wrap">
-    <div class="logo"><a href="index.php" name="top"><img src="themes/default/images/logo.gif" /></a></div>
+    <div class="logo"><a href="index.php" name="top"><img src="shop_static/themes/default/images/logo.gif" /></a></div>
     <div id="mainNav" class="clearfix maxmenu">
       <div class="m_left">
       <ul>
@@ -304,7 +304,7 @@ if (Object.prototype.toJSONString){
         <div class="goods-right">
             
 <div class="all_ms">
-    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">智能相机</div> 
 	<div class="prices">
@@ -312,7 +312,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">炫彩翻页保护套</div> 
 	<div class="prices">
@@ -320,7 +320,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">平衡车</div> 
 	<div class="prices">
@@ -328,7 +328,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">透明超薄软胶保...</div> 
 	<div class="prices">
@@ -336,7 +336,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">运动相机</div> 
 	<div class="prices">
@@ -344,7 +344,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">自拍杆</div> 
 	<div class="prices">
@@ -352,7 +352,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">随身风扇</div> 
 	<div class="prices">
@@ -360,7 +360,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">视频</div> 
 	<div class="prices">
@@ -381,7 +381,7 @@ if (Object.prototype.toJSONString){
         <div class="goods-right">
             
 <div class="all_ms">
-    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">智能相机</div> 
 	<div class="prices">
@@ -389,7 +389,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">炫彩翻页保护套</div> 
 	<div class="prices">
@@ -397,7 +397,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">平衡车</div> 
 	<div class="prices">
@@ -405,7 +405,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">透明超薄软胶保...</div> 
 	<div class="prices">
@@ -413,7 +413,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">运动相机</div> 
 	<div class="prices">
@@ -421,7 +421,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">自拍杆</div> 
 	<div class="prices">
@@ -429,7 +429,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">随身风扇</div> 
 	<div class="prices">
@@ -437,7 +437,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">视频</div> 
 	<div class="prices">
@@ -457,7 +457,7 @@ if (Object.prototype.toJSONString){
         <div class="goods-right">
             
 <div class="all_ms">
-    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=72"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">智能相机</div> 
 	<div class="prices">
@@ -465,7 +465,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">炫彩翻页保护套</div> 
 	<div class="prices">
@@ -473,7 +473,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">平衡车</div> 
 	<div class="prices">
@@ -481,7 +481,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">透明超薄软胶保...</div> 
 	<div class="prices">
@@ -489,7 +489,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">运动相机</div> 
 	<div class="prices">
@@ -497,7 +497,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">自拍杆</div> 
 	<div class="prices">
@@ -505,7 +505,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=62"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">随身风扇</div> 
 	<div class="prices">
@@ -513,7 +513,7 @@ if (Object.prototype.toJSONString){
     	</div>
 	 
   </a>
-    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
+    <a class="goodsItem" href="goods.php?id=61"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">视频</div> 
 	<div class="prices">
@@ -530,7 +530,7 @@ if (Object.prototype.toJSONString){
             
  
 <div id="show_hot_area" class="clearfix goodsBox all_mid all_ms">
-     <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
+     <a class="goodsItem" href="goods.php?id=69"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">平衡车</div> 
   <div class="prices">
@@ -538,7 +538,7 @@ if (Object.prototype.toJSONString){
       </div>
    
   </a>
-   <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
+   <a class="goodsItem" href="goods.php?id=63"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">自拍杆</div> 
   <div class="prices">
@@ -546,7 +546,7 @@ if (Object.prototype.toJSONString){
       </div>
    
   </a>
-   <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
+   <a class="goodsItem" href="goods.php?id=64"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">运动相机</div> 
   <div class="prices">
@@ -554,7 +554,7 @@ if (Object.prototype.toJSONString){
       </div>
    
   </a>
-   <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
+   <a class="goodsItem" href="goods.php?id=68"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">透明超薄软胶保...</div> 
   <div class="prices">
@@ -562,7 +562,7 @@ if (Object.prototype.toJSONString){
       </div>
    
   </a>
-   <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
+   <a class="goodsItem" href="goods.php?id=70"> <div  class="img-box"><img src="shop_static/images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
   <div class="goods-brief"></div>
     <div class="gos-title">炫彩翻页保护套</div> 
   <div class="prices">
@@ -577,7 +577,7 @@ if (Object.prototype.toJSONString){
   </div>
 </div>
 <div class="foot-body">
-  <div class="bads"><img src="themes/default/images/bottom.jpg"></div>
+  <div class="bads"><img src="shop_static/themes/default/images/bottom.jpg"></div>
   <div class="clear10"></div>
   
      <div class="foot-help">
@@ -619,7 +619,7 @@ if (Object.prototype.toJSONString){
         <div class="foot-weixin">
           <div class="weixin-txt">关注demo微信</div>
           <div class="weixin-pic">
-            <img src="themes/default/images/weixin.jpg">
+            <img src="shop_static/themes/default/images/weixin.jpg">
           </div>
         </div>
     </div>
