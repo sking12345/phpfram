@@ -1,6 +1,6 @@
 <?php
 namespace shop_admin\controlls;
-use shop\models\mod_cate_msg;
+use shop_admin\models\mod_cate_msg;
 use snow\bases\cls_pages;
 use snow\db;
 use snow\db_verify;

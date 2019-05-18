@@ -67,18 +67,15 @@
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                     <div class="col-sm-4 checkbox">
-                            <label>
-                              <input type="checkbox" name="cat_recommend[]" value="1">
-                              精品
-                            </label>
-                            <label>
-                              <input type="checkbox" name="cat_recommend[]" value="2">
-                              最新
-                            </label>
-                             <label>
-                              <input type="checkbox" name="cat_recommend[]" value="3">
-                              热门
-                            </label>
+                      <script type="text/html" id="recommend">
+                      {{each recommend as item i}}
+                          <label>
+                            <input type="checkbox" name="cat_recommend[]" value="{{i}}">
+                            {{item}}
+                          </label>
+                      {{/each}}
+                    </script>
+                  
                    
                     </div>
                 </div>

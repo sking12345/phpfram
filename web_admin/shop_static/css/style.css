@@ -1,0 +1,24 @@
+
+.inline{
+	display: inline;
+	float: left;
+}
+.w100{
+	width: 100%
+}
+.indexpage{
+	width: 100%;
+}
+.indexpage .menu
+{
+	float: left;
+	height: auto;
+	width: 200px;
+	background: #333333;
+	padding: 0 30px
+}
+.indexpage .menu a{
+	color: #F5F5F5;
+	font-size:14px;
+	display: block;
+}

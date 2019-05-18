@@ -78,30 +78,16 @@
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                     <div class="col-sm-4 checkbox">
+                            {{each recommend as item i}}
                             <label>
-                                {{if infos.cat_recommend&1}}
-                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="1">
-                                {{else}}
-                                 <input type="checkbox" name="cat_recommend[]" value="1">
-                                {{/if}}
-                              精品
-                            </label>
-                            <label>
-                              {{if infos.cat_recommend&2}}
-                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="2">
-                                {{else}}
-                                 <input type="checkbox" name="cat_recommend[]" value="2">
-                                {{/if}}
-                              最新
-                            </label>
-                             <label>
-                               {{if infos.cat_recommend&3}}
-                                 <input type="checkbox" name="cat_recommend[]" checked="true" value="3">
-                                {{else}}
-                                 <input type="checkbox" name="cat_recommend[]" value="3">
-                                {{/if}}
-                              热门
-                            </label>
+                              {{if infos.cat_recommend&i}}
+                              <input type="checkbox" checked name="cat_recommend[]" value="{{i}}">
+                              {{else}}
+                              <input type="checkbox" name="cat_recommend[]" value="{{i}}">
+                              {{/if}}
+                            {{item}}
+                          </label>
+                      {{/each}}
                     </div>
                 </div>
                   <div class="form-group">

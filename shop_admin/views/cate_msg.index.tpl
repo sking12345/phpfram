@@ -42,7 +42,7 @@
                             <th>价格分级</th>
                             <th>排序</th>
                     
-                            <th width="250px">操作</th>
+                            <th >操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,9 +84,7 @@
                             <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
                                 <i class="fa fa-fw fa-edit"></i>编辑
                             </a>
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=transfer&id={{item.id}}" class="btn btn-warning  btn-xs">
-                                <i class="fa fa-fw fa-refresh"></i>转移商品
-                            </a>
+                           
                             </td>
                         </tr>
                         {{/each}}

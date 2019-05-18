@@ -62,7 +62,10 @@
                     </div>
                     <label class="col-sm-2 control-label">设置为首页推荐:</label>
                      <div class="col-sm-4">
-                         <p class="form-control-static">{{infos.show_in_nav}}</p>
+                         <p class="form-control-static">
+                            {{infos.cat_recommer_val}}
+                        
+                        </p>
                     </div>
                  </div>
                     <div class="form-group">
@@ -88,9 +91,6 @@
                 <label class="col-sm-1 control-label"></label>
                 <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{infos.id}}&back=infos" class="btn btn-sm btn-primary">
                     <i class="fa fa-fw fa-edit"></i>编辑
-                </a>
-                <a href="?ctl=<?=snow\req::item('ctl')?>&act=add_attr&id={{infos.id}}" class="btn  btn-sm btn-info">
-                    <i class="fa fa-plus-circle"></i>转移商品
                 </a>
                  <a href="?ctl=<?=snow\req::item('ctl')?>&act=del&id={{infos.id}}" class="btn  btn-sm  btn-danger">
                     <i class="fa fa-fw fa-remove"></i>移除

@@ -48,9 +48,7 @@ class application {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
 		date_default_timezone_set($this->_configs["timezone"]);
-		if (empty($ctl) || empty($act)) {
-			tpl::redirect($this->_configs["app"]["default_url"], "");
-		}
+
 		ob_start();
 		if (user::is_login() == false) {
 			if (!empty($this->_configs["public"][$ctl])) {
@@ -65,6 +63,7 @@ class application {
 				exit;
 			}
 		}
+		call:
 		$purview_check = $this->_configs["app"]["purview_check"];
 		if (!empty($purview_check) && call_user_func($purview_check)) {
 			if (req::is_browser()) {
@@ -74,7 +73,6 @@ class application {
 			}
 			exit;
 		}
-		call:
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $this->_configs["domain_app"][$domain];
 		if (file_exists(__DIR__ . "/../{$app_path}/controlls/ctl_{$ctl}.php")) {

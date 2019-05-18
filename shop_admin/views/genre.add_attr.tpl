@@ -54,13 +54,13 @@
                  <div class="form-group">
                      <label class="col-sm-2 control-label">可选值列表:</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" name="select_list"  datatype="*" nullmsg="请输入可选值列表,多个属性已|分开" style="resize: none;height: 50px" maxlength="250"></textarea>
+                    <textarea class="form-control" name="select_list"  style="resize: none;height: 50px" maxlength="250"></textarea>
                     <span class="help-span">多个属性用|分开</span>
                     </div>
                 </div>
               
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">描述::</label>
+                    <label class="col-sm-2 control-label">描述:</label>
                      <div class="col-sm-10">
                     <textarea class="form-control" name="remarks" style="resize: none;height: 100px" maxlength="250"></textarea>
                     </div>

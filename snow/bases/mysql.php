@@ -72,6 +72,11 @@ class mysql implements db_interface {
 		$this->_sql = "insert into {$this->db_congis["prefix"]}{$table_name}";
 		return $this;
 	}
+	public function replace(string $table_name) {
+		$this->option_code = 0x01;
+		$this->_sql = "replace into {$this->db_congis["prefix"]}{$table_name}";
+		return $this;
+	}
 
 	public function select(string $fields = "*") {
 

@@ -69,6 +69,10 @@ class db {
 		$obj = self::get_configs($tables_name);
 		return $obj->insert($tables_name);
 	}
+	public function replace(string $table_name) {
+		$obj = self::get_configs($tables_name);
+		return $obj->replace($tables_name);
+	}
 	public static function delete(string $tables_name) {
 		$obj = self::get_configs($tables_name);
 		return $obj->delete($tables_name);

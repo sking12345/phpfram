@@ -60,7 +60,7 @@ class ctl_supplier {
 			$data = db_verify::table("supplier_status")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			db::start();
 			db::insert("supplier_status")->set($data)->execute();
-			db::update("supplier")->set(["status" => "2"])->where(["id" => $id])->execute();
+			db::update("supplier")->set(["status" => "2", "remarks" => $data["remarks"]])->where(["id" => $id])->execute();
 			db::commit();
 			tpl::redirect("?ctl=supplier&act=infos&id={$id}", "修改成功");
 		}
@@ -79,7 +79,7 @@ class ctl_supplier {
 			$data = db_verify::table("supplier_status")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
 			db::start();
 			db::insert("supplier_status")->set($data)->execute();
-			db::update("supplier")->set(["status" => "1"])->where(["id" => $id])->execute();
+			db::update("supplier")->set(["status" => "1", "remarks" => $data["remarks"]])->where(["id" => $id])->execute();
 			db::commit();
 			tpl::redirect("?ctl=supplier&act=infos&id={$id}", "修改成功");
 		}

@@ -58,6 +58,7 @@ return [
 	"tables_rules" => [
 		'category' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
+			'cat_recommend' => ["enum", "values" => ["1" => "精品", "2" => "最新", "4" => "热门"]],
 		],
 		'genre' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
@@ -84,7 +85,7 @@ return [
 				'name' => '促销结束日期',
 			],
 			'weight_type' => ["enum|required", "values" => ["1" => "千克", "2" => "克"]],
-			'recommend' => ["enum", "values" => ["1" => "精品", "2" => "最新", "3" => "热门"]],
+			'recommend' => ["enum", "values" => ["1" => "精品", "2" => "最新", "4" => "热门"]],
 		],
 		'member' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],

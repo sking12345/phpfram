@@ -53,7 +53,7 @@
                              {{if infos.input_type == 2}}
                              <input type="radio" name="input_type"  checked="true"  value="2"> 从可选值单选
                             {{else}}
-                            <input type="radio" name="input_type" checked="true"   value="2"> 从可选值单选
+                            <input type="radio" name="input_type"  value="2"> 从可选值单选
                             {{/if}}
                             
                         </label>

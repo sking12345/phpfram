@@ -3,6 +3,7 @@ namespace snow\bases;
 
 interface db_interface {
 	public function insert(string $table_name);
+	public function replace(string $table_name);
 	public function select(string $fields = "*");
 	public function update(string $table_name);
 	public function delete(string $table_name);
@@ -22,4 +23,5 @@ interface db_interface {
 	public function count();
 	public function all(string $index_field = "");
 	public function to_json(string $index_field = "");
+
 }

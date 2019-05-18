@@ -1,7 +1,7 @@
 <?php
 namespace shop_admin\controlls;
 use app\controlls\ctl_base;
-use shop\models\mod_cate_msg;
+use shop_admin\models\mod_cate_msg;
 use snow\bases\cls_pages;
 use snow\db;
 use snow\db_verify;
@@ -12,6 +12,7 @@ class ctl_cate_msg extends ctl_base {
 
 	/**分类管理*/
 	public function index() {
+
 		$row = db::select("category", "count(*) count")->one();
 		$page = cls_pages::get_pages($row["count"], 10);
 
@@ -34,6 +35,7 @@ class ctl_cate_msg extends ctl_base {
 			tpl::assign("data", $info);
 			tpl::response("sucuess", "1");
 		}
+		$recommend = db::get_table_enum("category", "cat_recommend");
 		if (req::is_post()) {
 			$data = req::post_data();
 			/**
@@ -41,12 +43,14 @@ class ctl_cate_msg extends ctl_base {
 			 * @var [type]
 			 */
 			$data = db_verify::table("category")->set_err_call("shop\models\mod_err_hander::err_hander")->insert($data);
-			// $data["id"] = util::create_uniqid(18);
 			$cat_recommend = 0;
 			if (!empty($data["cat_recommend"])) {
+				$arr = [];
 				foreach ($data["cat_recommend"] as $key => $value) {
 					$cat_recommend = $cat_recommend | $value;
+					$arr[] = $recommend[$value];
 				}
+				$data["cat_recommer_val"] = implode(",", $arr);
 			}
 			if (!empty($data['parent_id'])) {
 				$parent_infos = db::select("category", "id,parents")->where(["id" => $data["parent_id"]])->one();
@@ -65,8 +69,10 @@ class ctl_cate_msg extends ctl_base {
 		}
 		$genre_infos = db::select("genre", "id,name")->all();
 		$cate_infos = mod_cate_msg::get_cates("0", "id,cat_name", true, 2);
+
 		tpl::assign("genre_infos", $genre_infos);
 		tpl::assign("cate_infos", $cate_infos);
+		tpl::assign("recommend", $recommend);
 		tpl::display("cate_msg.add.tpl");
 	}
 
@@ -84,6 +90,7 @@ class ctl_cate_msg extends ctl_base {
 	public function edit() {
 		$id = req::item("id");
 		$query = req::item("query");
+
 		if ($query == "filter_attr") {
 			$id = req::item("genre");
 			if (empty($id)) {
@@ -93,13 +100,17 @@ class ctl_cate_msg extends ctl_base {
 			tpl::assign("data", $info);
 			tpl::response("sucuess", "1");
 		}
+		$recommend = db::get_table_enum("category", "cat_recommend");
 		if (req::is_post()) {
 			$data = req::post_data();
 			$data = db_verify::table("category")->set_err_call("shop\models\mod_err_hander::err_hander")->update($data);
 			$cat_recommend = 0;
+			$arr = [];
 			foreach ($data["cat_recommend"] as $key => $value) {
 				$cat_recommend = $cat_recommend | $value;
+				$arr[] = $recommend[$value];
 			}
+			$data["cat_recommer_val"] = implode(",", $arr);
 			if (!empty($data["filter_attr"])) {
 				$data["filter_attr"] = implode(",", $data["filter_attr"]);
 				$data["genre_id"] = implode(",", $data["genre_id"]);
@@ -116,7 +127,8 @@ class ctl_cate_msg extends ctl_base {
 			}
 			$data["cat_recommend"] = $cat_recommend;
 			db::update("category")->set($data)->where(["id" => $id])->execute();
-			tpl::redirect("?ctl=cate_msg&act=index", "成功添加分类");
+			$back_act = req::item("back", "index");
+			tpl::redirect("?ctl=cate_msg&act={$back_act}&id={$id}", "成功添加分类");
 		}
 		$infos = db::select("category", "*")->where(["id" => $id])->one();
 		$infos["filter_attr"] = explode(",", $infos["filter_attr"]);
@@ -134,6 +146,7 @@ class ctl_cate_msg extends ctl_base {
 		tpl::assign("genre_infos", $genre_infos);
 		tpl::assign("infos", $infos);
 		tpl::assign("cate_infos", $cate_infos);
+		tpl::assign("recommend", $recommend);
 		tpl::display("cate_msg.edit.tpl");
 	}
 	public function transfer() {
