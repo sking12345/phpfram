@@ -9,8 +9,8 @@ class ctl_index {
 	}
 
 	public function index1() {
-		$arr = mod_cate_msg::get_cates();
-		print_r($arr);
+		$cates = mod_cate_msg::get_cates();
+		tpl::assign("list", $cates);
 		tpl::display("index.index1.tpl");
 	}
 

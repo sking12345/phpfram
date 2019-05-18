@@ -155,13 +155,13 @@ class mysql implements db_interface {
 			if (is_array($value)) {
 				if (is_array($value[1])) {
 
-					$_where[] = "{$key} {$value[0]} ('" . implode("','", $value[1]) . "')";
+					$_where[] = " {$key} {$value[0]} ('" . implode("','", $value[1]) . "')";
 				} else {
-					$_where[] = "{$key} {$value[0]} '{$value[1]}'";
+					$_where[] = " {$key} {$value[0]} '{$value[1]}'";
 				}
 
 			} else {
-				$_where[] = "{$key}='{$value}'";
+				$_where[] = " {$key}='{$value}'";
 			}
 		}
 		if ($this->is_where == true) {
@@ -178,12 +178,12 @@ class mysql implements db_interface {
 			if (is_array($value)) {
 				if (is_array($value[1])) {
 
-					$_where[] = "{$key} {$value[0]} ('" . implode("','", $value[1]) . "')";
+					$_where[] = " {$key} {$value[0]} ('" . implode("','", $value[1]) . "')";
 				} else {
-					$_where[] = "{$key} {$value[0]} '{$value[1]}'";
+					$_where[] = " {$key} {$value[0]} '{$value[1]}'";
 				}
 			} else {
-				$_where[] = "{$key}='{$value}'";
+				$_where[] = " {$key}='{$value}'";
 			}
 		}
 		if ($this->is_where == true) {
@@ -199,14 +199,14 @@ class mysql implements db_interface {
 		return $this;
 	}
 	public function order_by(string $order_str) {
-		$this->_sql .= "order by " . $order_str;
+		$this->_sql .= " order by " . $order_str;
 		return $this;
 	}
 	public function group_by($groups) {
 		if (is_array($groups)) {
-			$this->_sql .= "group by" . implode(",", $groups);
+			$this->_sql .= " group by" . implode(",", $groups);
 		} else {
-			$this->_sql .= "group by" . $groups;
+			$this->_sql .= " group by" . $groups;
 		}
 	}
 	public function limit(int $start, int $end) {
