@@ -38,4 +38,5 @@ class mod_cate_msg {
 		}
 		return self::$cate_info_arr;
 	}
+
 }
