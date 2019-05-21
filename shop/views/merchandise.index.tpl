@@ -36,7 +36,7 @@
                         <div class="blank5"></div>
                     </div>
                     <div class="textInfo">
-                        <form action="javascript:addToCart(72)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+                        <form  method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
                             <div class="goods_style_name"> {{infos.name}} </div>
                             <ul>
                                 <li class="clearfix">
@@ -94,7 +94,13 @@
                                 <li class="padd">
                                     <table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td class="td1"><a href="javascript:addToCart(72)"><img src="shop_static/themes/default/images/buybtn1.png" /></a></td>
+                                            <td class="td1">
+                                                 <a href="?ctl=merchandise&act=buy&id={{infos.id}}">
+                                                    <img src="shop_static/themes/default/images/buybtn1.png" />
+                                                </a>
+                                              
+                                      
+                                            </td>
                                             <td class="td2"><a href="javascript:collect(72)"><img src="shop_static/themes/default/images/bnt_colles.gif" /></a></td>
                                            
                                         </tr>
@@ -113,7 +119,9 @@
                                 <h2 class="h2bg">商品属性</h2>
                             </div>
                         </div>
-                        <div id="com_v" class="boxCenterList RelaArticle"></div>
+                        <div id="com_v" class="boxCenterList RelaArticle">
+                          {{infos.remarks}}
+                        </div>
                         <div id="com_h">
                             <blockquote>
                                 <p>&nbsp;<img src="shop_static/http://cbu2.test.shopex123.com/images//20160510/5984c3f800d7ef3c.jpg" alt="" /></p>

@@ -194,6 +194,7 @@ class ctl_merchandise {
 			}
 			if (count($_FILES["imgs"]["name"]) > 0) {
 				$product_imgs = [];
+
 				foreach ($_FILES["imgs"]["name"] as $key => $value) {
 					$product_imgs = [
 						"merchandise_id" => $id,
@@ -208,7 +209,7 @@ class ctl_merchandise {
 						}
 						$product_imgs["url"] = $uploads_dir;
 					}
-					if (!empty($data["img"])) {
+					if (empty($data["img"])) {
 						$data["img"] = $uploads_dir;
 					}
 					$infos = db::select("merchandise_imgs", "id")->where(["id" => $key])->one();

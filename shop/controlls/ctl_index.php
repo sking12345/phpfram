@@ -14,6 +14,7 @@ class ctl_index {
 		tpl::assign("cates", $cates);
 		tpl::display("index.index1.tpl");
 	}
+
 	/**
 	 * 推荐项
 	 */
