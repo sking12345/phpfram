@@ -19,10 +19,10 @@ class user {
 			return false;
 		}
 		$user_info = cache::get($session_id);
+
 		if (empty($user_info)) {
 			return false;
 		}
-
 		self::$auth = json_decode($user_info, true);
 		self::$auth["browser_id"] = $browser_id;
 		self::$auth["session_id"] = $session_id;
