@@ -32,7 +32,7 @@
     </div>
     <div class="nav-menu">
         <div class="wrap">
-            <div class="logo" style="margin-top:30px">
+            <div class="logo" style="margin-top:30px;margin-left:14%">
                 <a href="index.php" name="top"><img src="shop_static/themes/default/images/logo.gif"></a>
             </div>
             <div class="serach-box" style="width: 50%">
@@ -43,80 +43,41 @@
             </div>
         </div>
     </div>
-    <div class="indexpage clearfix"  style="margin-left:18%;width: 80%;overflow: hidden;">
+    <div class="indexpage clearfix"  style="margin-left:14%;width: 80%;overflow: hidden;">
+        
         <div class="index-cat" >
+             <script type="text/html" id="cates">
             <div class="category_info">
                 <div id="category_tree" >
+                   
+                    {{each cates as item i}}
                     <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=26">家用电器</a></div>
+                        <div class="cat1"><a  href="?ctl=category&act=index&id={{item.id}}">{{item.cat_name}}</a></div>
                         <div class="cat2-box">
+                            {{if item.childers}}
+                            {{each item.childers as item1 i1}}
                             <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=27">大家电</a>
+                                <a class="cat2-link"  href="?ctl=category&act=index&id={{item1.id}}">{{item1.cat_name}}</a>
                                 <div class="cat3-block"></div>
                                 <div class="cat3-box">
-                                    <a href="category.php?id=28">平板电脑</a>&nbsp;&nbsp;
-                                    <a href="category.php?id=29">家用空调</a>&nbsp;&nbsp;
-                                    <a href="category.php?id=30">家电配件</a>&nbsp;&nbsp;
-                                    <a href="category.php?id=31">洗衣机</a>&nbsp;&nbsp;
-                                    <a href="category.php?id=32">冰箱</a>&nbsp;&nbsp;
+                                    {{each item1.childers as item2 i2}}
+                                         <a href="?ctl=category&act=index&id={{item2.id}}">{{item2.cat_name}}</a>&nbsp;&nbsp;
+                                    {{/each}}
                                 </div>
                             </div>
+                            {{/each}}
+                            {{/if}}
+
                         </div>
                     </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=25">数码时尚</a></div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=18">智能硬件</a></div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=22">移动电源</a></div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=1">手机类型</a></div>
-                        <div class="cat2-box">
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=3">小型手机</a>
-                            </div>
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=4">3G手机</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=6">手机</a></div>
-                        <div class="cat2-box">
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=8">耳机</a>
-                            </div>
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=9">电池</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=12">充值卡</a></div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=16">服装</a></div>
-                    </div>
-                    <div class="cat-box">
-                        <div class="cat1"><a href="category.php?id=19">配件</a></div>
-                        <div class="cat2-box">
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=24">数码时尚</a>
-                            </div>
-                            <div class="cat2 clearfix">
-                                <a class="cat2-link" href="category.php?id=20">保护壳</a>
-                            </div>
-                        </div>
-                    </div>
+                    {{/each}}
                     <div class="clear0"></div>
                 </div>
                 <div class="clear0"></div>
             </div>
+             </script>
         </div>
-        <div class="index-banner">
+        <div class="index-banner" style="width: 70%">
             <style>
             .swiper-container {
                 width: 100%;
@@ -160,86 +121,9 @@
             </div>
         </div>
     </div>
-      <div class="index-body">
-        <div class="indexpage">
-            <div class="body-goods">
-                <div class="goods-title" style="margin-left:14%">1F 家用电器</div>
-                <div class="clearfix goods-wrap">
-                    <div class="goods-leftad">
-                    </div>
-                    <div class="goods-right" style="width: 1350px">
-                        <div class="all_ms">
-                            <a class="goodsItem" href="goods.php?id=72">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/72_thumb_G_1462956048008.jpg" alt="智能相机" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">智能相机</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥149元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=70">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/70_thumb_G_1462955414561.jpg" alt="炫彩翻页保护套" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">炫彩翻页保护套</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥39元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=69">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/69_thumb_G_1462955300971.jpg" alt="平衡车" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">平衡车</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥1999元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=68">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/68_thumb_G_1462955204381.jpg" alt="透明超薄软胶保护套" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">透明超薄软胶保...</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥19元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=64">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/64_thumb_G_1462952811633.jpg" alt="运动相机" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">运动相机</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥399元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=63">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/63_thumb_G_1462953395609.jpg" alt="自拍杆" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">自拍杆</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥49元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=62">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/62_thumb_G_1462952557730.jpg" alt="随身风扇" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">随身风扇</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥20元</b></font>
-                                </div>
-                            </a>
-                            <a class="goodsItem" href="goods.php?id=61">
-                                <div class="img-box"><img src="shop_static/images/201605/thumb_img/61_thumb_G_1462952376889.jpg" alt="视频" class="goodsimg" /></div>
-                                <div class="goods-brief"></div>
-                                <div class="gos-title">视频</div>
-                                <div class="prices">
-                                    <font class="shop_s"><b>￥20元</b></font>
-                                </div>
-                            </a>
-                            <div class="clear0"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <?=snow\tpl::run_controller("index","recommends")?>
+     <?=snow\tpl::display("index.foot.tpl")?>
        
     <script type="text/javascript" src="./shop_static/js/jquery.js"></script>
     <script type="text/javascript">
@@ -248,7 +132,6 @@
                 var swiper_obj =  $(".swiper-slide");
                 var swiper_len = swiper_obj.length;
                 window.setInterval(function(){
-                    console.log(i);
                     swiper_obj.hide();
                     swiper_obj.eq(i).show();
                     i++;
@@ -256,6 +139,17 @@
                 },5000);
             })
     </script>
+    <div id="msg" class="hidden" style="display: none;">
+        <?=snow\tpl::get_json_assign()?>
+    </div>
+     <script src="public/js/template-web.js"></script>
+    <script type="text/javascript" src="public/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            rendering('msg', true);
+        });
+        </script>
+
 </body>
 </html>
 

@@ -12,12 +12,14 @@ class ctl_cate_msg extends ctl_base {
 
 	/**分类管理*/
 	public function index() {
-
 		$row = db::select("category", "count(*) count")->one();
 		$page = cls_pages::get_pages($row["count"], 10);
 
-		$list = db::select("category", "id, cat_name, keywords, cat_desc, parent_id, sort_order, template_file, measure_unit, show_in_nav, style, is_show, grade, filter_attr, cat_recommend")->limit($page["start"], $page["num"])->all("id");
+		$list = db::select("category", "id, cat_name, keywords, cat_desc, parent_id, sort_order, template_file, measure_unit, show_in_nav, style, is_show, grade, filter_attr, cat_recommend")->limit($page["start"], $page["num"])->all();
+		$parent_ids = db::get_resource_fields($list, "parent_id");
+		$parent_infos = db::select("category", "id,cat_name")->where(["id" => ["in", $parent_ids]])->all("id");
 		tpl::assign("list", $list);
+		tpl::assign("parent_infos", $parent_infos);
 		tpl::assign("pages", $page);
 		tpl::display("cate_msg.index.tpl");
 	}
@@ -149,7 +151,10 @@ class ctl_cate_msg extends ctl_base {
 		tpl::assign("recommend", $recommend);
 		tpl::display("cate_msg.edit.tpl");
 	}
-	public function transfer() {
+	public function del() {
+		$id = req::item("id");
+		db::delete("category")->where(["id" => $id])->execute();
+		tpl::redirect("?ctl=cate_msg&act=index", "删除成功");
 
 	}
 }

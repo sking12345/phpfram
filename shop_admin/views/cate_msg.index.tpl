@@ -55,7 +55,7 @@
                                 {{if item.parent_id == 0}}
                                     顶级分类
                                 {{else}}
-                                {{list[item.parent_id].cat_name}}
+                                {{parent_infos[item.parent_id].cat_name}}
                                 {{/if}}
                             </td>
                             <td>0</td>

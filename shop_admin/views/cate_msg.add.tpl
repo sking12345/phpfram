@@ -86,7 +86,7 @@
                           <div class="col-sm-5" style="padding:0px">
                          <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
                            <script type="text/html" id="genre_infos">
-                            <option>选择商品类型</option>
+                            <option value="">选择商品类型</option>
                              {{each genre_infos as item i}}
                                <option value="{{item.id}}">{{item.name}}</option>
                              {{/each}}
@@ -95,7 +95,7 @@
                        </div>
                         <div class="col-sm-5" style="padding-left:4px;padding-right: 0px">
                          <select class="form-control" name="filter_attr[]">
-                           <option value="0">请选择筛选属性</option>
+                           <option value="">请选择筛选属性</option>
                          </select>
                        </div>
                         <div class="col-sm-1">
@@ -109,7 +109,7 @@
                         <div class="col-sm-5" style="padding:0px;margin-top: 4px">
                          <select class="form-control" name="genre_id[]" onchange="change_cate(this)">
                            <script type="text/html" id="genre_infos">
-                            <option>选择商品类型</option>
+                            <option value="">选择商品类型</option>
                              {{each genre_infos as item i}}
                                <option value="{{item.id}}">{{item.name}}</option>
                              {{/each}}
@@ -118,7 +118,7 @@
                        </div>
                         <div class="col-sm-5" style="padding-left:4px;padding-right: 0px;margin-top: 4px">
                          <select class="form-control" name="filter_attr[]">
-                           <option value="0">请选择筛选属性</option>
+                           <option value="">请选择筛选属性</option>
                          </select>
                        </div>
                         <div class="col-sm-1">

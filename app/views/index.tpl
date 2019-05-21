@@ -130,7 +130,7 @@
             _html += '<span id="'+id+'" onclick="click_tab(this)">' + name + '</span>';
             $(".nav_tab").removeClass("nav_tab_active");
             $("#content_tab").prepend(_html);
-            var _html = '  <iframe onload="frame_load(this)" id="iframe'+id+'" frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes” width="100%"  height="'+(height-100)+'px" src="' + href + '"></iframe>';
+            var _html = '  <iframe onload="frame_load(this)" id="iframe'+id+'" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency=”yes” width="100%"  height="'+(height-100)+'px" src="' + href + '"></iframe>';
             $("#content-iframes iframe").addClass("hide");
             $("#content-iframes").prepend(_html);
             window.setTimeout(function(){

@@ -40,15 +40,44 @@ class tpl {
 	}
 	public static function run_controller(string $ctl, string $act, $args = null) {
 		$ctls_app = config::$obj->ctls_app->get();
+
 		if (!empty($ctls_app["{$ctl}_*"])) {
 			$path = $ctls_app["{$ctl}_*"];
+
+			if (file_exists(__DIR__ . "/../{$path}/controlls/ctl_{$ctl}.php")) {
+				$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+				$obj = new $call_ctl();
+				if (method_exists($obj, $act) == true) {
+					$obj->$act();
+				} else {
+					$path = config::$obj->app->get("path");
+					$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+					(new $call_ctl())->$act();
+				}
+			} else {
+				$path = config::$obj->app->get("path");
+				$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+				(new $call_ctl())->$act();
+			}
 		} else if (!empty($ctls_app["{$ctl}_{$act}"])) {
 			$path = $ctls_app["{$ctl}_{$act}"];
+			if (file_exists(__DIR__ . "/../{$path}/controlls/ctl_{$ctl}.php")) {
+				$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+				$obj = new $call_ctl();
+				if (method_exists($obj, $act) == true) {
+					$obj->$act();
+					return true;
+				}
+			} else {
+				$path = config::$obj->app->get("path");
+				$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+				(new $call_ctl())->$act();
+			}
 		} else {
 			$path = config::$obj->app->get("path");
+			$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
+			(new $call_ctl())->$act();
 		}
-		$call_ctl = "\\{$path}\\controlls\\ctl_{$ctl}";
-		(new $call_ctl())->$act();
 	}
 	/**
 	 * [redirect 重定向]

@@ -292,6 +292,13 @@ class ctl_merchandise {
 		tpl::assign("infos", $infos);
 		tpl::display("merchandise.edit_details.tpl");
 	}
+
+	public function del() {
+		$id = req::item("id");
+		db::delete("merchandise")->where(["id" => $id])->execute();
+		tpl::redirect("?ctl=merchandise&act=index", "商品删除成功");
+
+	}
 }
 ?>
 

@@ -15,8 +15,8 @@ class application {
 	public function __construct($config) {
 		$snow_config = require_once __DIR__ . "/configs/config.php";
 
-		$ctl = req::item("ctl", "index");
-		$act = req::item("act", "login");
+		$ctl = req::item("ctl");
+		$act = req::item("act");
 
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
@@ -34,10 +34,12 @@ class application {
 		$_configs = include __DIR__ . "/../{$app_path}/configs/web.php";
 		if ($app_path != $this->app_path) {
 			$configs["app"] = $_configs["app"];
+
 		}
 		if (file_exists(__DIR__ . "/../{$app_path}/configs/menus.xml")) {
 			$configs["menus_xml_file"] = __DIR__ . "/../{$app_path}/configs/menus.xml";
 		}
+		$configs["app"]["path"] = $this->app_path;
 		$this->_configs = array_merge($configs, $snow_config, $config);
 		config::init($this->_configs);
 		$this->error_handler();
@@ -76,27 +78,18 @@ class application {
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $this->_configs["domain_app"][$domain];
 		if (file_exists(__DIR__ . "/../{$app_path}/controlls/ctl_{$ctl}.php")) {
+
 			$call_ctl = "\\{$app_path}\\controlls\\ctl_{$ctl}";
 			$obj = new $call_ctl();
 			if (method_exists($obj, $act) == true) {
 				$obj->$act();
 			} else {
 				$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
-				$obj1 = new $call_ctl();
-				if (method_exists($obj1, $act) == true) {
-					(new $call_ctl())->$act();
-				} else {
-					tpl::redirect($this->_configs["app"]["default_url"], "");
-				}
+				(new $call_ctl())->$act();
 			}
 		} else {
 			$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
-			$obj1 = new $call_ctl();
-			if (method_exists($obj1, $act) == true) {
-				(new $call_ctl())->$act();
-			} else {
-				tpl::redirect($this->_configs["app"]["default_url"], "");
-			}
+			(new $call_ctl())->$act();
 		}
 	}
 
