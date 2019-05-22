@@ -6,11 +6,11 @@ use snow\db;
 use snow\req;
 use snow\tpl;
 use snow\user;
+use snow\util;
 
 class ctl_merchandise {
 
 	public function index() {
-
 		$id = req::item("id");
 		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();
 		tpl::assign("infos", $infos);
@@ -24,7 +24,6 @@ class ctl_merchandise {
 			cookie::set("unqin_id", $uniqid);
 			cache::set($uniqid, $id);
 			tpl::redirect("?ctl=member&act=login", "请先登录");
-
 		}
 		$id = req::item("id");
 		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();

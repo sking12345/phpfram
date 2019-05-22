@@ -50,6 +50,10 @@ class application {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
 		date_default_timezone_set($this->_configs["timezone"]);
+		if (empty($ctl) || empty($act)) {
+			echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+			exit();
+		}
 
 		ob_start();
 		if (user::is_login() == false) {

@@ -15,28 +15,7 @@
     <script type="text/javascript" src="shop_static/js/transport.js"></script>
 
 <body>
-    <script type="text/javascript">
-    var process_request = "正在处理您的请求...";
-    </script>
-    <div class="top-bar">
-        <div class="fd_top fd_top1">
-            <div class="bar-left">
-                <div class="top_menu1">
-                    <script type="text/javascript" src="shop_static/js/utils.js"></script>
-                    <font id="ECS_MEMBERZONE">
-                        <div id="append_parent"></div>
-                        欢迎光临本店<a href="user.php">请登录 <strong></strong></a>&nbsp;|&nbsp;&nbsp;<a href="user.php?act=register">免费注册</a>
-                    </font>
-                </div>
-            </div>
-            <div class="bar-cart">
-                <div class="fl cart-yh">
-                    <a href="user.php" class="">用户中心</a>
-                </div>
-                <div class="cart" id="ECS_CARTINFO"> <a href="flow.php" title="查看购物车">购物车(0)</a> </div>
-            </div>
-        </div>
-    </div>
+    <?=snow\tpl::display("index.header.tpl")?>
     <div class="nav-menu">
         <div class="wrap">
             <div class="logo"><a href="index.php" name="top"><img src="shop_static/themes/default/images/logo.gif" /></a></div>

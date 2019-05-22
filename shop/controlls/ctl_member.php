@@ -8,12 +8,14 @@ use snow\util;
 
 class ctl_member {
 	public function login() {
-		echo user::get("id");
 		if (req::is_post()) {
 			$data = req::post_data();
 			$info = db::select("member", "*")->where(["name" => $data["username"]])->one();
 			user::set_info($info);
-			tpl::redirect("?ctl=merchandise&act=index");
+			tpl::redirect("?ctl=index&act=index1");
+		}
+		if (user::is_login() == true) {
+			tpl::redirect("?ctl=index&act=index1");
 		}
 		tpl::display("member.login.tpl");
 	}
