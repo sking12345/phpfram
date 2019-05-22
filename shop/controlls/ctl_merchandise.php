@@ -96,16 +96,29 @@ class ctl_merchandise {
 			cache::set($uniqid, $id);
 			tpl::redirect("?ctl=member&act=login", "请先登录");
 		}
-		$infos = db::select("shop_cart", "sum(total_price) price")
-			->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
-			->one();
+		if (req::is_post()) {
+			db::update("shop_cart")->set(["status" => "3"])
+				->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
+				->where(["id" => ["!=", null]])
+				->execute();
+			tpl::redirect("?ctl=merchandise&act=checkouted");
+		}
 		db::update("shop_cart")->set(["status" => "2"])
 			->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
 			->where(["id" => ["!=", null]])
 			->execute();
+		$infos = db::select("shop_cart", "sum(total_price) price")
+			->where(["member_id" => user::get("id"), "status" => 2, "delete_time" => "0"])
+			->one();
+
+		tpl::assign("total_price", $infos["price"]);
 		tpl::display("merchandise.checkout.tpl");
 	}
 
+	public function checkouted() {
+
+		tpl::display("merchandise.checkouted.tpl");
+	}
 }
 ?>
 
