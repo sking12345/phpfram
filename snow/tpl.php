@@ -92,12 +92,9 @@ class tpl {
 		if (is_numeric($url)) {
 			cookie::set("msg_status", "-1", 10);
 			$form_data = req::post_data();
-
 			$ctl = req::item("ctl");
 			$act = req::item("act");
 			cookie::set("{$ctl}_{$act}_from", json_encode($form_data), 10);
-			// cookie::set("form_data", json_encode($form_data), 10);
-
 			echo "<script>history.go({$url});</script>";
 			exit;
 		} else {

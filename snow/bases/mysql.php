@@ -204,10 +204,11 @@ class mysql implements db_interface {
 	}
 	public function group_by($groups) {
 		if (is_array($groups)) {
-			$this->_sql .= " group by" . implode(",", $groups);
+			$this->_sql .= " group by " . implode(",", $groups);
 		} else {
-			$this->_sql .= " group by" . $groups;
+			$this->_sql .= " group by " . $groups;
 		}
+		return $this;
 	}
 	public function limit(int $start, int $end) {
 		$this->_sql .= " limit {$start},{$end}";

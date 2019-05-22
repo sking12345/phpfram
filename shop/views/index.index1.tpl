@@ -10,26 +10,7 @@
 
 </head>
 <body>
-    <div class="top-bar">
-        <div class="fd_top fd_top1">
-            <div class="bar-left">
-                <div class="top_menu1">
-                    <font id="ECS_MEMBERZONE">
-                        <div id="append_parent"></div>
-                        欢迎光临本店<a href="?ctl=user&act=login">请登录 <strong></strong></a>
-                        &nbsp;|&nbsp;&nbsp;
-                        <a href="?ctl=user&act=register">免费注册</a>
-                    </font>
-                </div>
-            </div>
-            <div class="bar-cart">
-                <div class="fl cart-yh">
-                    <a href="?ctl=user&act=index" class="">用户中心</a>
-                </div>
-                <div class="cart" id="ECS_CARTINFO"> <a href="flow.php" title="查看购物车">购物车(1)</a> </div>
-            </div>
-        </div>
-    </div>
+    <?=snow\tpl::display("index.header.tpl")?>
     <div class="nav-menu">
         <div class="wrap">
             <div class="logo" style="margin-top:30px;margin-left:14%">
@@ -142,13 +123,13 @@
     <div id="msg" class="hidden" style="display: none;">
         <?=snow\tpl::get_json_assign()?>
     </div>
-     <script src="public/js/template-web.js"></script>
+    <script src="public/js/template-web.js"></script>
     <script type="text/javascript" src="public/js/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             rendering('msg', true);
         });
-        </script>
+    </script>
 
 </body>
 </html>

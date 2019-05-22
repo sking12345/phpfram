@@ -20,7 +20,7 @@
       <div class="fl cart-yh">
         <a href="user.php" class="">用户中心</a>
       </div>
-             <div class="cart" id="ECS_CARTINFO"> <a href="flow.php" title="查看购物车">购物车(0)</a> </div>
+             <div class="cart" id="ECS_CARTINFO"> <a href="?ctl=merchandise&act=buy" title="查看购物车">购物车(0)</a> </div>
     </div>
   </div>
 </div>
