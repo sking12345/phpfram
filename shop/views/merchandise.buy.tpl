@@ -84,7 +84,7 @@
                 <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
                     <tr>
                         <td bgcolor="#ffffff">
-                            购物金额小计 ￥0.00元</td>
+                            购物金额小计 ￥{{total_price}}元</td>
                         <td align="right" bgcolor="#ffffff">
                             <input type="button" value="清空购物车" class="bnt_blue_1" 
                             onclick="location.href='?ctl=merchandise&act=clear_cart'" 

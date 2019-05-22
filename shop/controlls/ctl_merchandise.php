@@ -18,6 +18,7 @@ class ctl_merchandise {
 	}
 
 	public function buy() {
+
 		$id = req::item("id");
 		if (user::is_login() == false) {
 			$uniqid = util::create_uniqid();
@@ -29,6 +30,7 @@ class ctl_merchandise {
 		if (empty($id)) {
 			goto End;
 		}
+
 		$infos = db::select("merchandise", "*")->where(["id" => $id])->one();
 		$cart_data["id"] = util::create_uniqid();
 		$cart_data["name"] = $infos['name'];
@@ -56,7 +58,11 @@ class ctl_merchandise {
 		}
 		End:
 		$infos = db::select("shop_cart", "*")->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])->all();
+		$total_price = db::select("shop_cart", "sum(total_price) price")
+			->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
+			->one();
 		tpl::assign("list", $infos);
+		tpl::assign("total_price", $total_price["price"]);
 		tpl::display("merchandise.buy.tpl");
 	}
 
@@ -93,8 +99,11 @@ class ctl_merchandise {
 		$infos = db::select("shop_cart", "sum(total_price) price")
 			->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
 			->one();
+		db::update("shop_cart")->set(["status" => "2"])
+			->where(["member_id" => user::get("id"), "status" => 1, "delete_time" => "0"])
+			->where(["id" => ["!=", null]])
+			->execute();
 		tpl::display("merchandise.checkout.tpl");
-
 	}
 
 }
