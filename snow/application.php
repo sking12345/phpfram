@@ -17,7 +17,6 @@ class application {
 
 		$ctl = req::item("ctl");
 		$act = req::item("act");
-
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
 
@@ -44,17 +43,33 @@ class application {
 		config::init($this->_configs);
 		$this->error_handler();
 		$this->exception_handler();
+		$this->security_configuration();
+	}
+	/**
+	 * 安全检测配置
+	 */
+	public function security_configuration() {
+		if (function_exists('header_remove')) {
+			header_remove('X-Powered-By'); // PHP 5.3+
+		} else {
+			@ini_set('expose_php', 'off');
+		}
 	}
 
 	public function run() {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
+
 		date_default_timezone_set($this->_configs["timezone"]);
+
 		if (empty($ctl) || empty($act)) {
-			echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+			if (req::is_browser()) {
+				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+			} else {
+				echo json_encode(["code" => "-1", "msg" => "ctl or act is null"]);
+			}
 			exit();
 		}
-
 		ob_start();
 		if (user::is_login() == false) {
 			if (!empty($this->_configs["public"][$ctl])) {

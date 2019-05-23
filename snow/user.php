@@ -18,6 +18,7 @@ class user {
 		if (empty($session_id)) {
 			return false;
 		}
+
 		$user_info = cache::get($session_id);
 
 		if (empty($user_info)) {

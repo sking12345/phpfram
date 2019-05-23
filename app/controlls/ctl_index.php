@@ -10,9 +10,11 @@ class ctl_index {
 	private $id = 1;
 	public function login() {
 		if (req::is_post()) {
+
 			$username = req::item("username");
 			$password = req::item("password");
 			$user_info = db::select("admin", "*")->where(["username" => $username])->one();
+
 			if (empty($user_info)) {
 				tpl::assign("err_info", "密码错误");
 			} elseif ($password != $user_info["password"]) {
@@ -21,6 +23,7 @@ class ctl_index {
 				user::set_info($user_info);
 				tpl::redirect("?ctl=index&act=main", "登录成功");
 			}
+			exit;
 		}
 		tpl::display("login.tpl");
 	}
