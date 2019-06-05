@@ -4,7 +4,7 @@ return [
 	"default" => [
 		"class" => "snow\bases\mysql",
 		"user_name" => "root",
-		"password" => "",
+		"password" => "123456",
 		'charset' => 'utf8',
 		"db_name" => "shop",
 		"prefix" => "xs_",
@@ -18,7 +18,7 @@ return [
 		"password" => "",
 		'charset' => 'utf8',
 		"db_name" => "phpframe",
-		"prefix" => "",
+		"prefix" => "123456",
 		"open_slave" => false,
 		"master" => "127.0.0.1:3306",
 		"slave" => ["127.0.0.1:3306", "127.0.0.1:3306", "127.0.0.1:3306"],
