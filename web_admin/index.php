@@ -10,10 +10,10 @@ $configs["domain_app"] = [
 	"www.shop.com" => "shop_admin",
 	"www.shop1.com" => "shop",
 ];
+
 (new \snow\application($configs))->run();
 
 ?>
-
 
 
 

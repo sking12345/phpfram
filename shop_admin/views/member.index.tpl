@@ -48,7 +48,11 @@
                         <tr>
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{member_level[item.level].name}}</td>
+                            <td>
+                                {{if item.level}}
+                                {{member_level[item.level].name}}
+                                {{/if}}
+                            </td>
                             <td>{{item.phone}}</td>
                             <td>{{item.create_time|date_format 'Y-m-d h:i:s'}}</td>
                             <td>

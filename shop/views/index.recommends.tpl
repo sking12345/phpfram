@@ -7,7 +7,7 @@
         <div class="clearfix">
             <div class="goods-right" style="margin-left:14%;width: 75%;background:beige;padding:10px">
                
-                {{each merchandise as item1 i1}}
+                {{each merchandise[item.id] as item1 i1}}
                  <a class="goodsItem" href="?ctl=merchandise&act=index&id={{item1.id}}">
                         <div class="img-box"><img src="{{item1.img}}" alt="{{item1.name}}" class="goodsimg" /></div>
                         <div class="goods-brief"></div>

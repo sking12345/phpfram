@@ -5,9 +5,9 @@ class cookie {
 
 	public static function set(string $key, $val, int $time = 0) {
 		if ($time == 0) {
-			setcookie($key, $val);
+			setcookie($key, $val, NULL, NULL, NULL, NULL, TRUE);
 		} else {
-			setcookie($key, $val, time() + 3600);
+			setcookie($key, $val, time() + $time, NULL, NULL, NULL, TRUE);
 		}
 	}
 
