@@ -34,12 +34,12 @@
         </ul>
     </section>
 </aside>
-<div style="z-index: 1000;position: absolute;top: 80px;">
+<div style="z-index: 1000;position: absolute;top: 90px;">
     <script type="text/html" id='menus_children'>
         {{each menus_children as item i}}
-            <div id="menus-ul{{i}}" class=" hide menus-ul" style="width:120px;background-color: #f0f0f0;border-right: 1px solid #dddddd;min-height:400px">
+            <div id="menus-ul{{i}}" class=" hide menus-ul" style="width:150px;background-color: #f0f0f0;border-right: 1px solid #dddddd;min-height:400px">
                  {{each item as val v}}
-                 <div style="margin-left:10px;margin-top:10px;color:#ccc">
+                 <div style="height:30px;padding:5px">
                  <a href="?ctl={{val.ctl}}&act={{val.act}}" id="{{val.id}}"   class="menu-li"> {{val.name}}</a>
                  </div>
                  {{/each}}
