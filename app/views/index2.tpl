@@ -165,7 +165,9 @@
         }).mouseout(function(){
 
         });
-       
+        $(".menus-ul").mouseleave(function(){
+           $(".menus-ul").addClass("hide");
+        });
     });
 
     </script>
