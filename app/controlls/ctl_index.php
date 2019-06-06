@@ -11,11 +11,11 @@ class ctl_index {
 	private $menus_children = [];
 	public function login() {
 		if (req::is_post()) {
-
 			$username = req::item("username");
 			$password = req::item("password");
 			$user_info = db::select("admin", "*")->where(["username" => $username])->one();
-
+			$user_group_info = db::select("admin_group", "*")->where(["id" => $user_info["groups"]])->one();
+			$user_info["group_info"] = $user_group_info;
 			if (empty($user_info)) {
 				tpl::assign("err_info", "密码错误");
 			} elseif ($password != $user_info["password"]) {
@@ -24,7 +24,6 @@ class ctl_index {
 				user::set_info($user_info);
 				tpl::redirect("?ctl=index&act=main", "登录成功");
 			}
-			exit;
 		}
 		tpl::display("login.tpl");
 	}

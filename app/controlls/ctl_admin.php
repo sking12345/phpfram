@@ -100,4 +100,5 @@ class ctl_admin {
 		tpl::assign("infos", $infos);
 		tpl::display("admin.edit.tpl");
 	}
+
 }

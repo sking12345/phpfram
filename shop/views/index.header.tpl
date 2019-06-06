@@ -6,7 +6,7 @@
           <font id="ECS_MEMBERZONE">
           <div id="append_parent">
           </div>
-            <?=snow\user::get("name")?>欢迎光临本店
+            <?=snow\user::$instance->get("name")?>欢迎光临本店
             <?php if (snow\user::is_login() == false){?>
           <a href="?ctl=member&act=login">请登录 <strong>
           </strong></a>

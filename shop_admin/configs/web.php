@@ -9,7 +9,7 @@ return [
 		"default_url" => "?ctl=index&act=login",
 		'login_status_time' => '600', //登录多长时间就退出，秒 ,0 永久
 		'session_key' => false, //存session_id 的key值,如果是app 应用程序设置xxx,如果是web,可设置为false,用于兼容多个场景的用户登录验证
-		"index_tpl" => "index.tpl",
+		"index_tpl" => "index2.tpl",
 	],
 	"icon_path" => "./public/icon/shop.ico",
 	'timezone' => "Asia/Phnom_Penh",
@@ -54,6 +54,7 @@ return [
 	"table_db" => [
 		"default" => [],
 		"user_center" => ["admin", "admin_group", "admin_logs"],
+		"test" => ["number"],
 	],
 	"tables_rules" => [
 		'category' => [
@@ -94,6 +95,7 @@ return [
 		'member_level' => [
 			'id' => ['unique|required', 'call' => ['snow\util::create_uniqid', 18]],
 		],
+
 	],
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法

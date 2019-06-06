@@ -51,7 +51,7 @@ class ctl_admin_group {
 	public function del() {
 		$id = req::item("id");
 		$time = time();
-		$set_data = ["delete_time" => $time, "delete_user" => user::get("id")];
+		$set_data = ["delete_time" => $time, "delete_user" => user::$instance->get("id")];
 		db::update("admin_group")->set($set_data)->set(["admin_num" => "0"])->where(["id" => $id])->echo_sql(1)->execute();
 		db::update("admin")->set($set_data)->where(["id" => ["!=", NULL], "groups" => $id])->echo_sql(1)->execute();
 		tpl::redirect("?ctl=admin_group&act=index", "成功删除用户组");

@@ -14,6 +14,7 @@ use snow\util;
 class ctl_merchandise {
 
 	public function index() {
+
 		$row = db::select("merchandise", "count(*) count")->one();
 		$page = cls_pages::get_pages($row["count"], 10);
 		$list = db::select("merchandise", "*")->order_by("id desc")->all();

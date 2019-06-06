@@ -2,10 +2,10 @@
     <section class="sidebar" style="background-color:#222d32">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?=snow\user::get('img')?>" class="img-circle" alt="User Image">
+                <img src="<?=snow\user::$instance->get('img')?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p><?=snow\user::get('username')?></p>
+                <p><?=snow\user::$instance->get('username')?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

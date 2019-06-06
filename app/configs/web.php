@@ -2,7 +2,7 @@
 
 return [
 	"app" => [
-		"purview_check" => "", //权限验证
+		"purview_check" => "\app\model\model_purviews::check", //权限验证
 		"login_verify" => true, //token 验证
 		'short_title' => "snow", //项目名称简写
 		"title" => "snow测试", //项目名称
@@ -75,6 +75,6 @@ return [
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法
 	'public' => [
-		'index' => ["login", 'out'],
+		'index' => ["login", 'out', 'main'],
 	],
 ];

@@ -215,16 +215,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?=snow\user::get('img')?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?=snow\user::get('username')?></span>
+              <img src="<?=snow\user::$instance->get('img')?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?=snow\user::$instance->get('username')?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?=snow\user::get('img')?>" class="img-circle" alt="User Image">
+                <img src="<?=snow\user::$instance->get('img')?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?=snow\user::get('username')?>
+                  <?=snow\user::$instance->get('username')?>
                   <small><?=date("Y-m-d h:i:s",time())?></small>
                 </p>
               </li>
@@ -249,7 +249,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="?ctl=index&act=out" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

@@ -8,6 +8,16 @@ use snow\util;
 
 class user {
 	protected static $auth = [];
+	public static $instance = null;
+	private $_keys = [];
+	public static function _init() {
+		if (empty(self::$instance)) {
+			self::$instance = new user();
+		}
+		if (empty(self::$auth)) {
+			self::is_login();
+		}
+	}
 	public static function is_login() {
 		$browser_id = req::browser_id();
 		$session_id = req::item($browser_id); //如果访问参数中没有broser_id 则获取cookie 中获取id
@@ -57,36 +67,26 @@ class user {
 		return cache::del($session_id);
 	}
 
-	public static function get(string $filed) {
-		if (empty(self::$auth[$filed])) {
-			return false;
+	public function get(string $key = '') {
+		if (!empty($key)) {
+			$this->_keys[] = $key;
 		}
-		return self::$auth[$filed];
+		$configs = self::$auth;
+		foreach ($this->_keys as $key => $value) {
+			if (empty($configs[$value])) {
+				$this->_keys = [];
+				return null;
+			}
+			$configs = $configs[$value];
+		}
+
+		$this->_keys = [];
+		return $configs;
 	}
 
-	/**
-	 * [verify_purview 权限验证]
-	 * @param  string $ctl [description]
-	 * @param  string $act [description]
-	 * @return [type]      [description]
-	 */
-	public static function verify_purview(string $ctl, string $act) {
-
-	}
-	/**
-	 * [get_menus 获取用户菜单列表]
-	 * @return [type] [description]
-	 */
-	public static function get_menus() {
-
-	}
-
-	/**
-	 * [cache_menus 缓存用户信息]
-	 * @return [type] [description]
-	 */
-	public static function cache_menus() {
-
+	public function __get($key) {
+		$this->_keys[] = $key;
+		return $this;
 	}
 
 }
