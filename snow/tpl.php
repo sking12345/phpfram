@@ -115,7 +115,7 @@ class tpl {
 		}
 		require $view_path . $file;
 	}
-	public static function from_token() {
+	public static function from_token(bool $bool = true) {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
 		$token = util::create_uniqid(32);
@@ -123,7 +123,9 @@ class tpl {
 		cache::set($token, $browser_id, 600);
 		$html_str = "<input type='hidden' name='ctl' value='{$ctl}'>";
 		$html_str .= "<input type='hidden' name='act' value='{$act}'>";
-		$html_str .= "<input type='hidden' name='_crsh_token_' value='{$token}'>";
+		if ($bool == true) {
+			$html_str .= "<input type='hidden' name='_crsh_token_' value='{$token}'>";
+		}
 		return $html_str;
 	}
 }

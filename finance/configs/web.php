@@ -55,6 +55,9 @@ return [
 		"user_center" => ["admin", "admin_group", "admin_logs"],
 	],
 	"tables_rules" => [
+		"currencys" => [
+			"status" => ["enum", "values" => ["1" => "停用", "2" => "启用"]],
+		],
 
 	],
 	// "shutdown_call" => "call:func", //end call function

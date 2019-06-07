@@ -17,6 +17,8 @@ class application {
 
 		$ctl = req::item("ctl");
 		$act = req::item("act");
+		// print_r($_SERVER["HTTP_REFERER"]);
+		// exit();
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
 
@@ -57,12 +59,9 @@ class application {
 	}
 
 	public function run() {
-
 		$ctl = req::item("ctl");
 		$act = req::item("act");
-
 		date_default_timezone_set($this->_configs["timezone"]);
-
 		if (empty($ctl) || empty($act)) {
 			if (req::is_browser()) {
 				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
@@ -71,7 +70,6 @@ class application {
 			}
 			exit();
 		}
-
 		ob_start();
 		if (!empty($this->_configs["public"][$ctl])) {
 			$public_acts = $this->_configs["public"][$ctl];
