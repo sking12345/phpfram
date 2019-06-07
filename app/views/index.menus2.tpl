@@ -26,7 +26,6 @@
                     <a href="#">
                       <i class="{{val.style}}"></i> <span>{{val.name}}</span>
                     </a>
-
                 </li>
           {{/each}}
         

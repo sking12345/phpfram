@@ -7,8 +7,9 @@ require __DIR__ . '/../snow/autoload.php';
 
 $configs["domain_app"] = [
 	"www.phpframe.com" => "app",
-	"www.shop.com" => "shop_admin",
-	"www.shop1.com" => "shop",
+	"www.shop.com" => "shop_admin", //商城管理
+	"www.shop1.com" => "shop", //商城
+	"www.finance.com" => "finance", //财务管理
 ];
 (new \snow\application($configs))->run();
 
