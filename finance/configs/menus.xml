@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
+	<menu name="系统信息" style="fa fa-fw fa-windows">
+		<menu display="1" ctl="admin" act="index" name="用户管理" default="1"></menu>
+		<menu display="1" ctl="admin_group" act="index" name="用户组管理" ></menu>
+		<menu display="0" ctl="admin" act="add" name="添加用户"></menu>
+		<menu display="0" ctl="admin_group" act="add" name="添加用户组"></menu>
+		<menu display="0" ctl="sysmsg" act="user_logs" name="用户操作日志" ></menu>
+		<menu display="0" ctl="sysmsg" act="del_logs" name="清空用户日志" ></menu>
+		<menu display="0" ctl="admin" act="my_info" name="我的信息" ></menu>
+	</menu>
 	<menu name="总帐" style="fa fa-fw fa-windows">
 		<menu name="凭证管理">
 			<menu display="1" ctl="test" act="index" name="凭证录入" ></menu>
@@ -43,9 +52,26 @@
 			<menu display="1" ctl="test" act="index" name="结转损益" ></menu>
 			<menu display="1" ctl="test" act="index" name="总帐期末结帐" ></menu>
 		</menu>
+		<menu name="基础资料">
+			<menu display="1" ctl="currencys" act="index" name="币别" ></menu>
+			<menu display="1" ctl="currencys" act="import" name="倒入币别" ></menu>
+			<menu display="1" ctl="test" act="index" name="汇率体系" ></menu>
+			<menu display="1" ctl="test" act="index" name="会计日历" ></menu>
+			<menu display="1" ctl="test" act="index" name="会计要素" ></menu>
+			<menu display="1" ctl="test" act="index" name="核算维度" ></menu>
+			<menu display="1" ctl="test" act="index" name="凭证字" ></menu>
+			<menu display="1" ctl="test" act="index" name="会计政策" ></menu>
+			<menu display="1" ctl="test" act="index" name="会计核算体系" ></menu>
+			<menu display="1" ctl="test" act="index" name="帐薄" ></menu>
+			<menu display="1" ctl="test" act="index" name="摘要库" ></menu>
+			<menu display="1" ctl="test" act="index" name="结算方式" ></menu>
+			<menu display="1" ctl="test" act="index" name="现金流量项目" ></menu>
+
+		</menu>
 		<menu name="参数设置">
 			<menu display="1" ctl="test" act="index" name="总帐管理参数" ></menu>
 		</menu>
+
 		<menu name="初始化">
 			<menu display="1" ctl="test" act="index" name="科目初始化数据导入" ></menu>
 			<menu display="1" ctl="test" act="index" name="现金流量初始数据导入" ></menu>

@@ -6,7 +6,7 @@ return [
 		"user_name" => "root",
 		"password" => "",
 		'charset' => 'utf8',
-		"db_name" => "phpframe",
+		"db_name" => "finance",
 		"prefix" => "",
 		"open_slave" => false, //是否开启从服务器配置
 		"master" => "127.0.0.1:3306",

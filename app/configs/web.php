@@ -75,6 +75,6 @@ return [
 	// "shutdown_call" => "call:func", //end call function
 	// 公开方法
 	'public' => [
-		'index' => ["login", 'out', 'main'],
+		'index' => ["login", 'out'],
 	],
 ];

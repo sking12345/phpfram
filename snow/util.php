@@ -3,6 +3,14 @@
 namespace snow;
 
 class util {
+
+	/**
+	 * http:get请求
+	 */
+	public static function http_get($url, $param = "") {
+		return file_get_contents($url);
+	}
+
 	/**
 	 * 获取指定行内容
 	 *
