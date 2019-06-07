@@ -28,7 +28,6 @@ class ctl_currencys {
 		if (!empty($or_where)) {
 			$obj->or_where($or_where, true);
 		}
-
 		$list = $obj->order_by("status desc")->limit($page["start"], $page["num"])->echo_sql(0)->all();
 		$status = db::get_table_enum("currencys", "status");
 		tpl::assign("pages", $page);

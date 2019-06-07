@@ -102,6 +102,12 @@ class req {
 		}
 		return self::addslashes($_REQUEST[$key]);
 	}
+	public static function get($key, $default = null) {
+		if (empty($_REQUEST[$key])) {
+			return $default;
+		}
+		return $_REQUEST[$key];
+	}
 
 	public static function get_data(array $data = []) {
 		if (empty($data)) {

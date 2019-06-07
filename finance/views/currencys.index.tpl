@@ -23,7 +23,7 @@
                 <form method="GET" action="" class="form-inline">
                     <?=snow\tpl::from_token(false)?>
                     <div class="form-group">
-                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入关键字">
+                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::get('keyword')?>" placeholder="请输入关键字">
                         <button type="submit" class="btn btn-default">搜索</button>
                     </div>
                 </form>
@@ -59,8 +59,6 @@
                                    暂停
                                 </a> 
                                 {{/if}}
-                            
-                       
                            
                             </td>
                         </tr>

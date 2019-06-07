@@ -82,13 +82,13 @@ class application {
 				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
 				exit;
 			}
-		}
-		$purview_check = $this->_configs["app"]["purview_check"];
-		if (!empty($purview_check) && call_user_func($purview_check) == false) {
-			if (req::is_browser()) {
-				tpl::redirect(-1, "权限不足(Insufficient permissions)");
-			} else {
-				echo json_encode(["code" => "-1", "msg" => "权限不足(Insufficient permissions)"]);
+			$purview_check = $this->_configs["app"]["purview_check"];
+			if (!empty($purview_check) && call_user_func($purview_check) == false) {
+				if (req::is_browser()) {
+					tpl::redirect(-1, "权限不足(Insufficient permissions)");
+				} else {
+					echo json_encode(["code" => "-1", "msg" => "权限不足(Insufficient permissions)"]);
+				}
 			}
 		}
 		call_no_purview:
