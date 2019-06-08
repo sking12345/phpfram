@@ -26,7 +26,11 @@ class cls_purview {
 					}
 				}
 			}
-			$item["children"] = self::_menus_to_array($child_obj, $show_status, $item["id"]);
+			$children = self::_menus_to_array($child_obj, $show_status, $item["id"]);
+			if (!empty($children)) {
+				$item["children"] = $children;
+			}
+
 			if ($status != true) {
 				$menu_arr[] = $item;
 			}

@@ -38,6 +38,7 @@ class ctl_admin_group {
 			tpl::redirect("?ctl=admin_group&act=index", "成功添加用户组");
 		}
 		$purview = cls_purview::get_menus(false);
+		// print_r($purview);
 		tpl::assign("purview", $purview);
 		tpl::display("admin_group.add.tpl");
 	}

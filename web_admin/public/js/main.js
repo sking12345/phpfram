@@ -274,10 +274,13 @@ function message_hander() {
     }
 }
 
+var gload_json = {};
+
 function rendering(msg_id, is_delete) {
     var json_str = $("#" + msg_id).text();
     if (json_str) {
     	 var json_data = JSON.parse(json_str);
+       gload_json = json_data;
 	    $("script[type='text/html']").each(function() {
           if($(this).attr("render")!="no"&&$(this).attr("render")!="No")
           {
@@ -286,8 +289,7 @@ function rendering(msg_id, is_delete) {
           }
 	       
 	    });
-    }
-   
+    }   
     table_pages_hander();
     message_hander();
     var from_data = form_hander();
@@ -316,6 +318,19 @@ function rendering(msg_id, is_delete) {
           $(append_id).append(html);
        }
        return html;
+    },
+    get_assign:function(key)
+    {
+      if(key)
+      {
+        return gload_json;
+      }
+      if(gload_json[key])
+      {
+        return gload_json[key];
+      }
+      return {};
+
     }
  }
 

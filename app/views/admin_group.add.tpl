@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″> 
+<meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>用户列表</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -31,18 +31,7 @@
                         <input type="text" class="form-control" value="" name="name" placeholder="用户名">
                     </div>
                 </div>
-                <script type="text/html" id="purview">
-                {{each purview as item i}}
-                <div class="form-group">
-                 <label class="col-sm-2 control-label"><input type="checkbox" class="parent" id="parent{{item.id}}" parent-id="{{item.id}}">&nbsp;{{item.name}}:</label>
-                 <div class="col-sm-9" style="margin-top: 7px">
-                     {{each item.children as item1 i1}}
-                     <label style="font-weight: 400"><input type="checkbox" parent-id="{{item.id}}" class="parent{{item.id}} menus" name="purviews[{{item1.ctl}}_{{item1.act}}]">&nbsp;{{item1.name}}</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                     {{/each}}
-                 </div>
-               </div>
-               {{/each}}
-                </script>
+
             </div>
             <div class="box-footer">
                 <label class="col-sm-2 control-label"></label>
@@ -60,35 +49,64 @@
 <script src="public/js/template-web.js"></script>
 <script type="text/javascript" src="public/js/main.js"></script>
 <script type="text/javascript">
+function purview_html(purview, level) {
+    var html = '';
+    level++;
+    $.each(purview,function(index,obj){
+        if(level==1)
+        {
+            html+='<div class="form-group">';
+            html+=' <label class="col-sm-2 control-label">';
+            html+='<input type="checkbox" id='+obj.id+'>'+obj.name+'</label>';
+            html+='<div class="col-sm-9" style="margin-top: 7px">'
+        }else{
+             html+=' <label  style="font-weight: 400">';
+             html+='<input type="checkbox" id='+obj.id+' parent-id="'+obj.parent_id+'"  name="purviews['+obj.ctl+'_'+obj.act+']">'+obj.name;
+             html+='</label>';
+        }
+        if(obj.children)
+        {  
+
+            html+="<br>";
+            html+=purview_html(obj.children,level);
+          
+        }
+        if(level==1)
+         {
+             html+='</div>';
+              html+='</div>';
+         }
+    });
+
+    return html;
+}
+
 $(document).ready(function() {
     rendering('msg', true);
-    $(".parent").click(function(){
-       var check = $(this).is(":checked");
-       var id = $(this).attr("parent-id");
-       if(check == true)
-       {
-        $(".parent"+id+":not(:checked)").prop("checked",true);
-       }else{
-        $(".parent"+id+":checked").prop("checked",false);
-       }
-    })
-    $(".menus").click(function(){
+    var purview = util.get_assign("purview");
+    console.log(purview);
+    var html = purview_html(purview.purview, 0)
+    $(".box-body").append(html)
+    $(".parent").click(function() {
+        var check = $(this).is(":checked");
         var id = $(this).attr("parent-id");
-        var length = $(".parent"+id+":not(:checked)").length;
-         if($(".parent"+id+":not(:checked)").length>0)
-         {
-             $("#parent"+id).prop("checked",false);
-         }else{
-             $("#parent"+id).prop("checked",true);
-         }
+        if (check == true) {
+            $(".parent" + id + ":not(:checked)").prop("checked", true);
+        } else {
+            $(".parent" + id + ":checked").prop("checked", false);
+        }
+    })
+    $(".menus").click(function() {
+        var id = $(this).attr("parent-id");
+        var length = $(".parent" + id + ":not(:checked)").length;
+        if ($(".parent" + id + ":not(:checked)").length > 0) {
+            $("#parent" + id).prop("checked", false);
+        } else {
+            $("#parent" + id).prop("checked", true);
+        }
     })
 });
 </script>
 </body>
 
 </html>
-
-
-
-
-
