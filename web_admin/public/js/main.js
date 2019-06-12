@@ -275,7 +275,7 @@ function message_hander() {
 }
 
 var gload_json = {};
- template.defaults.escape = true;
+template.defaults.escape = true;
 function rendering(msg_id, is_delete) {
     var json_str = $("#" + msg_id).text();
     if (json_str) {
