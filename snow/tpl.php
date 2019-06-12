@@ -36,9 +36,9 @@ class tpl {
 	 * @return [type] [description]
 	 */
 	public static function get_json_assign($assign_key = "msg_assign") {
-		$str = json_encode(self::$assign_data);
-		cookie::set($assign_key, $str, 10);
-		// return json_encode(self::$assign_data);
+		// $str = json_encode(self::$assign_data);
+		// cookie::set($assign_key, $str, 10);
+		return json_encode(self::$assign_data);
 	}
 	public static function run_controller(string $ctl, string $act, $args = null) {
 		$ctls_app = config::$obj->ctls_app->get();
