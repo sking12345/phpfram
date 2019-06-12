@@ -14,19 +14,31 @@
 
 <body>
     <div class="content">
-      <ul class="breadcrumb" style="margin-bottom:5px;background:#FFF;padding-left:0px">
-        <li><i class="fa fa-fw fa-calendar-check-o"></i>商品管理</li>
-        <li class="active"><i class="fa fa-fw fa-search"></i>品牌列表</li>
-        <div class="pull-right">
-        <a href="?ctl=<?=snow\req::item('ctl')?>&act=add" class="btn btn-xs  btn-info "><i class="fa fa-plus-circle"></i>添加品牌</a>
-        </div>
-      </ul>
         <div class="box">
             <div class="box-header with-border">
                 <form method="GET" action="" class="form-inline">
                     <div class="form-group">
                         <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入名称">
-                        <button type="submit" class="btn btn-default">搜索</button>
+                    </div>
+                      <div class="form-group">
+                       <script type="text/html" id="kind">
+                           <select class="form-control " name="kind">
+                               <option value="">请选择种类</option>
+                               {{each kinds as item i}}
+                                {{if item.code =="<?=snow\req::item('kind')?>"}}
+                                 <option value="{{item.code}}" selected="true">{{item.name}}</option>
+                                {{else}}
+                                <option value="{{item.code}}">{{item.name}}</option>
+                                {{/if}}
+                               {{/each}}
+                           </select>
+                       </script>
+                    </div>
+                    <div class="form-group">
+                         <button type="submit" class="btn btn-default">搜索</button>
+                    </div>
+                    <div class="form-group  pull-right">
+                        <a href="?ctl=<?=snow\req::get('ctl')?>&act=add_business_unit" class="btn  btn-info"><i class="fa fa-plus-circle"></i>添加事业部</a>
                     </div>
                 </form>
             </div>
@@ -34,12 +46,10 @@
                 <table class="table table-bordered table-hover dataTable text-center">
                     <thead>
                         <tr>
-                            <th width="200px">编号</th>
-                            <th>品牌名称</th>
-                            <th>网址</th>
-                            <th>logo</th>
-                            <th>排序</th>
-                            <th>是否显示</th>
+                            <th style="width: 100px">id</th>
+                            <th>名称</th>
+                            <th>种类</th>
+                            <th>编号</th>
                             <th width="250px">操作</th>
                         </tr>
                     </thead>
@@ -47,34 +57,22 @@
                         <script type="text/html" id="admin_list">
                         {{each list as item i}}
                         <tr>
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.url}}</td>
-                            <td><img src="{{item.logo}}" width="35px"></td>
-                            <td>{{item.sort}}</td>
-                            <td>
-                                 {{if item.is_show==1}}
-                                <img src="./public/img/yes.svg" width="20">
-                                {{else}}
-                                <img src="./public/img/no.svg" width="20">
-                               {{/if}}
-                            </td>
-                            <td>
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=infos&id={{item.id}}" class="btn  btn-info  btn-xs">
-                                <i class="fa fa-fw fa-search"></i>查看
-                            </a> 
-                            <a href="?ctl=<?=snow\req::item('ctl')?>&act=edit&id={{item.id}}" class="btn btn-primary  btn-xs">
-                                <i class="fa fa-fw fa-edit"></i>编辑
-                            </a>
-                            </td>
-                        </tr>
+                              <td>{{item.id}}</td>
+                              <td>{{item.name}}</td>
+                               <td>{{kinds[item.kinds].name}}</td>
+                              <td>{{item.code}}</td>
+                              <td>
+                                <a href="?ctl=<?=snow\req::get('ctl')?>&act=edit_business_unit&id={{item.id}}" class="btn btn-primary  btn-sm"><i class="fa fa-fw fa-edit"></i>编辑</a>
+                               
+                              </td>
+                          </tr>
                         {{/each}}
                         <tr>
-                          <th colspan="20">
-                             <?=\html::create_table_pages("public/table.pages.tpl","pages")?>
-                          </th>
-                        </tr>
-                      </script>
+                  <th colspan="10">
+                     <?=\html::create_table_pages("public/table.pages.tpl","pages")?>
+                  </th>
+                </tr>
+              </script>
                     </tbody>
                 </table>
             </div>
@@ -97,15 +95,5 @@
         });
         </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-

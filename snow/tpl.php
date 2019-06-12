@@ -21,7 +21,7 @@ class tpl {
 	/**
 	 *	用于接口回复消息
 	 */
-	public static function response($msg, $code = 1) {
+	public static function response($code = 1, $msg) {
 		if ($code > 0) {
 			self::$assign_data["code"] = $code;
 			self::$assign_data["msg"] = $msg;
@@ -35,8 +35,10 @@ class tpl {
 	 * [get_json_assign 返回jsong格式数据]
 	 * @return [type] [description]
 	 */
-	public static function get_json_assign() {
-		return json_encode(self::$assign_data);
+	public static function get_json_assign($assign_key = "msg_assign") {
+		$str = json_encode(self::$assign_data);
+		cookie::set($assign_key, $str, 10);
+		// return json_encode(self::$assign_data);
 	}
 	public static function run_controller(string $ctl, string $act, $args = null) {
 		$ctls_app = config::$obj->ctls_app->get();

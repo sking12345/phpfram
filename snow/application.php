@@ -75,12 +75,12 @@ class application {
 			$public_acts = $this->_configs["public"][$ctl];
 			if (in_array($act, $public_acts)) {
 				goto call_no_purview;
-			}
-		} else if (user::is_login() == false) {
-			$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
-			if ($login_verify == true) {
-				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
-				exit;
+			} elseif (user::is_login() == false) {
+				$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
+				if ($login_verify == true) {
+					echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+					exit;
+				}
 			}
 		} else {
 			$purview_check = $this->_configs["app"]["purview_check"];

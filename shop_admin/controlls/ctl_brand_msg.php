@@ -34,6 +34,7 @@ class ctl_brand_msg {
 				}
 				$data["logo"] = $uploads_dir;
 			}
+
 			db::insert("brand")->set($data)->execute();
 			tpl::redirect("?ctl=brand_msg&act=index", "品牌添加成功");
 		}

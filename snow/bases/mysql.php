@@ -190,7 +190,7 @@ class mysql implements db_interface {
 			if ($type == false) {
 				$this->_sql .= " or (" . implode(" and ", $_where) . ")";
 			} else {
-				$this->_sql .= " and " . implode(" or ", $_where);
+				$this->_sql .= " and (" . implode(" or ", $_where) . ")";
 			}
 		} else {
 			$this->_sql .= " where " . implode(" or ", $_where);

@@ -275,11 +275,17 @@ function message_hander() {
 }
 
 var gload_json = {};
-
+ template.defaults.escape = true;
 function rendering(msg_id, is_delete) {
     var json_str = $("#" + msg_id).text();
-    if (json_str) {
-    	 var json_data = JSON.parse(json_str);
+    var info = Cookies.get(msg_id);
+    if(!info)
+    {
+      info = Cookies.get("msg_assign");
+    }
+    Cookies.remove('msg_assign', { path: '' })
+    if (info) {
+    	 var json_data = JSON.parse(info);
        gload_json = json_data;
 	    $("script[type='text/html']").each(function() {
           if($(this).attr("render")!="no"&&$(this).attr("render")!="No")
