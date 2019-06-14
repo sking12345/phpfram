@@ -296,7 +296,6 @@ function rendering(msg_id, is_delete) {
     return from_data;
 }
 
-
  var util = {
     ajax_post:function(url,$data,call_function)
     {

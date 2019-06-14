@@ -7,6 +7,9 @@ use snow\util;
 class req {
 
 	protected static $call_args;
+	public function _init() {
+		//print_r($_REQUEST);
+	}
 	protected static function addslashes($str) {
 		if (!get_magic_quotes_gpc()) {
 			return addslashes(htmlspecialchars(trim($str), ENT_NOQUOTES));
