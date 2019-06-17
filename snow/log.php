@@ -8,6 +8,11 @@ class log {
 	private static $obj = null;
 	private $err_html = '';
 
+	public static function save_log($msg) {
+		echo $msg;
+		echo "\r\n";
+	}
+
 	public static function set_errr($info, $file = "", $line = "", $trace = null) {
 		if (self::$obj == null) {
 			self::$obj = new log();

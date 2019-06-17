@@ -27,9 +27,7 @@ class ctl_index {
 		}
 		tpl::display("login.tpl");
 	}
-	public function test() {
 
-	}
 	public function main() {
 		$index_tpl = config::$obj->app->get("index_tpl");
 		tpl::display($index_tpl);

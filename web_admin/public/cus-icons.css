@@ -1,0 +1,65 @@
+
+/* icons */
+[class^="cus-"],
+[class*=" cus-"] {
+display: inline-block;
+width: 17px;
+height: 16px;
+*margin-right: .3em;
+line-height: 14px;
+vertical-align: text-top;
+background-image: url("famfamfam-icons.png");
+background-position: 14px 14px;
+background-repeat: no-repeat;
+}
+[class^="cus-"]:last-child,
+[class*=" cus-"]:last-child {
+*margin-left: 0;
+}
+/* icons code below */
+.cus-accept{ background-position: 0 0; }
+.cus-add{ background-position: -21px 0; }
+.cus-anchor{ background-position: -42px 0; }
+.cus-application{ background-position: -63px 0; }
+
+.cue {
+    background-image: url(famfamfam-icons.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.cue-github {
+    width: 30px;
+    height: 30px;
+    background-position: -5px -5px;
+}
+
+.cue-gmail {
+    width: 30px;
+    height: 30px;
+    background-position: -45px -5px;
+}
+
+.cue-linkedin {
+    width: 30px;
+    height: 30px;
+    background-position: -5px -45px;
+}
+
+.cue-stackoverflow {
+    width: 30px;
+    height: 30px;
+    background-position: -45px -45px;
+}
+
+.cue-tumblr {
+    width: 30px;
+    height: 30px;
+    background-position: -85px -5px;
+}
+
+.cue-twitter {
+    width: 30px;
+    height: 30px;
+    background-position: -85px -45px;
+}

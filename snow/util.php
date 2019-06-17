@@ -1,14 +1,78 @@
 <?php
 
 namespace snow;
+use snow\bases\cls_smtp;
+use snow\bases\rabbit_mq;
+use snow\config;
 
 class util {
 
 	/**
 	 * http:get请求
 	 */
-	public static function http_get($url, $param = "") {
+	public static function http_get($url) {
 		return file_get_contents($url);
+	}
+
+	public static function http_post(string $url, array $data) {
+
+		$content = http_build_query($data);
+		$content_length = strlen($content);
+		$options = array(
+			'http' => array(
+				'method' => 'POST',
+				'header' =>
+				"Content-type: application/x-www-form-urlencoded" .
+				"Content-length: $content_length",
+				'content' => $content,
+			),
+		);
+		return file_get_contents($url, false, stream_context_create($options));
+
+	}
+
+	/**
+	 * 发送邮件
+	 * to接收者邮箱
+	 * title:邮件标题
+	 * content:内容
+	 * type:HTML/TXT
+	 */
+	public static function send_mail($to, $title, $content, $type = "HTML") {
+		$config = config::$obj->email->get();
+		$smtp = new cls_smtp($config["host"], $config['port'], true, $config['user'], $config['pass']); //
+		$state = $smtp->sendmail($to, $config["smtpusermail"], $title, $content, $type);
+		return $state;
+	}
+
+	/**
+	 * 向消息队列发送消息
+	 *e_name:交换机名
+	 *route_key:路由
+	 *msg：消息
+	 */
+	public static function mq_publish($exchange_name, $route_key, $msg) {
+		$rabbit_obj = new rabbit_mq($exchange_name);
+		return $rabbit_obj->publish($msg, $route_key);
+	}
+
+	/**
+	 * 接受消息队列信息
+	 *exchange_name:交换机
+	 *route_kes:路由
+	 *type:交换机类型
+	AMQP_EX_TYPE_DIRECT:直连交换机,根据消息携带的路由键（routing key）将消息投递给对应队列的
+	AMQP_EX_TYPE_FANOUT:扇型交换机:
+	AMQP_EX_TYPE_HEADER:主题交换机
+	AMQP_EX_TYPE_TOPIC:头交换机
+	 */
+	public static function mq_recvmsg($exchange_name, $route_kes, $msg_call_process, $queue_name = "default", $ack_type = true, $type = AMQP_EX_TYPE_DIRECT, $flags = AMQP_DURABLE) {
+		$rabbit_obj = new rabbit_mq($exchange_name);
+		$rabbit_obj->set_queue_name($queue_name);
+		$rabbit_obj->set_type_flags($type, $flags);
+		$rabbit_obj->bind_route($route_kes);
+		$rabbit_obj->recvmsg($msg_call_process, $ack_type);
+		return true;
 	}
 
 	/**
@@ -66,7 +130,9 @@ class util {
 		}
 		return $fileType;
 	}
-
+	/**
+	 * 获取文件min类型
+	 */
 	public static function file_mime_type(string $filename) {
 		$finfo = finfo_open(FILEINFO_MIME); // 返回 mime 类型
 		// $filename = '/Users/sking/code/web/login.php';

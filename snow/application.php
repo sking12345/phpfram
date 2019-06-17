@@ -17,8 +17,6 @@ class application {
 
 		$ctl = req::item("ctl");
 		$act = req::item("act");
-		// print_r($_SERVER["HTTP_REFERER"]);
-		// exit();
 		$domain = $_SERVER["SERVER_NAME"];
 		$app_path = $config["domain_app"][$domain];
 
@@ -62,59 +60,62 @@ class application {
 		$ctl = req::item("ctl");
 		$act = req::item("act");
 		date_default_timezone_set($this->_configs["timezone"]);
-		if (empty($ctl) || empty($act)) {
-			if (req::is_browser()) {
-				echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
-			} else {
-				echo json_encode(["code" => "-1", "msg" => "ctl or act is null"]);
-			}
-			exit();
-		}
-		ob_start();
-		if (!empty($this->_configs["public"][$ctl])) {
-			$public_acts = $this->_configs["public"][$ctl];
-			if (in_array($act, $public_acts)) {
-				goto call_no_purview;
-			} elseif (user::is_login() == false) {
-				$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
-				if ($login_verify == true) {
-					echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
-					exit;
-				}
-			}
-		} else {
-			$purview_check = $this->_configs["app"]["purview_check"];
-			if (!empty($purview_check) && call_user_func($purview_check) == false) {
-				if (req::is_browser()) {
-					tpl::redirect(-1, "权限不足(Insufficient permissions)");
-				} else {
-					echo json_encode(["code" => "-1", "msg" => "权限不足(Insufficient permissions)"]);
-				}
-			}
-		}
-		call_no_purview:
-		$domain = $_SERVER["SERVER_NAME"];
-		$app_path = $this->_configs["domain_app"][$domain];
-		if (file_exists(__DIR__ . "/../{$app_path}/controlls/ctl_{$ctl}.php")) {
+		try {
 
-			$call_ctl = "\\{$app_path}\\controlls\\ctl_{$ctl}";
-			$obj = new $call_ctl();
-			if (method_exists($obj, $act) == true) {
-				$obj->$act();
+			if (empty($ctl) || empty($act)) {
+				if (req::is_browser()) {
+					echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+				} else {
+					echo json_encode(["code" => "-1", "msg" => "ctl or act is null"]);
+				}
+				exit();
+			}
+			ob_start();
+			if (!empty($this->_configs["public"][$ctl])) {
+				$public_acts = $this->_configs["public"][$ctl];
+				if (in_array($act, $public_acts)) {
+					goto call_no_purview;
+				} elseif (user::is_login() == false) {
+					$login_verify = $this->_configs["app"]["login_verify"]; //登录验证
+					if ($login_verify == true) {
+						echo "<script>top.location.href='{$this->_configs["app"]["default_url"]}'</script>";
+						exit;
+					}
+				}
 			} else {
-				$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+				$purview_check = $this->_configs["app"]["purview_check"];
+				if (!empty($purview_check) && call_user_func($purview_check) == false) {
+					if (req::is_browser()) {
+						tpl::redirect(-1, "权限不足(Insufficient permissions)");
+					} else {
+						echo json_encode(["code" => "-1", "msg" => "权限不足(Insufficient permissions)"]);
+					}
+				}
+			}
+			call_no_purview:
+			$domain = $_SERVER["SERVER_NAME"];
+			$app_path = $this->_configs["domain_app"][$domain];
+			if (file_exists(__DIR__ . "/../{$app_path}/controlls/ctl_{$ctl}.php")) {
+				$call_ctl = "\\{$app_path}\\controlls\\ctl_{$ctl}";
 				$obj = new $call_ctl();
 				if (method_exists($obj, $act) == true) {
 					$obj->$act();
 				} else {
-					tpl::redirect(-1, "功能不存在");
+					$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+					$obj = new $call_ctl();
+					if (method_exists($obj, $act) == true) {
+						$obj->$act();
+					} else {
+						tpl::redirect(-1, "功能不存在");
+					}
 				}
+			} else {
+				$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
+				(new $call_ctl())->$act();
 			}
-		} else {
-			$call_ctl = "\\{$this->app_path}\\controlls\\ctl_{$ctl}";
-			(new $call_ctl())->$act();
+		} catch (Exception $e) {
+			print_r($e);
 		}
-
 	}
 
 	public function error_handler() {
@@ -145,16 +146,17 @@ class application {
 	public function exception_handler() {
 		set_exception_handler(function ($e) {
 			$info = $e->getTrace();
-			log::set_errr($e->getMessage(), $info[1]["file"], $info[1]["line"], $e->getTrace());
+			print_r($info);
+			log::set_errr($e->getMessage(), $info[0]["file"], $info[0]["line"], $e->getTrace());
 		});
-		register_shutdown_function(function () {
-			if (!empty($this->_configs["shutdown_call"])) {
+		if (!empty($this->_configs["shutdown_call"])) {
+			register_shutdown_function(function () {
 				$call_function = $this->_configs["shutdown_call"];
 				if (!empty($call_function)) {
 					call_user_func($call_function);
 				}
-			}
-		});
+			});
+		}
 	}
 	public function __destruct() {
 

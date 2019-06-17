@@ -18,7 +18,7 @@
             <div class="box-header with-border">
                 <form method="GET" action="" class="form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::item('keyword')?>" placeholder="请输入名称">
+                        <input type="text" class="form-control " name="keyword" value="<?=snow\req::get('keyword')?>" placeholder="请输入名称">
                         <button type="submit" class="btn btn-default">搜索</button>
                     </div>
                     <div class="form-group  pull-right">

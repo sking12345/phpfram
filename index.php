@@ -1,3 +1,3 @@
 <?php
 
-echo base64_decode("SW4gb3JkZXIgdG8gZ2VuZXJhdGUgdGhlIGludml0ZSBjb2RlLC…gUE9TVCByZXF1ZXN0IHRvIC9hcGkvaW52aXRlL2dlbmVyYXRl");
+phpinfo();

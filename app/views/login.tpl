@@ -13,8 +13,10 @@
   <link rel="stylesheet" href="public/components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="public/components/Ionicons/css/ionicons.min.css">
+   <link rel="stylesheet" href="public/cus-icons.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="public/css/AdminLTE.min.css">
+
   <!-- iCheck -->
   <link rel="stylesheet" href="public/plugins/iCheck/square/blue.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -27,12 +29,13 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg" style="color: red"><?=snow\tpl::get_assign("err_info")?></p>
-
+      
     <form action="" method="post">
        <?=snow\tpl::from_token()?>
+
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="username">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="cue cue-github form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" name="password" placeholder="Password">

@@ -35,6 +35,21 @@ return [
 			],
 		],
 	],
+	// 发送邮箱
+	'email' => [
+		'host' => 'smtp.sina.cn',
+		'port' => 25,
+		'smtpusermail' => "smtptester2@sina.cn",
+		'user' => 'smtptester2',
+		'pass' => 'test123456',
+	],
+	'rabbit_mq' => [
+		'host' => '10.211.55.6',
+		'port' => '5672',
+		'login' => 'king',
+		'password' => '123456',
+		'vhost' => '/', //虚拟主机
+	],
 	//验证码配置
 	'captcha' => [
 		'class' => 'snow\bases\cls_captcha',

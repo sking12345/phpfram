@@ -74,7 +74,7 @@ class ctl_coding {
 		}
 		$where["delete_time"] = 0;
 		$where["type"] = 1;
-		$row = db::select("code", "count(*) count")->where($where)->one();
+		$row = db::select("code", "count(*) count")->where($where)->echo_sql(0)->one();
 		$page = cls_pages::get_pages($row["count"], 10);
 		$list = db::select("code", "*")->where($where)->order_by("id desc")->limit($page["start"], $page["num"])->all();
 		tpl::assign("pages", $page);
