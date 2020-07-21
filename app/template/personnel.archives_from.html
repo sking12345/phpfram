@@ -1,0 +1,593 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["personnel","personnel-archives_index"],true)?>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#base_info" data-toggle="tab">基本信息</a>
+                            </li>
+                            <li><a href="#education_experience" data-toggle="tab">教育经历</a></li>
+                            <li><a href="#work_experience" data-toggle="tab">工作简历</a></li>
+                            <li><a href="#skill" data-toggle="tab">技能证信息</a></li>
+                            <li><a href="#other_info" data-toggle="tab">其他</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-content tab-content">
+                        <div id="base_info" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language.name.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="name" :value="info.name" datatype="*"  class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.used_name.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="used_name" :value="info.used_name" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.sex.language}}:</label>
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <label v-for="(item,key) in table_enum.sex">
+                                            <input v-if="info.sex == key" checked="true" type="radio" :value="key" name="sex">
+                                            <input v-else type="radio" checked="true" :value="key" name="sex">
+                                            {{item.language}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.education.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择学历" data-plugin="select2" name="education">
+                                        <option value=" ">请选择学历</option>
+                                        <template v-for="(item,key) in table_enum.education">
+                                            <option v-if="key == info.education" selected="true" :value="key">
+                                                {{item.language}}
+                                            </option>
+                                            <option v-else :value="key">{{item.language}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.vocational.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="vocational" :value="info.vocational" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.graduated_school.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="graduated_school" :value="info.graduated_school" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language.org_mechanism_id.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" data-ajax="<?=vendor\req::$instance->get_url()?>"  data-change="org_jobs_id"  datatype="*" data-placeholder="选择应聘机构" name="org_mechanism_id">
+                                        <option value=" ">请选择应聘机构</option>
+                                        <template v-for="item in mechanism">
+                                            <option v-if="item.id == info.org_mechanism_id" selected="true" :value="item.id">
+                                                <span v-for="n in item.level">&nbsp;&nbsp;&nbsp;</span>{{item.name}}
+                                            </option>
+                                            <option v-else :value="item.id">
+                                                <span v-for="n in item.level">&nbsp;&nbsp;&nbsp;</span>{{item.name}}
+                                            </option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.org_jobs_id.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control"  datatype="*" data-placeholder="请选择应聘职位" data-plugin="select2" name="org_jobs_id">
+                                        <option value=" ">请选择应聘职位</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.interviewer.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" data-placeholder="面试人" data-plugin="select2" name="interviewer">
+                                        <option value=" ">请选择面试人</option>
+                                         <template v-for="item in interviewer_list">
+                                            <option v-if="item.id == info.interviewer" selected="true" :value="item.id">
+                                               {{item.name}}
+                                            </option>
+                                            <option v-else :value="item.id">
+                                               {{item.name}}
+                                            </option>
+                                         </template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.bank.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="bank" :value="info.bank" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.bank_account.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="bank_account" :value="info.bank_account" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.salary.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="salary" :value="info.salary" datatype="n" type="text" class="form-control" placeholder="请输入薪资" nullmsg="请输入薪资" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.social_security_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="social_security_number" :value="info.social_security_number" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">  {{table_language.fund_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="fund_number" :value="info.fund_number" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>  {{table_language.entry_date.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="entry_date" data-plugin="start" :value="info.entry_date|dateFormat('Y-M-D')" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.positive_date.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="positive_date" data-plugin="start" :value="info.positive_date|dateFormat('Y-M-D')" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.departure_date.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="departure_date" data-plugin="start" :value="info.departure_date|dateFormat('Y-M-D')" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.cate.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择分类" data-plugin="select2" name="cate">
+                                        <option value=" ">选择分类</option>
+                                        <template v-for="(item,key) in table_enum.cate">
+                                            <option v-if="key == info.cate" selected="true" :value="key">
+                                                {{item.language}}
+                                            </option>
+                                            <option v-else :value="key">{{item.language}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.status.language}} :</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择员工状态" data-plugin="select2" name="status">
+                                        <option value=" ">请选择员工状态</option>
+                                        <template v-for="(item,key) in table_enum.status">
+                                            <option v-if="key == info.status" selected="true" :value="key">
+                                                {{item.language}}
+                                            </option>
+                                            <option v-else :value="key">{{item.language}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.email.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="email" :value="info.email" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.certificate_type.language}} :</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择证件类型" data-plugin="select2" name="certificate_type">
+                                        <option value=" ">请选择证件类型</option>
+                                        <template v-for="(item,key) in table_enum.certificate_type">
+                                            <option v-if="key == info.education" selected="true" :value="key">
+                                                {{item.language}}
+                                            </option>
+                                            <option v-else :value="key">{{item.language}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.certificate_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="certificate_number" :value="info.certificate_number" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.phone.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="phone" :value="info.phone" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="other_info" class="tab-pane fade ">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.citizenship.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="citizenship" :value="info.citizenship" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.hometown.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="hometown" :value="info.hometown" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.nationality.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="nationality" :value="info.nationality" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>  {{table_language.height.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="height" :value="info.height" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.weight.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="weight" :value="info.weight" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.vision.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="vision" :value="info.vision" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.health_status.language}}:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择健康状态" data-plugin="select2" name="health_status">
+                                        <option value=" ">请选择健康状态</option>
+                                        <template v-for="(item,key) in table_enum.health_status">
+                                            <option v-if="key == info.health_status" selected="true" :value="key">
+                                                {{item}}
+                                            </option>
+                                            <option v-else :value="key">{{item}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.hukou_nature.language}} :</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择户口性质" data-plugin="select2" name="hukou_nature">
+                                        <option value=" ">请选择户口性质</option>
+                                        <template v-for="(item,key) in table_enum.hukou_nature">
+                                            <option v-if="key == info.hukou_nature" selected="true" :value="key">
+                                                {{item}}
+                                            </option>
+                                            <option v-else :value="key">{{item}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.passport.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="passport" :value="info.passport" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.religion.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="religion" :value="info.religion" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.political_cate.language}} :</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" data-placeholder="选择政治面貌" data-plugin="select2" name="political_cate">
+                                        <option value=" ">请选择政治面貌</option>
+                                        <template v-for="(item,key) in table_enum.political_cate">
+                                            <option v-if="key == info.political_cate" selected="true" :value="key">
+                                                {{item}}
+                                            </option>
+                                            <option v-else :value="key">{{item}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.marital_status.language}} :</label>
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <label v-for="(item,key) in table_enum.marital_status">
+                                            <input v-if="info.marital_status == key" checked="true" type="radio" :value="key" name="marital_status">
+                                            <input v-else type="radio" checked="true" :value="key" name="marital_status">
+                                            {{item.language}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.contact_name.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="contact_name" :value="info.contact_name" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.contact_phone.language}}:</label>
+                                <div class="col-sm-3">
+                                    <input name="contact_phone" :value="info.contact_phone" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.contact_elationship.language}} :</label>
+                                <div class="col-sm-3">
+                                    <input name="contact_elationship" :value="info.contact_elationship" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code> {{table_language.home_addr.language}}:</label>
+                                <div class="col-sm-11">
+                                    <input name="home_addr" :value="info.home_addr" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language.addr.language}}:</label>
+                                <div class="col-sm-11">
+                                    <input name="addr" :value="info.addr" type="text" class="form-control" placeholder="" nullmsg="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.remark.language}}:</label>
+                                <div class="col-sm-11">
+                                    <textarea class="form-control" name="remark">{{info.remark}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="skill" class="tab-pane fade ">
+                            <table class="table table-bordered table-hover table-agl-c hide">
+                                <tbody id="skill_tr">
+                                    <tr>
+                                        <td><input type="text" class="form-control" name="skill[certificate_name][]"></td>
+                                        <td><input type="text" class="form-control " name="skill[certificate_number][]"></td>
+                                        <td><input type="text" class="form-control" name="skill[issuing_unit][]"></td>
+                                        <td><input type="text" class="form-control datetimepicker" name="skill[issuing_date][]"></td>
+                                        <td>
+                                            <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th>证书名称</th>
+                                            <th>证书编码</th>
+                                            <th>发证单位</th>
+                                            <th>发证日期</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="skill_tbody">
+                                        <template v-if="info.skill">
+                                            <template v-for="(item,key) in info.skill.certificate_name">
+                                                <tr v-if="item&&item!=''">
+                                                    <td>
+                                                        <input type="text" :value="item" class="form-control" name="skill[certificate_name][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.skill.certificate_number[key]" class="form-control " name="skill[certificate_number][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.skill.issuing_unit[key]" class="form-control" name="skill[issuing_unit][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.skill.issuing_date[key]" class="form-control datetimepicker" name="skill[issuing_date][]">
+                                                    </td>
+                                                    <td>
+                                                        <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                            删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="10">
+                                                <a onclick="add_experience('skill')" class="btn btn-info btn-outline btn-sm pull-left">
+                                                    <i class=""></i>添加
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="work_experience" class="tab-pane fade ">
+                            <table class="table table-bordered table-hover table-agl-c hide">
+                                <tbody id="work_experience_tr">
+                                    <tr>
+                                        <td><input type="text" class="form-control datetimepicker" name="work_experience[start_date][]"></td>
+                                        <td><input type="text" class="form-control datetimepicker" name="work_experience[end_date][]"></td>
+                                        <td><input type="text" class="form-control" name="work_experience[uint][]"></td>
+                                        <td><input type="text" class="form-control" name="work_experience[department][]"></td>
+                                        <td><input style="min-width: 450px" type="text" class="form-control" name="work_experience[leaving_reason][]"></td>
+                                        <td>
+                                            <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th>开始日期</th>
+                                            <th>结束日期</th>
+                                            <th>工作单位</th>
+                                            <th>部门</th>
+                                            <th>离职原因</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="work_experience_tbody">
+                                        <template v-if="info.work_experience">
+                                            <template v-for="(item,key) in info.work_experience.start_date">
+
+                                                <tr v-if="item&&item!=''">
+
+                                                    <td>
+                                                        <input type="text" :value="item" class="form-control datetimepicker" name="work_experience[start_date][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.work_experience.end_date[key]" class="form-control datetimepicker" name="work_experience[end_date][]">
+                                                    </td>
+                                                    <td>
+
+
+                                                        <input type="text" :value="info.work_experience.uint[key]" class="form-control" name="work_experience[uint][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.work_experience.department[key]" class="form-control" name="work_experience[department][]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" :value="info.work_experience.leaving_reason[key]" class="form-control" name="work_experience[leaving_reason][]" style="min-width: 450px">
+                                                    </td>
+                                                    <td>
+                                                        <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                            删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="10">
+                                                <a onclick="add_experience('work_experience')" class="btn btn-info btn-outline btn-sm pull-left">
+                                                    <i class=""></i>添加
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="education_experience" class="tab-pane fade ">
+                            <table class="table table-bordered table-hover table-agl-c hide">
+                                <tbody id="education_experience_tr">
+                                    <tr>
+                                        <td style="width: 100px"><input type="text" class="form-control datetimepicker" name="education_experience[start_date][]"></th>
+                                        <td><input type="text" class="form-control datetimepicker" name="education_experience[end_date][]"></th>
+                                        <td><input type="text" class="form-control" name="education_experience[school_name][]"></th>
+                                        <td><input type="text" class="form-control" name="education_experience[profession][]"></th>
+                                        <td><input type="text" class="form-control" name="education_experience[education][]"></th>
+                                        <td>
+                                            <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 100px">开始日期</th>
+                                            <th>结束日期</th>
+                                            <th>学校名称</th>
+                                            <th>专业</th>
+                                            <th>学历</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="education_experience_tbody">
+                                        <template v-if="info.education_experience">
+                                            <template v-for="(item,key) in info.education_experience.start_date">
+                                                <tr v-if="item&&item!=''">
+                                                    <td style="width: 100px">
+                                                        <input type="text" class="form-control datetimepicker" name="education_experience[start_date][]" :value="item"></th>
+                                                    <td>
+                                                        <input type="text" class="form-control datetimepicker" :value="info.education_experience.end_date[key]" name="education_experience[end_date][]">
+                                                    </td>
+                                                    <td><input type="text" class="form-control" :value="info.education_experience.school_name[key]" name="education_experience[school_name][]"></td>
+                                                    <td><input type="text" class="form-control" :value="info.education_experience.profession[key]" name="education_experience[profession][]"></td>
+                                                    <td><input type="text" class="form-control" :value="info.education_experience.education[key]" name="education_experience[education][]"></td>
+                                                    <td>
+                                                        <a onclick="delete_education_experience(this)" class="btn btn-danger btn-outline btn-sm pull-left">
+                                                            删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="10">
+                                                <a onclick="add_experience('education_experience')" class="btn btn-info btn-outline btn-sm pull-left">
+                                                    <i class=""></i>添加
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+
+        mechanism: <?=vendor\tpl::get_assign_json("mechanism")?>,
+        interviewer_list: <?=vendor\tpl::get_assign_json("interviewer_list")?>,
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+    },
+    computed: {
+
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>
+<script type="text/javascript">
+function add_experience(lable) {
+    var tr = '#' + lable + "_tr";
+    var tbody = '#' + lable + "_tbody";
+
+
+    var education_experience_tr = $(tr).html();
+    $(tbody).append(education_experience_tr);
+    $(".datetimepicker").datetimepicker({ //开始日期
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        pickDate: true,
+        pickTime: false,
+        minView: 'month',
+        startView: 2,
+        autoclose: true,
+        clearBtn: true, //添加清除按钮，可选值：true/false
+    });
+}
+
+function delete_education_experience(obj) {
+    $(obj).parents("tr").remove();
+}
+// $("[name=org_mechanism_id]").change(function(){
+//     alert("xx");
+// });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

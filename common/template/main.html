@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>
+        <?=vendor\configs::$instance->get("app_name")?>
+    </title>
+    <link rel="shortcut icon" href="static/frame/img/favicon.ico">
+    <link href="static/frame/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+    <link href="static/frame/ui2/css/style.css" rel="stylesheet">
+    <link href="static/frame/css/jquery.gritter.css" rel="stylesheet">
+    <script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg">
+    <!--顶部导航-->
+    <div id="wrapper">
+        <nav class="navbar navbar-static-top " role="navigation">
+            <div class="nav-header">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#">
+                        <span>
+                            <?=vendor\configs::$instance->get("app_name")?></span>
+                        <img src="static/frame/img/logo-white-min.svg" alt="">
+                        <!--<i class="fa fa-caret-down"></i>-->
+                    </a>
+                    <!--<ul class="dropdown-menu">
+                    <li><a href="#">公司1</a></li>
+                    <li><a href="#">公司2</a></li>
+                    <li><a href="#">公司3</a></li>
+                </ul>-->
+                </div>
+                <!-- <img src="static/img/logo-min.png" alt="" class="logo-img">-->
+            </div>
+            <div class="navbar-container container-fluid">
+                <a class="navbar-minimalize minimalize-styl-2 btn  pull-left" href="#">
+                    <i class="fa  fa-bars" style="display: none;"></i>
+                    <img src="static/frame/img/left-arrow.svg" alt="" class="img-arrow" style="width:20px">
+                </a>
+                <a class="navbar-minimalize minimalize-styl-2 minimalize-styl-3 btn  pull-left" href="#">
+                    <i class="fa fa-bars"></i>
+                    <img src="static/frame/img/left-arrow.svg" alt="" class="img-arrow" style="width:20px;display: none">
+                </a>
+                <ul class="pull-left nav-left">
+                    <div class="dropdown pull-left" id="navbarSubMenu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-animation="slide-bottom" aria-expanded="true" role="button">
+                            <i class="fa fa fa-ellipsis-v"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                        </ul>
+                    </div>
+                </ul>
+                <div class="pull-right nav-right">
+                    <div class="dropdown notify-wrap pull-left">
+                        <a href="javascript:;" class="msg-btn" aria-expanded="false" data-animation="scale-up" role="button">
+                            <i class="fa fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="badge badge-danger up msg-num">0</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media " role="menu">
+                            <li class="dropdown-menu-header" role="presentation">
+                                <h5>最新消息</h5>
+                                <span class="label label-round label-danger"></span>
+                            </li>
+                            <li class="list-group" role="presentation">
+                                <div class="slimScrollDiv" id="notifyWrap">
+                                    <a class="list-group-item J_menuItem " href="home.html" data-index="1" data-item="other" data-reload="true" data-message="最新消息">
+                                        <div class="media">
+                                            <div class="media-left"><i class="fa fa-indent"></i></div>
+                                            <div class="media-body">
+                                                <h4>最新消息1</h4> <span class="media-meta">2017-09-08 09：00</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item J_menuItem " href="home.html" data-index="1" data-item="other" data-reload="true" data-message="最新消息">
+                                        <div class="media">
+                                            <div class="media-left"><i class="fa fa-indent"></i></div>
+                                            <div class="media-body">
+                                                <h4>最新消息1</h4> <span class="media-meta">2017-09-08 09：00</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item J_menuItem " href="button.html" data-index="10" data-item="other" data-reload="true" data-message="最新消息">
+                                        <div class="media">
+                                            <div class="media-left"><i class="fa fa-indent"></i></div>
+                                            <div class="media-body">
+                                                <h4>最新消息1</h4> <span class="media-meta">2017-09-08 09：00</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item J_menuItem invalid-item" href="home.html" data-index="1" data-item="other" data-reload="true" data-message="测试">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问欢迎您访问Admui演示系统欢迎您访问欢迎您访问Admui演示系统系统系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item " href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item invalid-item" href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item invalid-item" href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item invalid-item" href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item invalid-item" href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item invalid-item" href="#">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <i class="fa fa-indent"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>欢迎您访问Admui演示系统</h4>
+                                                <span class="media-meta">2017-11-08 16:33:59</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="dropdown-menu-footer" role="presentation">
+                                <a href="/system/account/message" target="_blank" data-pjax="">
+                                    <i class="fa fa-list"></i> 所有消息
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="javascript:;" class="screen pull-left" id="screen-btn" data-toggle="tooltip" data-placement="bottom" title="全屏" data-trigger="hover"><i class="fa  fa-arrows"></i></a>
+                    <a href="<?=vendor\req::create_url(['ct'=>'index','ac'=>'logout'])?>" class="pull-left  J_tabExit" data-toggle="tooltip" data-placement="bottom" title="退出">
+                        <i class="fa fa fa-sign-out"></i>
+                    </a>
+                    <div class="user-info-wrap pull-left dropdown ">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                            <img src="static/frame/img/user-info.png" alt="" class="pull-left">
+                            <div class="pull-left user-info-r">
+                                <div class="user-info-r-inner">
+                                    <h4>用户名</h4>
+                                    <p>岗位名称</p>
+                                </div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu " id="user-type-wrap">
+
+                            <li class="m-t-xs">
+                                <a href="<?=vendor\req::create_url(['ct'=>'index','ac'=>'main','language'=>'1'])?>">简体中文</a>
+                            </li>
+                            <li>
+                                <a href="<?=vendor\req::create_url(['ct'=>'index','ac'=>'main','language'=>'3'])?>">English</a>
+                               
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="muen-icon-wrap open">
+                <i class="fa fa-ellipsis-h"></i>
+            </div>
+        </nav>
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg ">
+            <div class=" content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <!--<a href="javascript:;" class="active J_menuTab" data-id="approve.html" data-index="9">审批申请</a>-->
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+
+                <button class="roll-nav refresh-btn" onclick="fnIfram()"><i class="fa fa-refresh"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="J_mainContent" id="content-main">
+                <!--<iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="approve.html" frameborder="0" data-id="approve.html" seamless></iframe>-->
+            </div>
+        </div>
+        <!--右侧部分结束-->
+    </div>
+    <script src="static/frame/js/common.js"></script>
+    <script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="static/frame/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="static/frame/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="static/frame/js/plugins/layer/layer.min.js"></script>
+    <script src="static/frame/ui2/js/hplus.min.js?v=4.1.0"></script>
+    <script src="static/frame/ui2/js/contabs.min.js"></script>
+    <script src="static/frame/js/plugins/pace/pace.min.js"></script>
+    <script src="static/frame/js/jquery.gritter.min.js"></script>
+    <script src="static/frame/js/jquery.peity.min.js"></script>
+    <script src="static/frame/js/interface.js"></script>
+    <script>
+    var MenuData = <?=vendor\tpl::get_assign_json("use_menus")?>;
+    //子iframe调用管理关闭dropdown
+    function closeDrop(e) {
+        if ($(e.target).parents(".dropdown").length == 0) {
+            if ($(".notify-wrap").hasClass("open")) { //判断是否为消息
+                $("#notifyWrap .list-group-item").addClass("invalid-item");
+                $(".msg-num").html("0").hide();
+            }
+            $(".dropdown").removeClass("open");
+        }
+    }
+
+    //顶部icon提示
+    $(function() {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+
+    function fnIfram() {
+        $("body").on("click", ".refresh-btn", function() {
+            var ifr = $("iframe");
+            for (var i = 0; i < ifr.length; i++) {
+                if (ifr.eq(i).css("display") == "inline") {
+                    ifr[i].contentWindow.location.reload(true);
+                }
+            }
+        })
+    }
+    /*
+     * 表单提交跳转调用
+     * url当前跳转的url
+     * nowurl：当前所在url 如果要关闭当前页就传
+     * */
+    function formJumps(url, nowurl) {
+        $('#side-menu a[data-page="' + url + '"]').trigger('click');
+        if (nowurl != undefined) {
+            $(".page-tabs-content").find(".J_menuTab").each(function() {
+                if ($(this).data("id").indexOf(nowurl) != -1) {
+                    $(this).remove();
+                }
+            })
+        }
+        $('#side-menu a[data-page="' + url + '"]').parents('li').addClass('active');
+        $('#side-menu a[data-page="' + url + '"]').parents('ul').addClass('in');
+    }
+
+
+    //封装页面跳转
+    var topId = '';
+
+    //获取topId
+    function factorial(data, url) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].url == url) {
+                topId = data[i].topid;
+
+            } else {
+                if (data[i].children && data[i].children.length > 0) {
+                    factorial(data[i].children, url);
+                }
+            }
+        }
+    }
+
+
+    function pageJumps(url, menu) {
+        factorial(MenuData, menu);
+        var _topItem = $(".nav-left").find("li");
+        //根据topid查找顶部li
+        _topItem.each(function() {
+            let _this = $(this),
+                idx = _this.data("index");
+            if (idx == topId) {
+                _this.click();
+            }
+        })
+
+        var _leftNav = $("#side-menu").find(".J_menuItem");
+        _leftNav.each(function() {
+            let _this = $(this),
+                href = _this.attr("href");
+            if (menu == href) {
+                if (url != href) {
+                    $("#side-menu").find("li").removeClass("active");
+                    $(".page-tabs-content").find("a").removeClass("active");
+                    $('.page-tabs-content a[data-id="' + menu + '"]').addClass("active");
+
+                    if ($('.page-tabs-content a[data-id="' + menu + '"]').length == 0) {
+                        var index = $('#side-menu a[data-page="' + menu + '"]').data("index");
+                        var txt = $('#side-menu a[href="' + menu + '"]').find("span").html();
+                        var st = '<a href="javascript:;" class="active J_menuTab" data-id="' + menu + '"' +
+                            ' data-index="' + index + '" data-reload="false" data-page="' + menu + '">' + txt + ' <i class="fa fa-times-circle"></i></a>';
+                        $(".page-tabs-content").append(st);
+                        var iframe = '<iframe class="J_iframe" name="iframe' + index + '" width="100%" height="100%" src="' + menu + '" frameborder="0" data-id="' + menu + '" seamless style="display: none"></iframe>'
+                        $(".J_mainContent").append(iframe);
+                    }
+                    secPageFn(url, menu);
+                    $('#side-menu a[href="' + menu + '"]').parents('li').addClass('active');
+                    $('#side-menu a[href="' + menu + '"]').parents('ul').addClass('in');
+                } else {
+                    _this.click();
+                }
+
+            }
+        })
+
+    }
+    /*
+     *消息展开动画
+     */
+    $(".msg-btn").on("click", function() {
+        var _this = $(this);
+        _this.siblings("ul").addClass("animation-scale");
+    })
+    </script>
+</body>
+
+</html

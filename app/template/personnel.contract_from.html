@@ -1,0 +1,140 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["personnel","personnel-contract_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <h5>
+                            <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?>
+                        </h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['name'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="name" :value="info.name" type="text" class="form-control" :placeholder="table_language['name'].placeholder" nullmsg="" />
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['type'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['type'].placeholder" data-plugin="select2" name="type">
+                                    <option value=" ">{{table_language['type'].placeholder}}</option>
+                                    <template v-for="(item,key) in table_enum.type">
+                                        <option v-if="key==info.type" selected :value="key">{{item.language}}</option>
+                                        <option v-else :value="key">{{item.language}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['signatory'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['signatory'].placeholder" data-plugin="select2" name="signatory">
+                                    <option value=" ">{{table_language['signatory'].placeholder}}</option>
+                                    <template v-for="(item,key) in signatory_list">
+                                        <option v-if="item.id==info.signatory" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['org_mechanism_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['org_mechanism_id'].placeholder" data-plugin="select2" name="org_mechanism_id">
+                                    <option value=" ">{{table_language['org_mechanism_id'].placeholder}}</option>
+                                    <template v-for="(item,key) in mechanism">
+                                        <option v-if="item.id==info.org_mechanism_id" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['number'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="number" :value="info.name" type="text" class="form-control" :placeholder="table_language['number'].placeholder" nullmsg="" />
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['archives_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['archives_id'].placeholder" data-plugin="select2" name="archives_id">
+                                    <option value=" ">{{table_language['archives_id'].placeholder}}</option>
+                                    <template v-for="(item,key) in personnel_archives">
+                                        <option v-if="item.id==info.archives_id" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['effective_date'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="effective_date" :value="info.name" type="text" class="form-control" :placeholder="table_language['effective_date'].placeholder" data-plugin="start" nullmsg="" />
+                            </div>
+                            <label class="col-sm-2 control-label">{{table_language['end_date'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="end_date" :value="info.name" type="text" class="form-control" :placeholder="table_language['end_date'].placeholder" data-plugin="end" nullmsg="" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group uploader-group" data-server="<?=vendor\req::create_url(['ct'=>'file','ac'=>'upload'])?>"  data-auto="true">
+                            <label class="col-sm-2 control-label">{{table_language['file_name'].language}} :</label>
+                            <div class="col-sm-10">
+                                <!--用来存放文件信息-->
+                                <div class="uploader-list"></div>
+                                <a class="btn btn-dark uploader-picker webuploader-container" data-file="file_name" data-type="file">
+                                    <div class="webuploader-pick">
+                                      <i class="fa fa-upload"></i> {{table_language['file_name'].language}}
+                                    </div>
+                                   <div class="hidden-input col-sm-9 col-sm-offset-2">
+                                    <input type="hidden" class="form-control file" datatype="file" nullmsg="请上传文件">
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['remark'].language}} :</label>
+                            <div class="col-sm-10">
+                                <textarea name="remark" class="form-control">{{info.remark}}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+        signatory_list: <?=vendor\tpl::get_assign_json("signatory_list")?>,
+        mechanism: <?=vendor\tpl::get_assign_json("mechanism")?>,
+        personnel_archives: <?=vendor\tpl::get_assign_json("personnel_archives")?>,
+    },
+    computed: {
+
+    }
+})
+</script>
+
+<script type="text/javascript" src="static/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="static/frame/js/webuploader.own.js"></script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>

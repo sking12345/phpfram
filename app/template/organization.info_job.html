@@ -1,0 +1,130 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["organization","organization-job_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <h5>基本信息</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['name'].language}} :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">
+                                    {{info.name}}
+                                    &nbsp; &nbsp; &nbsp;
+                                    <?=common\helpers\html_base::$instance->create_link1("organization-edit_job",["id"=>"info"],'btn-primary btn-xs')?>
+                                    <?=common\helpers\html_base::$instance->create_link1("organization-del_job",["id"=>"info"],'btn-danger btn-xs')?>
+                                </p>
+                            </div>
+                            <label class="col-sm-2 control-label"> {{table_language['mechanism_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.mechanism_id}}</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{table_language['level_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.level_id}}</p>
+                            </div>
+                            <label class="col-sm-2 control-label">  {{table_language['is_crucial'].language}}  :</label>
+                            <div class="col-sm-4">
+                                <p  class="form-control-static">
+                                     {{table_enum['is_crucial'][info.is_crucial].language}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['number'].language}} :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.number}}</p>
+                            </div>
+                            <label class="col-sm-2 control-label"> {{table_language['people_num'].language}} :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.people_num}}</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{table_language['remark'].language}} :</label>
+                            <div class="col-sm-10">
+                                <div class="form-control-static">{{info.remark}}</div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['duties'].language}} :</label>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr v-for="(item,key) in info.duties">
+                                            <td>
+                                                {{key+1}} : {{item}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <h5>人员列表</h5>
+                    </div>
+                    <div class="widget-content">
+                        <table class="table table-bordered table-hover table-agl-c">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>姓名</th>
+                                    <th>入职时间</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tr v-for="(item,key) in list">
+                            <td>{{key+1}}</td>
+                            <td>{{item.name}}</td>
+                             <td>{{item.onboarding_time}}</td>
+                            
+                         </tr>
+                         <tr>
+                            <td colspan="10">
+                                 <?=common\helpers\html_base::$instance->create_pages("pages")?>
+                            </td>
+                         </tr>
+                    </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        list:<?=vendor\tpl::get_assign_json("list")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+    },
+    computed: {
+
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js'])?>

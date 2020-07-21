@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>用户列表</title>
+    <link href="static/frame/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+    <link href="static/frame/css/main.css" rel="stylesheet">
+    <link href="static/frame/css/colorpicker.css" rel="stylesheet">
+    <link href="static/frame/css/plugins/datapicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="static/frame/css/select2.css" rel="stylesheet">
+    <link href="static/frame/css/plugins/tokenfield/bootstrap-tokenfield.css" rel="stylesheet">
+
+    <script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+
+</head>
+
+<body>
+    <div id="content">
+
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>
+                    日期控件
+                    <small>data-plugin="datepicker"</small>
+                </h5>
+            </div>
+            <div class="widget-content">
+                <form class="form-horizontal m-t" novalidate="novalidate">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">默认：</label>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" data-language="zh-CN">
+                                </div>
+                            </div>
+                            <label class="col-sm-1 control-label">日期范围：</label>
+                            <div class="col-sm-5">
+                                <div class="input-daterange" data-language="zh-CN" style="overflow: hidden">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="text" class="form-control" name="start" data-plugin="start">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"> 至 </span>
+                                        <input type="text" class="form-control" name="end" data-plugin="end">
+                                    </div>
+                                </div>
+                                <p class="help-block m-b-none m-t-xs"><i class="fa fa-info-circle"></i> 通过 data-plugin="start" 和 data-plugin="end" 可以设置日期范围
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group ">
+                            <label class="col-sm-1 control-label">日期多选：</label>
+                            <div class="col-sm-5 ">
+                                <input size="16" type="text" data-plugin="datepicker" readonly class=" form-control" data-multidate="true">
+                                <input size="16" type="text" id="datelist" readonly class=" form-control" />
+                                <p class="help-block m-b-none m-t-xs"><i class="fa fa-info-circle"></i> 通过 data-multidate="true" </p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group ">
+                            <label class="col-sm-1 control-label">默认：</label>
+                            <div class="col-sm-11">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" data-language="zh-CN">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group ">
+                            <div class="col-sm-6 col-sm-offset-1">
+                                <button class="btn btn-success ">提交</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>
+                    日期控件
+                    <small>data-plugin="datepicker"</small>
+                </h5>
+            </div>
+            <div class="widget-content">
+                <form class="form-horizontal m-t" novalidate="novalidate">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">默认：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" data-language="zh-CN">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">日期范围：</label>
+                            <div class="col-sm-10">
+                                <div class="input-daterange" data-language="zh-CN" style="overflow: hidden">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="text" class="form-control" name="start" data-plugin="start">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"> 至 </span>
+                                        <input type="text" class="form-control" name="end" data-plugin="end">
+                                    </div>
+                                </div>
+                                <p class="help-block m-b-none m-t-xs"><i class="fa fa-info-circle"></i> 通过 data-plugin="start" 和 data-plugin="end" 可以设置日期范围</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">日期多选：</label>
+                            <div class="col-sm-10 ">
+                                <input size="16" type="text" data-plugin="datepicker" readonly class=" form-control" data-multidate="true">
+                                <input size="16" type="text" id="datelist2" readonly class=" form-control" />
+                                <p class="help-block m-b-none m-t-xs"><i class="fa fa-info-circle"></i> 通过 data-multidate="true" </p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-1 control-label">默认：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" data-language="zh-CN">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="col-sm-6 form-group">
+                            <div class="col-sm-6 col-sm-offset-2">
+                                <button class="btn btn-success ">提交</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>
+                    Bootstrap Tokenfield
+                    <small>属性“data-plugin="tokenfield"”</small>
+                </h5>
+            </div>
+            <div class="widget-content">
+                <form class="form-horizontal m-t" novalidate="novalidate" id="commentForm2">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">基本：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-plugin="tokenfield" value="红,黄,蓝">
+                                <input type="hidden" name="token" value="">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">禁用：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-plugin="tokenfield" disabled>
+                                <input type="hidden" name="token">
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> 属性disabled</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">验证：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-plugin="tokenfield" required placeholder="请输入..." name="more">
+                                <input type="hidden" name="token">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>  属性required</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">placeholder：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-plugin="tokenfield" value="红,黄" required placeholder="请输入...">
+                                <input type="hidden" name="token">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>  属性placeholder</span>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">option：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-plugin="tokenfield" name="more2" value="红,黄" required placeholder="请输入..." data-max-option=true>
+                                <input type="hidden" name="token">
+                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>  属性data-max-option=true</span>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="col-sm-6 form-group">
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <button class="btn btn-success">提交</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>
+                    高级表单元素
+                </h5>
+            </div>
+            <div class="widget-content">
+                <form class="form-horizontal m-t" novalidate="novalidate" id="commentForm333">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2 control-label">基本：</label>
+                            <div class="col-sm-10" style="overflow:inherit">
+                                <select data-placeholder="请选择" data-plugin="select2" multiple="" class=" form-control" tabindex="1" name="select44" id="select44" required>
+                                <option value="1" >北京</option>
+                                <option value="2" >天津</option>
+                                <option value="3" >广州</option>
+                                <option value="4" >广西</option>
+                                <option value="5" >山西省</option>
+                                <option value="6" >内蒙古自治区</option>
+                                <option value="7" >辽宁省</option>
+                                <option value="8" >吉林省</option>
+                                <option value="9" >黑龙江省</option>
+                                <option value="10" >上海</option>
+                            </select>
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> 属性data-plugin="select2"</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-2 control-label">选项分组:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control " multiple="" data-plugin="select2" tabindex="-1" aria-hidden="true">
+
+                                    <option value="Brabus">B 巴博斯</option>
+                                    <option value="Porsche">B 保时捷</option>
+                                    <option value="Po Chun">B 宝骏</option>
+                                    <option value="BMW">B 宝马</option>
+                                    <option value="Beijing">B 北京汽车</option>
+                                    <option value="BAW">B 北汽制造</option>
+                                    <option value="Benz">B 奔驰</option>
+
+                            </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-2 control-label">占位符:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control " data-placeholder="请选择品牌" multiple="" data-plugin="select2" tabindex="-1" aria-hidden="true">
+                                <optgroup label="A 字母开头">
+                                    <option value="AC BMW">A AC宝马</option>
+                                    <option value="Aston Martin">A 阿斯顿马丁</option>
+                                    <option value="Audi">A 奥迪</option>
+                                </optgroup>
+                                <optgroup label="B 字母开头">
+                                    <option value="Brabus">B 巴博斯</option>
+                                    <option value="Porsche">B 保时捷</option>
+                                    <option value="Po Chun">B 宝骏</option>
+                                    <option value="BMW">B 宝马</option>
+                                    <option value="Beijing">B 北京汽车</option>
+                                    <option value="BAW">B 北汽制造</option>
+                                    <option value="Benz">B 奔驰</option>
+                                </optgroup>
+                            </select>
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> data-placeholder="请选择品牌"</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-2 control-label">最少选择项:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" data-plugin="select2" data-minimum-input-length="2" tabindex="-1" aria-hidden="true">
+                                <optgroup label="A 字母开头">
+                                    <option value="AC BMW">A AC宝马</option>
+                                    <option value="Aston Martin">A 阿斯顿马丁</option>
+                                    <option value="Audi">A 奥迪</option>
+                                </optgroup>
+                                <optgroup label="B 字母开头">
+                                    <option value="Brabus">B 巴博斯</option>
+                                    <option value="Porsche">B 保时捷</option>
+                                    <option value="Po Chun">B 宝骏</option>
+                                    <option value="BMW">B 宝马</option>
+                                    <option value="Beijing">B 北京汽车</option>
+                                    <option value="BAW">B 北汽制造</option>
+                                    <option value="Benz">B 奔驰</option>
+                                </optgroup>
+                            </select>
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> data-minimum-input-length=""</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-2 control-label">禁用:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control " data-plugin="select2" disabled="" tabindex="-1" aria-hidden="true">
+                                <optgroup label="A 字母开头">
+                                    <option value="AC BMW">A AC宝马</option>
+                                    <option value="Aston Martin">A 阿斯顿马丁</option>
+                                    <option value="Audi">A 奥迪</option>
+                                </optgroup>
+                                <optgroup label="B 字母开头">
+                                    <option value="Brabus">B 巴博斯</option>
+                                    <option value="Porsche">B 保时捷</option>
+                                    <option value="Po Chun">B 宝骏</option>
+                                    <option value="BMW">B 宝马</option>
+                                    <option value="Beijing">B 北京汽车</option>
+                                    <option value="BAW">B 北汽制造</option>
+                                    <option value="Benz">B 奔驰</option>
+                                </optgroup>
+                            </select>
+                                <div class="m-t-md">
+                                    <select class="form-control " multiple="" data-plugin="select2" disabled="" tabindex="-1">
+                                    <optgroup label="A 字母开头">
+                                        <option value="AC BMW">A AC宝马</option>
+                                        <option value="Aston Martin">A 阿斯顿马丁</option>
+                                        <option value="Audi">A 奥迪</option>
+                                    </optgroup>
+                                    <optgroup label="B 字母开头">
+                                        <option value="Brabus">B 巴博斯</option>
+                                        <option value="Porsche">B 保时捷</option>
+                                        <option value="Po Chun">B 宝骏</option>
+                                        <option value="BMW">B 宝马</option>
+                                        <option value="Beijing">B 北京汽车</option>
+                                        <option value="BAW">B 北汽制造</option>
+                                        <option value="Benz">B 奔驰</option>
+                                    </optgroup>
+                                </select>
+                                </div>
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> disabled</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-2 control-label">颜色</label>
+                            <div class="col-sm-10">
+                                <div class="select2-danger">
+                                    <select class="form-control " multiple="" data-plugin="select2" tabindex="-1">
+                                    <option value="js" selected="">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="node" selected="">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                                </div>
+                                <div class="select2-success m-t-md">
+                                    <select class="form-control " multiple="" data-plugin="select2" tabindex="-1">
+                                    <option value="js" selected="">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="node" selected="">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                                </div>
+                                <div class="select2-info m-t-md">
+                                    <select class="form-control " multiple="" data-plugin="select2" tabindex="-1">
+                                    <option value="js" selected="">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="node" selected="">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                                </div>
+                                <div class="select2-warning m-t-md">
+                                    <select class="form-control " multiple="" data-plugin="select2" tabindex="-1">
+                                    <option value="js" selected="">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="node" selected="">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                                </div>
+                                <div class="select2-primary m-t-md">
+                                    <select class="form-control " multiple="" data-plugin="select2" tabindex="-1">
+                                    <option value="js" selected="">JavaScript</option>
+                                    <option value="html">HTML</option>
+                                    <option value="node" selected="">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                                </div>
+                                <p class="help-block m-b-none"><i class="fa fa-info-circle"></i> 可通过添加 .select2-primary, .select2-success, .select2-info, .select2-waring, .select2-danger 来改变其颜色</p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>表单多行</h5>
+            </div>
+            <div class="widget-content container-fluid">
+                <form class="row">
+                    <div class="col-md-4 form-group has-success has-feedback">
+                        <div class="row">
+                            <label class=" col-sm-12 control-label">成功</label>
+                            <div class=" col-sm-12">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group has-warning has-feedback">
+                        <div class="row">
+                            <label class=" col-sm-12 control-label">警告</label>
+                            <div class=" col-sm-12">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group has-error has-feedback">
+                        <div class="row">
+                            <label class="col-sm-12 control-label">错误</label>
+                            <div class=" col-sm-12">
+                                <input type="text" class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="col-md-4 form-group">
+                        <div class="row">
+                            <label class="col-sm-12 control-label">示列1</label>
+                            <div class="col-sm-12">
+                                <textarea name="" class="form-control" id="textarea">111111</br>22222
+                            </textarea>
+                                <script>
+                                    $(function() {
+                                        var str = $("#textarea").val();
+                                        $("#textarea").val(str.replace("</br>", "\n\n"))
+                                    })
+                                </script>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <div class="row">
+                            <label class="col-sm-12 control-label">select</label>
+                            <div class=" col-sm-12">
+                                <select name="" class="form-control">
+                                <option value="asd">请选择</option>
+                                <option value="asd">请选择</option>
+                                <option value="asd">请选择</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <div class="row">
+                            <label class="col-sm-12 control-label">错误</label>
+                            <div class=" col-sm-12">
+                                <input type="text" class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                </form>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                <h5>
+                    所有表單元素
+                    <small>包括自定义样式的复选和单选按钮</small>
+                </h5>
+            </div>
+            <div class="widget-content">
+                <form method="get" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">普通：</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">普通：</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control">
+                        </div>
+                        <label class="col-sm-2 control-label">普通：</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">带说明信息</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control">
+                            <span class="help-block m-b-none">
+                            <i class="fa fa-info-circle"></i>
+                            帮助文本，可能会超过一行，以块级元素显示
+                        </span>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码</label>
+
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">提示</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" placeholder="提示信息" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">禁用</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" disabled="" placeholder="已被禁用" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">静态控制</label>
+
+                        <div class="col-sm-10">
+                            <p class="form-control-static">i@zi-han.net</p>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">复选框&amp;单选框 <br>
+                        <small class="text-navy">普通Bootstrap元素</small>
+                    </label>
+
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                <input type="checkbox" value="">
+                                选项1
+                            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                                选项1
+                            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">
+                                选项2
+                            </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">内联复选框</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                <input type="checkbox" value="option1" id="inlineCheckbox1">
+                                内联复选框a
+                            </label>
+                                <label>
+                                <input type="checkbox" value="option2" id="inlineCheckbox2">
+                                内联复选框b
+                            </label>
+                                <label>
+                                <input type="checkbox" value="option3" id="inlineCheckbox3">
+                                内联复选框c
+                            </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">内联单选框</label>
+                        <div class="col-sm-10">
+                            <div class="radio">
+                                <label>
+                                <input type="radio" value="option1" name="option1">
+                                内联单选框a
+                            </label>
+                                <label>
+                                <input type="radio" value="option2"  name="option1">
+                                内联单选框b
+                            </label>
+                                <label>
+                                <input type="radio" value="option3"  name="option1">
+                                内联单选框c
+                            </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Select</label>
+
+                        <div class="col-sm-10">
+                            <select class="form-control m-b" name="account">
+                            <option>选项 1</option>
+                            <option>选项 2</option>
+                            <option>选项 3</option>
+                            <option>选项 4</option>
+                        </select>
+                            <div class="col-sm-4 m-l-n">
+                                <select class="form-control" multiple="">
+                                <option>选项 1</option>
+                                <option>选项 2</option>
+                                <option>选项 3</option>
+                                <option>选项 4</option>
+                            </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group has-success">
+                        <label class="col-sm-2 control-label">验证通过</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group has-warning">
+                        <label class="col-sm-2 control-label">未填写</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label">验证未通过</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">自定义尺寸</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" placeholder=".input-lg" class="form-control input-lg m-b">
+                            <input type="text" placeholder="Default input" class="form-control m-b">
+                            <input type="text" placeholder=".input-sm" class="form-control input-sm">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">列尺寸</label>
+
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" placeholder=".col-md-2" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" placeholder=".col-md-3" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" placeholder=".col-md-4" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文本框组</label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group m-b"><span class="input-group-addon">@</span>
+                                <input type="text" placeholder="用户名" class="form-control">
+                            </div>
+                            <div class="input-group m-b">
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                            <div class="input-group m-b"><span class="input-group-addon">¥</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                            <div class="input-group m-b"><span class="input-group-addon"> <input type="checkbox"> </span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group"><span class="input-group-addon"> <input type="radio"> </span>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">按钮插件</label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group m-b"><span class="input-group-btn">
+                                            <button type="button" class="btn btn-success">搜</button> </span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn"> <button type="button" class="btn btn-success">搜索
+                                    </button> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">带下拉框</label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group m-b">
+                                <div class="input-group-btn">
+                                    <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">
+                                    操作 <span class="caret"></span>
+                                </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="form_basic.html#">选项1</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项2</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项3</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="form_basic.html#">选项4</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+
+                                <div class="input-group-btn">
+                                    <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                    操作 <span class="caret"></span>
+                                </button>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="form_basic.html#">选项1</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项2</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项3</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="form_basic.html#">选项4</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分段</label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group m-b">
+                                <div class="input-group-btn">
+                                    <button tabindex="-1" class="btn btn-white" type="button">操作</button>
+                                    <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                    <span class="caret"></span>
+                                </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="form_basic.html#">选项1</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项2</a>
+                                        </li>
+                                        <li>
+                                            <a href="form_basic.html#">选项3</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="form_basic.html#">选项4</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+
+                                <div class="input-group-btn">
+                                    <button tabindex="-1" class="btn btn-white" type="button">操作</button>
+                                    <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                    <span class="caret"></span>
+                                </button>
+                                    <ul class="dropdown-menu pull-right">
+                                        分段
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button class="btn  btn-success" type="submit">保存内容</button>
+                            <button class="btn btn-white" type="submit">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container-fluid nopadding">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="widget-box">
+                        <div class="widget-title"><span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                            <h5>图片上传表单</h5>
+                        </div>
+                        <div class="widget-content">
+                            <form class="form-horizontal m-t" id="commentForm22" novalidate="novalidate">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">图片:</label>
+                                    <div class="col-sm-9">
+                                        <div class="add-img-wrap" id="drop_area">
+                                            <!--<span class="img-wrap"></span>-->
+                                            <input type="file" name="image_img_upload" id="image_img_upload" aria-invalid="false" class="help-block m-b-none single-img-updata">
+                                            <img src="static/img/addimage.png" alt="" class="img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">图片:</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="add-img-wrap" id="drop_area2">
+                                            <!--<span class="img-wrap"></span>-->
+                                            <input type="file" name="image_img_upload" id="image_img_upload2" aria-invalid="false" class="help-block m-b-none single-img-updata">
+                                            <img src="static/img/addimage.png" alt="" class="img">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">多图上传:</label>
+                                    <div class="col-sm-9 more-img-wrap">
+                                        <div class="pro-wrap">
+
+                                        </div>
+                                        <div class="add-img-wrap pull-left " id="drop_area_more">
+                                            <input type="file" name="image_img_upload" id="img_upload_more" aria-invalid="false" class="help-block m-b-none more-img-updata">
+                                            <img src="static/img/addimage.png" alt="" class="">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">多图上传:</label>
+                                    <div class="col-sm-9 more-img-wrap">
+                                        <div class="pro-wrap">
+
+                                        </div>
+                                        <div class="add-img-wrap pull-left " id="drop_area_more2">
+                                            <input type="file" name="image_img_upload" id="img_upload_more2" aria-invalid="false" class="help-block m-b-none more-img-updata">
+                                            <img src="static/img/addimage.png" alt="" class="">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 col-sm-offset-3">
+                                        <button type="submit" class="btn btn-success ">Save</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                            <h5>表单验证</h5>
+                        </div>
+                        <div class="widget-content container-fluid">
+                            <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate" autocomplete="off">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">姓氏：</label>
+                                    <div class="col-sm-8">
+                                        <input id="firstname" name="firstname" class="form-control" type="text" digits="true" required>
+                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">名字：</label>
+                                    <div class="col-sm-8">
+                                        <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">用户名：</label>
+                                    <div class="col-sm-8">
+                                        <input id="username" name="username" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">密码：</label>
+                                    <div class="col-sm-8">
+                                        <input id="password" name="password" class="form-control" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">确认密码：</label>
+                                    <div class="col-sm-8">
+                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">E-mail：</label>
+                                    <div class="col-sm-8">
+                                        <input id="email" name="email" class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-3">
+                                        <div class="checkbox">
+                                            <label>
+                                            <input type="checkbox" id="agree" name="agree">
+                                            我已经认真阅读并同意《协议》
+                                        </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-3">
+                                        <button class="btn btn-success" type="submit">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="widget-box">
+                        <div class="widget-title"><span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                            <h5>
+                                表单控件
+                                <small>日期，颜色</small>
+                            </h5>
+                        </div>
+                        <div class="widget-content ">
+                            <form class="form-horizontal m-t" novalidate="novalidate">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Time picker (yy-mm-dd hh:ss)</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" value="2012-05-15 21:05" class=" form-control " readonly data-plugin="datepicker" data-format="yyyy-mm-dd hh:ss">
+                                        <span class="help-block">Time with Formate of  (yy-mm-dd hh:ss)</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Date picker (yy-mm-dd)</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" value="2012-05-15" readonly class=" form-control datepicker" data-plugin="datepicker">
+                                        <span class="help-block">Date with Formate of  (yy-mm-dd)</span>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Color picker (hex)</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" data-color="#ffffff" value="#ffffff" class="colorpicker input-big form-control">
+                                        <span class="help-block">Color picker with Formate of  (hex)</span>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Color picker (rgba)</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" data-color="rgba(344,232,53,0.5)" value="rgba(344,232,53,0.5)" data-color-format="rgba" class="colorpicker form-control">
+                                        <span class="help-block">Color picker with Formate of  (rgba)</span>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Color Picker (rgb)</label>
+                                    <div class="col-sm-9">
+                                        <div data-color-format="rgb" data-color="rgb(155, 142, 180)" class="input-append color colorpicker colorpicker-rgb">
+                                            <input type="text" value="rgb(155, 142, 180)" class="form-control">
+                                            <span class="add-on"><i
+                                                                        style="background-color: rgb(155, 142, 180)"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Color Picker (hex)</label>
+                                    <div class="col-sm-9">
+                                        <div data-color-format="hex" data-color="#000000" class="input-append color colorpicker">
+                                            <input type="text" value="#000000" class="form-control">
+                                            <span class="add-on"><i
+                                                                        style="background-color: #000000"></i></span></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 col-sm-offset-3">
+                                        <button type="submit" class="btn btn-success ">Save</button>
+                                        <button type="submit" class="btn btn-primary">Reset</button>
+                                        <button type="submit" class="btn btn-info">Edit</button>
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                            <h5>Form Layout</h5>
+                        </div>
+                        <div class="widget-content container-fluid">
+                            <div class="col-sm-12">
+                                <input type="text" placeholder=".col-md-12" class="col-md-12 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-11" class="col-md-11 m-wrap">
+                                <input type="text" placeholder=".col-md-1" class="col-md-1 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-10" class="col-md-10 m-wrap">
+                                <input type="text" placeholder=".col-md-2" class="col-md-2 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-9" class="col-md-9 m-wrap">
+                                <input type="text" placeholder=".col-md-3" class="col-md-3 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-8" class="col-md-8 m-wrap">
+                                <input type="text" placeholder=".col-md-4" class="col-md-4 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-7" class="col-md-7 m-wrap">
+                                <input type="text" placeholder=".col-md-5" class="col-md-5 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-6" class="col-md-6 m-wrap">
+                                <input type="text" placeholder=".col-md-6" class="col-md-6 m-wrap">
+                            </div>
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-5" class="col-md-5 m-wrap">
+                                <input type="text" placeholder=".col-md-7" class="col-md-7 m-wrap">
+                            </div>
+
+                            <div class="col-sm-12 ">
+                                <input type="text" placeholder=".col-md-2" class="col-md-2 m-wrap">
+                                <input type="text" placeholder=".col-md-3" class="col-md-3 m-wrap">
+                                <input type="text" placeholder=".col-md-4" class="col-md-4 m-wrap">
+                                <input type="text" placeholder=".col-md-1" class="col-md-2 m-wrap">
+                                <input type="text" placeholder=".col-md-1" class="col-md-1 m-wrap">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="static/frame/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="static/frame/js/main.js"></script>
+    <script src="static/frame/js/plugins/layer/laypage/laypage.js"></script>
+    <script src="static/frame/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="static/frame/js/bootstrap-colorpicker.js"></script>
+    <script src="static/frame/js/plugins/datapicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="static/frame/js/plugins/datapicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="static/frame/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="static/frame/js/plugins/validate/messages_zh.min.js"></script>
+    <script src="static/frame/js/validate.js"></script>
+    <script src="static/frame/js/ajaxfileupload.js"></script>
+    <script src="static/frame/js/select2.min.js"></script>
+    <script src="static/frame/js/bootstrap-tokenfield.js"></script>
+
+    <script src="static/frame/js/main.js"></script>
+    <script>
+        $(function() {
+
+            $('.colorpicker').colorpicker(); //调用选择色调
+            /* $(".datetimepicker").datetimepicker({//毫秒时间调用
+                 format: 'yyyy-mm-dd hh:ss',
+                 language: 'zh-CN',
+                 pickDate: true,
+                 pickTime: false,
+                 minView: '',
+                 startView: 2,
+                 autoclose: true
+             })*/
+
+            plt.getDateEndMonth("startMonthDate");
+            // 拖动上传
+            dropMoreFn('drop_area_more'); //多圖上傳
+            dropMoreFn('drop_area_more2');
+
+            //验证
+            $("#commentForm111").validate();
+            $("#commentForm222").validate();
+            //验证
+            var e = "<i class='fa fa-times-circle'></i> ";
+            $("#signupForm").validate()
+
+            function getPluginStartDate() {
+                $("input[data-plugin=start]").datetimepicker({ //开始日期
+                    format: 'yyyy-mm-dd',
+                    language: 'zh-CN',
+                    pickDate: true,
+                    pickTime: false,
+                    minView: 'month',
+                    startView: 2,
+                    autoclose: true,
+                    clearBtn: true //添加清除按钮，可选值：true/false
+                }).on('changeDate', function(ev) {
+                    var starttime = $(this).val();
+                    $(this).parents(".input-daterange").find("input[data-plugin=end]").datetimepicker('setStartDate', starttime);
+                    $(this).parents(".input-daterange").find("input[data-plugin=end]").val(starttime);
+                });
+            }
+
+            function getPluginEndDate() { //结束日期
+                $("input[data-plugin=end]").datetimepicker({
+                    format: 'yyyy-mm-dd',
+                    language: 'zh-CN',
+                    pickDate: true,
+                    pickTime: false,
+                    minView: 'month',
+                    startView: 2,
+                    autoclose: true,
+                    clearBtn: true //添加清除按钮，可选值：true/false
+                }).on('changeDate', function(ev) {
+                    var starttime = $("input[name=start]").val();
+                    var endtime = $(this).val();
+                    $(this).parents(".input-daterange").find("input[name=start]").datetimepicker('setEndDate', endtime);
+                });
+            }
+
+
+            function getPluginDate() { //普通调用
+                $("input[data-plugin=datepicker]").each(function() {
+                    var dateList = [];
+                    var lan = $(this).data("language");
+                    var format = $(this).data("format");
+                    var minview = "";
+                    if (format == undefined) {
+                        format = 'yyyy-mm-dd';
+                        minview = "month";
+                    }
+                    $(this).datetimepicker({
+                        format: format,
+                        language: lan,
+                        pickDate: true,
+                        pickTime: false,
+                        minView: minview,
+                        startView: 2,
+                        autoclose: true,
+                        clearBtn: true, //添加清除按钮，可选值：true/false
+                        startDate: new Date(),
+                    }).on("changeDate", function() {
+                        var dateClicked = $(this).val();
+                        if (dateList.indexOf(dateClicked) > -1) {
+                            dateList.splice(dateList.indexOf(dateClicked), 1);
+                        } else {
+                            dateList.push($(this).val());
+
+                        }
+                        $(this).siblings("#datelist").val(dateList);
+                    });
+                })
+
+            }
+
+            getPluginStartDate() //开始日期调用
+            getPluginEndDate() //结束日期调用
+            getPluginDate() //日期调用
+
+        })
+    </script>
+
+
+</body>
+
+</html>

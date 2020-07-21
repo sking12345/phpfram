@@ -1,0 +1,74 @@
+<div class="row" id="table_page">
+    <template v-if="pages_data == ''">
+        没有更多数据
+    </template>
+    <template v-else>
+        <div class="col-sm-5">
+            <div class="ibox-content pull-left" id="pages-wrap">
+                总共:{{pages_data.total_num}} 条/{{pages_data.page_num}} 页
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="ibox-content" id="pages-wrap">
+                <ul class="pagination table_page_num" style="margin:0px" id="10">
+                    <li class="paginate_button previous">
+                        <a v-if="pages_data.show_page!=1" :page="1" onclick="paginate_button(this)">首页</a>
+                        <a v-else>首页</a>
+                    </li>
+                    <template v-if="pages_data.page_num<=6">
+                        <li v-for="n in pages_data.page_num">
+                            <a v-if="n==pages_data.show_page"  class="active">{{n}}</a>
+                            <a v-else :page="n" onclick="paginate_button(this)">{{n}}</a>
+                        </li>
+                    </template>
+                    <template v-else-if="pages_data.show_page>=5">
+                        <li><a>...</a></li>
+                        <li v-for="n in 3">
+                            <a v-if="pages_data.show_page-(3-n)==pages_data.show_page" class="active">
+                                {{pages_data.show_page-(3-n)}}
+                            </a>
+                            <a v-else :page="pages_data.show_page-(3-n)" onclick="paginate_button(this)">
+                                {{pages_data.show_page-(3-n)}}
+                            </a>
+                        </li>
+                        <li v-for="n in 3">
+                            <a v-if="parseInt(pages_data.show_page)+n<=pages_data.page_num" :page="parseInt(pages_data.show_page)+n" onclick="paginate_button(this)">
+                                {{parseInt(pages_data.show_page)+n}}
+                            </a>
+                        </li>
+                        <li v-if="parseInt(pages_data.show_page)+3<pages_data.page_num"><a>...</a></li>
+                    </template>
+                    <template v-else>
+                        <li v-for="n in 5">
+                            <a v-if="n==pages_data.show_page" class="active">{{n}}</a>
+                            <a v-else :page="n" onclick="paginate_button(this)">{{n}}</a>
+                        </li>
+                        <li v-if="pages_data.show_page<pages_data.page_num"><a>...</a></li>
+                    </template>
+                    <li class="paginate_button">
+                        <a v-if="pages_data.show_page!=pages_data.page_num" :page="pages_data.page_num" onclick="paginate_button(pages_data.page_num)">尾页</a>
+                        <a v-else>尾页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: "#table_page",
+    data: {
+        pages_data: <?=vendor\tpl::get_assign_json("pages_data")?>,
+    }
+})
+function paginate_button(obj)
+{
+    var show_page = $(obj).attr("page");
+    var url = '<?=vendor\req::$instance->get_url()?>';
+    window.location.href = url + "&show_page=" + show_page;
+}
+</script>
+
+
+
+

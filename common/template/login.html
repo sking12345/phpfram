@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title><?=vendor\configs::$instance->get("app_name")?></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+     <link rel="shortcut icon" href="" type="image/x-icon">
+    <!-- 样式 -->
+    <link rel="stylesheet" href="static/frame/css/bootstrap.min14ed.css">
+    <link rel="stylesheet" href="static/frame/css/font-awesome.min93e3.css">
+    <link rel="stylesheet" href="static/frame/css/select2.css">
+    <link rel="stylesheet" href="static/frame/css/main.css">
+    <link rel="stylesheet" href="static/frame/css/login.css">
+</head>
+<body class="page-login layout-full page-dark">
+    <div class="page height-full">
+        <div class="page-content height-full">
+            <div class="page-brand-info vertical-align animation-slide-left hidden-xs">
+                <div class="page-brand vertical-align-middle">
+                    <div class="brand">
+                        <img class="brand-img" src="static/frame/img/logo-white-min.svg" height="50" />
+                        <span><?=vendor\configs::$instance->get("app_name")?></span>
+                    </div>
+                </div>
+            </div>
+            <div class="page-login-main animation-fade">
+                <!-- start 表单错误提示 -->
+                <div class="alert alert-danger alert-dismissible hide-tip"   role="alert" id="error-tip" ></div>
+                <!-- end 表单错误提示 -->
+                <div class="vertical-align">
+                    <div class="vertical-align-middle" >
+                        <div class="brand visible-xs text-center">
+                            <img class="brand-img" src="static/frame/img/logo.svg" height="50" />
+                            <span><?=vendor\configs::$instance->get("app_name")?></span>
+                        </div>
+                        <h3 class="hidden-xs">
+                            登录 <?=vendor\configs::$instance->get("app_name")?>
+                        </h3>
+                        <!--<p class="hidden-xs">为了您的账号安全，首次登录时请修改初始密码。</p>-->
+                        <form action="" class="login-form" method="post" id="loginForm">
+                           
+
+                            <div class="form-group">
+                                <label class="sr-only" for="username">用户名</label>
+                                <input type="text" class="form-control" id="username" name="username" value="" placeholder="请输入用户名"  datatype="*" nullmsg="用户名不能为空">
+                            </div>
+                            <div class="form-group form-password">
+                                <label class="sr-only" for="password">密码</label>
+                                <input type="password" class="form-control" id="password" name="password" value="" placeholder="请输入密码"  datatype="*6-18" nullmsg="密码不能为空" errmsg="">
+                                <i class="fa fa-eye eye-btn" onclick="changePassword(this)"></i>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="validate" placeholder="请输入验证码"  datatype="*" nullmsg="验证码不能为空" />
+                                    <a class="input-group-addon nopadding reload-vify" href="javascript:;">
+                                        <img style="display:none" height="32" />
+                                        <span class="vify-wrap">点击获取验证码</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
+                                    <input type="checkbox" id="remember" name="remember" value="1" />
+                                    <label for="remember">自动登录</label>
+                                </div>
+                                <a class="pull-right collapsed" data-toggle="collapse" href="#forgetPassword" aria-expanded="false" aria-controls="forgetPassword">
+                                    忘记密码了？
+                                </a>
+                            </div>
+                            <div class="collapse" id="forgetPassword" aria-expanded="true">
+                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                    请联系管理员重置密码。
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block mt36">立即登录</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="static/frame/js/jquery.min.js"></script>
+    <script src="static/frame/js/bootstrap.min.js"></script>
+    <script src="static/frame/js/select2.min.js"></script>
+    <script src="static/frame/js/validform.js"></script>
+    <script src="static/frame/js/newvalidform.js"></script>
+
+    <script src="static/frame/js/main.js"></script>
+    <script language="javascript">
+    if (top !== self) {
+        top.location.href = location.href;
+    }
+
+    //密码必须包含大小写字母，数字
+    var passwordFn = function(gets, obj, curform, regxp) {
+        var lv = 0;
+        var val = $(obj).val();
+        if (val.match(/[A-Z]/g)) {
+            lv++;
+        }
+        if (val.match(/[a-z]/g)) {
+            lv++;
+        }
+        if (val.match(/[0-9]/g)) {
+            lv++;
+        }
+        if (val.length >= 6 && val.length <= 18) {
+            lv++
+        }
+        if (lv < 4) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    $(".login-form").Validform({
+        tiptype:function(msg,o,cssctl){
+            if(o.type==3){
+                $(o.obj).addClass().closest("div.form-group").addClass("has-error");
+                var str = '<span class="Validform_checktip Validform_wrong"><i class="fa fa-times-circle"></i> '+ msg+'</span>';
+                $(o.obj).closest("div.form-group").children(".Validform_checktip").remove();
+                $(o.obj).closest("div.form-group").append(str);
+                $(o.obj).parents("div.form-group").find(".control-label").css("color","#ed5565");
+
+            }else{
+                $(o.obj).parents("div.form-group").find(".control-label").css("color","#1ab394");
+                $(o.obj).closest("div.form-group").removeClass("has-error").addClass("has-success");
+                if($(o.obj).attr("sucmsg")){
+                    $(o.obj).closest("div.form-group").children(".Validform_checktip").addClass("Validform_right").html('<i class="fa fa-check-circle-o"></i> '+$(o.obj).attr("sucmsg"));
+                }else{
+                    $(o.obj).closest("div.form-group").children(".Validform_checktip").remove();
+                }
+
+            }
+        },
+        showAllError:true,
+        datatype: { //自定义方法
+            "password": passwordFn,
+            
+        }
+    });
+
+    //tab toggle
+    $('.version-toggle').on('click','a',function(){
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+
+    //vify
+    $('.reload-vify').click(function(){
+        hideError();
+        if($(this).hasClass('loading')) return false;
+        var link = $(this),
+            img = link.children('img'),
+            span = link.find('span');
+            
+        link.addClass('loading');
+        span.text('加载中').show();
+        img.hide();
+        img.on('load',function(){
+            img.show();
+            span.hide();
+            link.removeClass('loading');
+        });
+        img.on('error',function(e){
+            img.hide();
+            span.text('请重试').show();
+            link.removeClass('loading');
+        });
+        img.attr('src','<?=vendor\configs::$instance->security->get("path")?>&t=' + Date.now())
+      
+    });
+    //error tip
+    function showError(msg){
+        if(msg&&msg!="")
+        {
+             $("#error-tip").text(msg).fadeIn();
+        }
+    }
+    function hideError(){
+        $("#error-tip").fadeOut();
+    }
+    //查看密码
+    function changePassword(e){
+        var _this = $(e),
+            _input =_this.siblings("input");
+            if(_input.attr("type")=="password"){
+                _input.attr("type","text");
+                _this.addClass("fa-eye-slash").removeClass("fa-eye");
+            }else{
+                _input.attr("type","password");
+                _this.addClass("fa-eye").removeClass("fa-eye-slash");
+            }
+    }
+   
+</script>
+</body>
+</html>

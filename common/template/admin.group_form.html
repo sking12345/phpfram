@@ -1,0 +1,99 @@
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["user_group","admin-index_group"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <h5>
+                            <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?>
+                        </h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code> {{language.name.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="name" :value="info.name" type="text" class="form-control" datatype="*" :placeholder="language.name.placeholder" :nullmsg="language.name.placeholder" />
+                            </div>
+                            <label class="col-sm-2 control-label"> {{language.safety_ip.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="safety_ip" :value="info.safety_ip" type="text" class="form-control" :placeholder="language.name.placeholder" :nullmsg="language.name.placeholder" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{language.is_root.language}}</label>
+                            <div class="col-sm-10">
+                                <div class="radio">
+                                    <label>
+                                        <input v-if="info.is_root==1" checked="true" type="radio" value="1" name="is_root">
+                                        <input v-else type="radio" value="1" name="is_root">
+                                        <?=common\model\mod_language::$instance->get_system_language(_CODE_YES_)?>
+                                    </label>
+                                    <label>
+                                        <input v-if="info.is_root==2" checked="true" type="radio" value="2" name="is_root">
+                                        <input v-else type="radio" value="2" name="is_root">
+                                        <?=common\model\mod_language::$instance->get_system_language(_CODE_NO_)?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed purview_submit hide"></div>
+                        <div class="form-group purview_submit hide">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title purview_label">
+                        <h5>
+                            <?=common\model\mod_language::$instance->get_system_language(_CODE_PURVIEWS_)?>
+                        </h5>
+                    </div>
+                    <div class="widget-content purview_label">
+                        <div id="checkbox-group">
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var MenuData = <?=vendor\tpl::get_assign_json("all_menus")?>;
+var MenuDataCheck = <?=vendor\tpl::$instance->group_info->get_json("purviews")?>;
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::$instance->group_info->get_json()?>,
+        language: <?=vendor\tpl::$instance->language->get_json()?>,
+    },
+    computed: {
+
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>
+<script type="text/javascript">
+$("input[name=is_root").change(function() {
+    if ($(this).val() == "1") {
+        $(".purview_label").addClass("hide");
+        $(".purview_submit").removeClass("hide");
+    } else {
+        $(".purview_label").removeClass("hide");
+        $(".purview_submit").addClass("hide");
+    }
+})
+</script>

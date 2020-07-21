@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <!-- 列表设置三种状态:1自己添加自己看,上层领导可以查看自己下属及下属的下属的,2:有权限的页面全可以看，3:可看自己组的-->
+    <menu name='人事' class='fa fa-gear' alias="human_affairs">
+        <menu name='人事档案' class='fa fa-user' alias="personnel">
+            <menu name='人员列表' class="fa fa-bars" ct='personnel' ac='archives_index' />
+            <menu name='查看人员' class="fa fa-search" ct='personnel' ac='archives_info' display='0' />
+            <menu name='添加人员' class="fa fa-plus-circle" ct='personnel' ac='add_archives' display='0' />
+            <menu name='编辑人员' class="fa fa-edit" ct='personnel' ac='edit_archives' display='0' />
+            <menu name='删除人员' class="fa fa-trash-o" ct='personnel' ac='del_archives' display='0' />
+            <menu name='员工合同' class="fa fa-bars" ct='personnel' ac='contract_index' />
+            <menu name='新增合同' class="fa fa-bars" ct='personnel' ac='add_contract' display='0' />
+            <menu name='编辑合同' class="fa fa-bars" ct='personnel' ac='edit_contract' display='0' />
+            <menu name='查看合同' class="fa fa-bars" ct='personnel' ac='contract_info' display='0' />
+            <menu name='删除合同' class="fa fa-bars" ct='personnel' ac='del_contract' display='0' />
+            <menu name='人员分析' class="fa fa-bars" ct='personnel' ac='analysis' />
+        </menu>
+        <menu name='人事管理' class='fa fa-user' alias="hr_mgt">
+            <menu name='人员需求' class="fa fa-bars" ct='personnel' ac='demand' />
+            <menu name='新增需求' class="fa fa-bars" ct='personnel' ac='add_demand' display='0' />
+            <menu name='编辑需求' class="fa fa-bars" ct='personnel' ac='edit_demand' display='0' />
+            <menu name='查看需求' class="fa fa-bars" ct='personnel' ac='info_demand' display='0' />
+            <menu name='删除需求' class="fa fa-bars" ct='personnel' ac='del_demand' display='0' />
+            <menu name='审核需求' class="fa fa-bars" ct='personnel' ac='reviewer_demand' display='0' />
+            <menu name='面试安排' class="fa fa-bars" ct='personnel' ac='interview_index' />
+            <menu name='新增安排' class="fa fa-bars" ct='personnel' ac='add_interview' display='0' />
+            <menu name='编辑安排' class="fa fa-bars" ct='personnel' ac='edit_interview' display='0' />
+            <menu name='查看安排' class="fa fa-bars" ct='personnel' ac='info_interview' display='0' />
+            <menu name='删除安排' class="fa fa-bars" ct='personnel' ac='del_interview' display='0' />
+            <menu name='转正申请' class="fa fa-bars" ct='personnel' ac='turn_right_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_turn_right' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_turn_right' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_turn_right' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_turn_right' display='0' />
+            <menu name='离职申请' class="fa fa-bars" ct='personnel' ac='resignation_letter_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_resignation_letter' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_resignation_letter' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_resignation_letter' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_resignation_letter' display='0' />
+            <menu name='人事调动' class="fa fa-bars" ct='personnel' ac='transfer_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_transfer' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_transfer' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_transfer' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_transfer' display='0' />
+            <menu name='调薪申请' class="fa fa-bars" ct='personnel' ac='adjustment_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_adjustment' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_adjustment' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_adjustment' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_adjustment' display='0' />
+            <menu name='奖惩处罚' class="fa fa-bars" ct='personnel' ac='rewards_punishments_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_rewards_punishments' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_rewards_punishments' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_rewards_punishments' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_rewards_punishments' display='0' />
+            <menu name='人员福利' class="fa fa-bars" ct='personnel' ac='care_index' />
+            <menu name='新增申请' class="fa fa-bars" ct='personnel' ac='add_care' display='0' />
+            <menu name='编辑申请' class="fa fa-bars" ct='personnel' ac='edit_care' display='0' />
+            <menu name='查看申请' class="fa fa-bars" ct='personnel' ac='info_care' display='0' />
+            <menu name='删除申请' class="fa fa-bars" ct='personnel' ac='del_care' display='0' />
+        </menu>
+        <menu name='工作报告' class='fa fa-user' alias="work_report">
+            <menu name='所有报告' class="fa fa-bars" ct='personnel' ac='work_report_index' />
+            <menu name='新增报告' class="fa fa-bars" ct='personnel' ac='add_work_report' display='0' />
+            <menu name='编辑报告' class="fa fa-bars" ct='personnel' ac='edit_work_report' display='0' />
+            <menu name='查看报告' class="fa fa-bars" ct='personnel' ac='info_work_report' display='0' />
+            <menu name='删除报告' class="fa fa-bars" ct='personnel' ac='del_work_report' display='0' />
+            <menu name='报告统计' class="fa fa-bars" ct='personnel' ac='work_report_statistics' />
+            <menu name='报告统计分析' class="fa fa-bars" ct='personnel' ac='work_report_analysis' />
+        </menu>
+        <menu name='考核管理' class='fa fa-user' alias="assessment">
+            <menu name='考核项目' class="fa fa-bars" ct='personnel' ac='assessment_index' />
+            <menu name='新增项目' class="fa fa-bars" ct='personnel' ac='add_assessment' display='0' />
+            <menu name='编辑项目' class="fa fa-bars" ct='personnel' ac='edit_assessment' display='0' />
+            <menu name='查看项目' class="fa fa-bars" ct='personnel' ac='info_assessment' display='0' />
+            <menu name='删除项目' class="fa fa-bars" ct='personnel' ac='del_assessment' display='0' />
+            <menu name='考核评分' class="fa fa-bars" ct='personnel' ac='assessment_score_index' />
+            <menu name='新增评分' class="fa fa-bars" ct='personnel' ac='add_assessment_score' display='0' />
+            <menu name='编辑评分' class="fa fa-bars" ct='personnel' ac='edit_assessment_score' display='0' />
+            <menu name='查看评分' class="fa fa-bars" ct='personnel' ac='info_assessment_score' display='0' />
+            <menu name='删除评分' class="fa fa-bars" ct='personnel' ac='del_assessment_score' display='0' />
+        </menu>
+        <menu name='薪资管理' class='fa fa-user' alias="">
+            <menu name='社保公积金' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='薪资模版' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='薪资核算' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='部门薪资核算' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='薪资发发放' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='考勤设置' class='fa fa-user' alias="">
+            <menu name='人员考勤设置' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤时间规则' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤时间分配' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤时间排班' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='休息时间分配' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='定位打卡位置' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='定位打卡分配' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='考勤机管理' class='fa fa-user' alias="">
+            <menu name='考勤机设备' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤机上部门人员' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤机命令查看' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='考勤信息' class='fa fa-user' alias="">
+            <menu name='打卡记录' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='定位记录' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='外出记录' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='打卡异常' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤信息' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='剩余假期统计' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='加班单核算' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤分析' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤统计简表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考勤统计详表' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='培训/考试' class='fa fa-user' alias="">
+            <menu name='培训列表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考试列表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='考试培训人员' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='设置' class='fa fa-user' alias="">
+        </menu>
+    </menu>
+    <menu name='行政管理' class='fa fa-gear' alias="administrative">
+        <menu name='信息中心' class='fa fa-user' alias="">
+            <menu name='通知公告' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='新闻资讯' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='物品基础管理' class='fa fa-user' alias="">
+            <menu name='仓库管理' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='供应商管理' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='物品列表' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='物品管理' class='fa fa-user' alias="">
+            <menu name='出入库操作' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='出入库详情' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='物品采购' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='物品领用' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='物品调拨' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='物品盘点' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='资产管理' class='fa fa-user' alias="">
+            <menu name='资产分类' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='资产列表' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='会议管理' class='fa fa-user' alias="">
+            <menu name='新增会议' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='会议列表' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='车辆管理' class='fa fa-user' alias="">
+            <menu name='车辆列表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='车辆信息登记' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='车辆预定查询' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='车辆预定情况' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='车辆维修' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='车辆保养' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='图书管理' class='fa fa-user' alias="">
+            <menu name='图书列表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='图书借阅' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='印章管理' class='fa fa-user' alias="">
+            <menu name='印章证照列表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='申请使用查询' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='财务管理' class='fa fa-user' alias="">
+            <menu name='费用报销' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='费用报销报表' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='出差报销' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='借款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='借款单统计' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='还款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='付款申请' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='开票申请' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='发票管理' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='发票管理统计' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+    </menu>
+    <menu name='流程' class='fa fa-gear' alias="task_mgt">
+        <menu name='数据选项' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程模块列表' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='审核人分组' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程审核步骤' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='表单元素管理' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程模块权限' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程单据查看' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='单据操作菜单' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程模块条件' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='单据通知设置' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='流程模块统计' class="fa fa-bars" ct='xx' ac='xx' />
+        <menu name='单据异常监控' class="fa fa-bars" ct='xx' ac='xx' />
+    </menu>
+    <menu name='资源' class='fa fa-gear' alias="task_mgt">
+        <menu name='文档' class='fa fa-user' alias="">
+            <menu name='文档中心' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='贡献文档' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='文档协作' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='文件传送' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='知识' class='fa fa-user' alias="">
+            <menu name='信息管理' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='题库管理' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='信息查看' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='题库学习' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+    </menu>
+    <menu name='任务管理' class='fa fa-gear' alias="task_mgt">
+        <menu name='项目管理' class='fa fa-user' alias="">
+            <menu name='我执行的项目' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我未完成的项目' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我负责的项目' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我创建的项目' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有项目' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='任务管理' class='fa fa-user' alias="">
+            <menu name='创建任务' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我的任务' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我未完成的任务' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属任务' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='我创建的任务' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='任务督导' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有任务' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+    </menu>
+    <menu name='客户管理' class='fa fa-gear' alias="client_mgt">
+        <menu name='客户' class='fa fa-user' alias="">
+            <menu name='我的客户' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='共享给我的' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属客户' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='客户分配' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='客户申请使用' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='销售机会' class='fa fa-user' alias="">
+            <menu name='我的销售机会' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属销售机会' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='合同' class='fa fa-user' alias="">
+            <menu name='我的合同' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属合同' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='销售' class='fa fa-user' alias="">
+            <menu name='我的销售' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属销售' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='收款单' class='fa fa-user' alias="">
+            <menu name='我的收款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属收款单' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='付款单' class='fa fa-user' alias="">
+            <menu name='我的付款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属付款单' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='付款单' class='fa fa-user' alias="">
+            <menu name='我的付款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属付款单' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='客户统计' class='fa fa-user' alias="">
+            <menu name='我的客户统计' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属客户统计' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='金额统计' class='fa fa-user' alias="">
+            <menu name='我的财务统计' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='下属财务统计' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+        <menu name='客户查看' class='fa fa-user' alias="">
+            <menu name='所有客户' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有销售机会' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有客户合同' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有销售' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有收款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有付款单' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有财物统计' class="fa fa-bars" ct='xx' ac='xx' />
+            <menu name='所有客户申请使用' class="fa fa-bars" ct='xx' ac='xx' />
+        </menu>
+    </menu>
+    <menu name='系统' class='fa fa-gear' alias="system">
+        <menu name='个人中心' class='fa fa-user' alias="user_center">
+            <!-- <menu name='新增表单' ct='features' ac='add_from' /> -->
+        </menu>
+        <menu name='组织管理' class='fa fa-user' alias="organization">
+            <menu name='机构管理' ct='organization' ac='mechanism_index' />
+            <menu name='添加机构' ct='organization' ac='add_mechanism' display='0' />
+            <menu name='修改机构' ct='organization' ac='edit_mechanism' display='0' />
+            <menu name='删除机构' ct='organization' ac='del_mechanism' display='0' />
+            <menu name='查看机构组织' ct='organization' ac='structure_diagram_info' display='0' />
+            <menu name='岗位级别' ct='organization' ac='job_level_index' />
+            <menu name='添加级别' ct='organization' ac='add_job_level' display='0' />
+            <menu name='修改级别' ct='organization' ac='edit_job_level' display='0' />
+            <menu name='删除级别' ct='organization' ac='del_job_level' display='0' />
+            <menu name='岗位管理' ct='organization' ac='job_index' />
+            <menu name='添加岗位' ct='organization' ac='add_job' display='0' />
+            <menu name='修改岗位' ct='organization' ac='edit_job' display='0' />
+            <menu name='查看岗位' ct='organization' ac='info_job' display='0' />
+            <menu name='删除岗位' ct='organization' ac='del_job' display='0' />
+            <menu name='组织机构图' ct='organization' ac='structure_diagram' />
+        </menu>
+        <menu name='用户角色' class='fa fa-users' alias="user_group">
+            <menu name='用户组管理' ct='admin' ac='index_group' />
+            <menu name='用户组添加' class="fa fa-plus-circle" ct='admin' ac='add_group' display='0' />
+            <menu name='用户组修改' class="fa fa-plus-circle" ct='admin' ac='edit_group' display='0' />
+            <menu name='用户组删除' class="fa fa-plus-circle" ct='admin' ac='del_group' display='0' />
+            <menu name='用户管理' ct='admin' ac='index' />
+            <menu name='设置独立权限' ct='admin' ac='set_purview' display='0' />
+            <menu name='用户添加' ct='admin' ac='add' display='0' />
+            <menu name='用户修改' ct='admin' ac='edit' display='0' />
+            <menu name='用户删除' ct='admin' ac='del' display='0' />
+        </menu>
+        <menu name='设置' class='fa fa-gear' alias="system_set">
+            <menu name='数据表' ct='features' ac='table_list' />
+            <menu name='设置表结构' ct='features' ac='set_table' display='0' />
+            <menu name='查看表结构' ct='features' ac='table_descs' display='0' />
+            <menu name='设置字段' ct='features' ac='set_field' display='0' />
+            <menu name='菜单列表' ct='features' ac='menu_index' />
+            <menu name='设置菜单' ct='features' ac='set_menu' display='0' />
+            <menu name='语言列表' ct='features' ac='language_index' />
+            <menu name='删除语言' ct='features' ac='del_language' />
+        </menu>
+    </menu>
+</menu>

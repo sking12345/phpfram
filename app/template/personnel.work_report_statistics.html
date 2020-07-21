@@ -1,0 +1,89 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["work_report"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <div class="widget-content p-b-none">
+                    <div class="btn-outline-wrap">
+                        <?=common\helpers\html_base::$instance->create_link1("personnel-add_work_report")?>
+                    </div>
+                </div>
+                <div class="widget-content p-b-none">
+                    <form class="form-inline" method="post">
+                        <div class="form-group">
+                            <!--<label>关键字</label>-->
+                            <input type='text' data-plugin="start" name='date' value="<?=vendor\req::$instance->item('date',date('Y-m-1',time()))?>" class='form-control' readOnly="true" />
+                        </div>
+                        <div class="form-group">
+                            <!--<label>关键字</label>-->
+                            <input type='text' name='keyword' value="<?=vendor\req::$instance->item('keyword')?>" class='form-control' value="" placeholder="<?=common\model\mod_language::$instance->get_system_language(_CODE_INPUT_KEYWROD_)?>" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-white">
+                                <?=common\model\mod_language::$instance->get_system_language(_CODE_SEARCH_)?>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-hover table-agl-c">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_INDEX_)?>
+                                </th>
+                                <th v-for="(value,key) in show_header">
+                                    {{value.language}}
+                                </th>
+                                <th v-for="n in parseInt(days)">
+                                    {{n}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,key) in archives">
+                                <td>{{key+1}}</td>
+                                <td v-for="(value1,key1) in show_header">
+                                    {{item[key1]}}
+                                </td>
+                                <td v-for="n in parseInt(days)">
+                                    <template v-if="work_report[item.id]">
+                                        <template v-if="work_report[item.id][n]">
+                                            <a class="text-success" v-on:click="open_info(work_report[item.id][n])"> Y</a>
+                                        </template>
+                                    </template>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="50">
+                                    <?=common\helpers\html_base::$instance->create_pages("pages")?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: "#content",
+    data: {
+        show_header: <?=vendor\tpl::get_assign_json("show_header")?>,
+        archives: <?=vendor\tpl::get_assign_json("archives")?>,
+        days: <?=vendor\tpl::get_assign_json("days")?>,
+        work_report: <?=vendor\tpl::get_assign_json("work_report")?>,
+    },
+
+    methods: {
+        open_info(id) {
+            alert(id);
+        }
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>

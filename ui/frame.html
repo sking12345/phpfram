@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>组织构架</title>
+    <link rel="stylesheet" href="static/frame/css/font-awesome.min93e3.css">
+    <link rel="stylesheet" href="static/frame/css/jquery.orgchart.min.css">
+</head>
+<body>
+<div id="chart-container"></div>
+
+<script type="text/javascript" src="static/frame/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/frame/js/jquery.orgchart.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var datascource = {
+            'name': '电子产品',
+            'children': [
+                {
+                    'name': '其他',
+                    'children': [
+                        {'name': '办公用品'},
+                        {'name': 'MP3'},
+                        {'name': '音响'},
+                        {'name': '常用电子产品'},
+                    ]
+                },
+                {
+                    'name': '电脑',
+                    'children': [
+                        {
+                            'name': '笔记本电脑',
+                            'children': [
+                                {'name': '办公用品'},
+                                {'name': 'MP3'},
+                                {
+                                    'name': '音响',
+                                    'children': [
+                                        {'name': '办公用品'},
+                                        {'name': 'MP3'},
+                                        {
+                                            'name': '音响',
+                                            'children': [
+                                                {'name': '办公用品'},
+                                                {'name': 'MP3'},
+                                                {
+                                                    'name': '音响',
+                                                    'children': [
+                                                        {'name': '办公用品'},
+                                                        {'name': 'MP3'},
+                                                        {
+                                                            'name': '音响'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            'name': '平板电脑',
+                            'children': []
+                        },
+                        {'name': '平板电脑'},
+                        {'name': '平板电脑'}
+                    ]
+                },
+                {'name': '摄影录像'},
+                {'name': '手机'}
+            ]
+        };
+
+        $('#chart-container').orgchart({
+            data: datascource,
+            direction: 'l2r',
+            depth: 2,
+            parentNodeSymbol: "fa-plus",
+            createNode: function ($node, data) {
+                console.log($node);
+                console.log(data)
+            }
+        });
+    });
+</script>
+</body>
+</html>

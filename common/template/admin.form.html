@@ -1,0 +1,79 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["user_group","admin-index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <h5> <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?></h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>  
+                                {{language.name.language}}
+                             :</label>
+                                
+                            <div class="col-sm-4">
+                                <input name="name" :value="admin_info.name" type="text" class="form-control" datatype="*" :placeholder="language.name.placeholder" nullmsg="language.name.placeholder" />
+                            </div>
+                            <label class="col-sm-2 control-label">  {{language.safety_ip.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="safety_ip" :value="admin_info.safety_ip" type="text" class="form-control" :placeholder="language.safety_ip.placeholder" :nullmsg="language.safety_ip.placeholder" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code> {{language.group_id.language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" data-placeholder="language.group_id.placeholder" data-plugin="select2" name="group_id">
+                                    <option value=" ">{{language.group_id.placeholder}}</option>
+                                  
+                                        <template v-for="item in option_data">
+                                        <option  :value="item.id" v-if="item.id==admin_info.group_id" selected>{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                        </template>
+                                    
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label"> {{language.email.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="email" :value="admin_info.email" type="text" class="form-control" :placeholder="language.email.placeholder" :nullmsg=" language.email.placeholder" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+      el: '#widget_box',
+      data: {
+       option_data:<?=vendor\tpl::$instance->group_list->get_json()?>,
+       language:<?=vendor\tpl::$instance->language->get_json()?>,
+       admin_info:<?=vendor\tpl::$instance->admin_info->get_json()?>,
+      },
+      computed:{
+        
+      }
+    })
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js'])?>
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+<script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="static/frame/js/plugins/toastr/toastr.min.js"></script>
+<script src="static/frame/js/validform.js"></script>
+<script src="static/frame/js/newvalidform.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<?php foreach($other_parames as $key=>$val){ ?>
+<script src="<?=vendor\configs::$instance->static_url->get($val)?>"></script>
+
+<?php } ?>
+<script src="static/frame/js/main.js"></script>
+<script type="text/javascript">
+$(function() {
+    $("body").removeClass("hide");
+    var show_msg = <?=vendor\tpl::get_assign_json("show_msg")?>;
+    if (show_msg)
+    {
+        if (show_msg.status == false) {
+
+            toastr.warning(show_msg.msg);
+        } else {
+
+            toastr.success(show_msg.msg);
+        }
+    }
+})
+</script>
+</body>
+
+</html>

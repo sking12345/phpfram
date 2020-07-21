@@ -1,0 +1,11 @@
+<form class="form-inline" method="post">
+    <div class="form-group">
+        <!--<label>关键字</label>-->
+        <input type='text' name='keyword' value="<?=vendor\req::$instance->item('keyword')?>" class='form-control' value="" placeholder="<?=common\model\mod_language::$instance->get_system_language(_CODE_INPUT_KEYWROD_)?>" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-white">
+            <?=common\model\mod_language::$instance->get_system_language(_CODE_SEARCH_)?>
+        </button>
+    </div>
+</form>

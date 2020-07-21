@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>demo</title>
+
+    <link href="static/frame/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+    <link href="static/frame/css/main.css" rel="stylesheet">
+    <link href="static/css/selector.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="content">
+
+    <form class="form-horizontal" id="validateForm" novalidate="novalidate" action="" method="POST">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><a href="javascript:history.back(-1)"><i class="fa fa-chevron-left"></i>返回</a></span>
+                <h5>demo</h5>
+            </div>
+            <div class="widget-content container-fluid">
+                <div class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><font color="red">*</font> 选择人员:</label>
+                        <div class="col-sm-6" style="position: relative;">
+                            <input type="text" class="job-input form-control"  style="font-size: 12px;">
+                            <button type="button" class="btn btn-info btn-sm selector-btn" style="
+                                position: absolute;top:0;left: 0;width: 100%;opacity: 0;z-index:1;height:40px">
+                            </button>
+                        </div>
+                        <input type="hidden" class="selector-hid" value="5,7,6,9">
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><font color="red">*</font> 单选:</label>
+                        <div class="col-sm-6" style="position: relative;">
+                            <input type="text" class="form-control"  style="font-size: 12px;">
+                            <button type="button" class="btn btn-info btn-sm selector-single-btn" style="
+                                position: absolute;top:0;left: 0;width: 100%;opacity: 0;z-index:1;height:40px">
+                            </button>
+                        </div>
+                        <input type="hidden" class="selector-single-hid" value="5,7">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+
+<div class="container-fluid  selector-wrap" style="display: none">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="origin-box">
+                <div class="">
+                    <h5 class="stitle">人员（多选）</h5>
+                </div>
+                <div class="selector-con">
+                    <ul id="selector" style="margin-left:10px">
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class=" selected-box">
+                <div class="">
+                    <h5 class="stitle">已选择</h5>
+                </div>
+                <div class=" selector-right selector-con">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid selector-single-wrap" style="display: none">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="origin-box">
+                <div class="">
+                    <h5 class="stitle">人员（单选）</h5>
+                </div>
+                <div class="selector-single-con">
+                    <ul id="selector-single">
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+<script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+
+<script src="static/frame/js/plugins/layer/layer.min.js"></script>
+
+<script src="static/frame/js/main.js"></script>
+<script src="static/js/selector.js"></script>
+<script src="static/js/selector-single.js"></script>
+<script>
+    function selectorFn(data){
+        console.log(data);
+    }
+    function singleFn(data){
+        console.log(data)
+    }
+</script>
+</body>
+</html>

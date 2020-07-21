@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>第一平台</title><meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="static/frame/css/bootstrap.min14ed.css" />
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/login.css" />
+</head>
+<body>
+<div id="loginbox">
+    <form id="loginform" class="form-vertical" method="post" >
+
+        <input type="hidden" name="step" value=1 />
+        <div class="control-group normal_text"><h3>第一平台</h3></div>
+
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="fa fa-user"></i></span><input type="text" name="username" value="admin1" placeholder="Username" />
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly"><i class="fa fa-lock"></i></span><input type="password" name="password" value="admin" placeholder="Password" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <div class="login-error">
+                        用户不存在！
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-left"><button type="reset" class="flip-link btn btn-info" id="to-recover">重置</button></span>
+            <span class="pull-right"><button type="submit" class="btn btn-success">登录</button></span>
+        </div>
+    </form>
+</div>
+<script src="static/frame/js/jquery.min.js"></script>
+</body>
+
+</html>

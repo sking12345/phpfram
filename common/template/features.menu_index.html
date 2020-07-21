@@ -1,0 +1,154 @@
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["system_set"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <div class="widget-content p-b-none">
+                    <form class="form-inline" method="post">
+                        <div class="form-group">
+                            <!--<label>关键字</label>-->
+                            <input type='text' name='keyword' value="<?=vendor\req::$instance->item('keyword')?>" class='form-control' value="" placeholder="<?=common\model\mod_language::$instance->get_system_language(_CODE_INPUT_KEYWROD_)?>" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-white">
+                                <?=common\model\mod_language::$instance->get_system_language(_CODE_SEARCH_)?>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-hover table-agl-c">
+                        <thead>
+                            <tr>
+                                <th v-for="(value,key) in header">
+                                    {{value}}
+                                </th>
+                                <th v-for="(value,key) in language">
+                                    {{value}}
+                                </th>
+                                <th>
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_MGT_)?>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,key) in list">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td v-if="item.alias">
+                                    {{item.alias}}
+                                </td>
+                                <template v-for="(val,key) in language">
+                                    <td v-if="menu_language[item.alias]">
+                                        <span v-if="menu_language[item.alias][key]" :id="item.alias+key">
+                                            {{menu_language[item.alias][key]}}
+                                        </span>
+                                    </td>
+                                    <td v-else>
+                                        <span :id="item.alias+key">&nbsp;</span>
+                                    </td>
+                                </template>
+                                <td>
+                                    <a v-on:click="set_table_field(item.alias)" class="btn btn-outline btn-info">
+                                        <?=vendor\libs\cls_menus::$instance->get_menu_infos("features-set_menu","name")?>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">
+                                    <?=common\helpers\html_base::$instance->create_pages("pages")?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <?=vendor\libs\cls_menus::$instance->get_menu_infos("features-set_menu","name")?>
+                    </h4>
+                </div>
+                <div class="modal-body" id="set_info">
+                    <form class="form-horizontal Validform" id="form_table_field" method="AJAX">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">name :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.name}}</p>
+                            </div>
+                            <label class="col-sm-2 control-label"> alias :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.alias}}</p>
+                            </div>
+                        </div>
+                        <template v-for="(val,key) in language">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{val}} :</label>
+                                <div class="col-sm-10">
+                                    <template v-if="menu_language[info.alias]">
+                                        <input type="text" :value="menu_language[alias][key]['language']" class="form-control" :name="'language[' + key+ ']'" :id="'language'+key">
+                                    </template>
+                                    <template v-else>
+                                        <input type="text" class="form-control" :name="'language[' + key+ ']'" :id="'language'+key">
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" v-on:click="save(info.alias)">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: "#content",
+    data: {
+        header: ["id", "名称", "别名"],
+        list: <?=vendor\tpl::get_assign_json("menu_list")?>,
+        language: <?=vendor\tpl::get_assign_json("language")?>,
+        info: '',
+        menu_language: <?=vendor\tpl::get_assign_json("menu_language")?>,
+    },
+    methods: {
+        set_table_field: function(alias) {
+            $('#myModal').modal();
+            this.info = this.list[alias];
+        },
+        save: function(alias) {
+            var result = $("form").serialize();
+            $.each(this.language, function(index, val) {
+                var str = $("#language" + index).val();
+
+                $("#" + alias + index).text(str);
+                $("#language" + index).val('');
+            })
+            var obj = this;
+            var url = "<?=vendor\req::$instance->create_url(['ct'=>'features','ac'=>'menu_index'])?>&alias=" + alias;
+            axios.post(url, result)
+                .then(function(response) {
+
+                    $('#myModal').modal('hide');
+                    obj.info = {};
+                    //window.location.href=window.location.href;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>

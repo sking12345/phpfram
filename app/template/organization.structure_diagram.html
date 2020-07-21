@@ -1,0 +1,33 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['orgchart_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["organization"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="chart-container"></div>
+        </div>
+    </div>
+</div>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['orgchart_js'])?>
+<script type="text/javascript">
+$('#chart-container').orgchart({
+    'data': <?=vendor\tpl::get_assign_json("structure")?>,
+    'depth': 2,
+    'nodeTitle': 'name',
+    // 'nodeContent': 'id',
+    'createNode': function($node, data) {
+        // var nodePrompt = $('<i>', {
+        //     'class': 'fa fa-info-circle second-menu-icon',
+        //     click: function() {
+
+        //         $(this).siblings('.second-menu').toggle();
+        //     }
+        // });
+        // $node.append(nodePrompt);
+         var secondMenu = '<div class="second-menu"><a href="ff">'+data.title+'</a></div>';
+        $node.append(secondMenu);
+    }
+});
+$(".orgchart").css("width", "100%");
+</script>

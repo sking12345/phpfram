@@ -1,0 +1,29 @@
+
+
+
+<ol id="breadcrumb_vue" class="breadcrumb" style="margin-bottom:5px">
+	<template v-for="site in menu_infos">
+		<li v-if="site.url!=null ">
+			<a :href="site.url"><i :class="site.class"></i>{{site.name}}</a>
+		<li v-else>
+			<i :class="site.class"></i>{{site.name}}
+		</li>
+	</template>
+ </ol>
+
+
+<script type="text/javascript">
+	new Vue({
+	  el: '#breadcrumb_vue',
+	  data: {
+	    menu_infos: <?=vendor\tpl::get_assign_json("menu_infos")?>
+	  },
+	  computed:{
+	  	
+	  }
+	})
+</script>
+
+
+
+

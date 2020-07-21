@@ -1,0 +1,80 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+         <?=common\helpers\html_base::$instance->menu_navigation(["organization","organization-job_index","organization-info_job"=>['id'=>'jobs_id']],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <h5>基本信息</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">岗位 :</label>
+                            <div class="col-sm-4">
+                              <p class="form-control-static">{{job_info.name}}</p>
+                            </div>
+                            <label class="col-sm-2 control-label">所属机构 :</label>
+                            <div class="col-sm-4">
+                              <p class="form-control-static">{{job_info.mechanism_id}}</p>
+                              
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                             <label class="col-sm-2 control-label"><code class="">*</code>姓名 :</label>
+                              <div class="col-sm-4">
+                          
+                                 <input type="text" class="form-control"  :value="info.name" name="name">
+                              </div>
+                            <label class="col-sm-2 control-label"> <code class="">*</code>入职日期 :</label>
+                            <div class="col-sm-4">
+                             <input type="text" class="form-control" :value="info.onboarding_time" name="onboarding_time" data-plugin="start">
+                            </div>
+                        </div>
+                         <div class="hr-line-dashed"></div>
+                          <div class="form-group">
+                             <label class="col-sm-2 control-label">备注 :</label>
+                             <div class="col-sm-10">
+                              <textarea class="form-control" name="remark"></textarea>
+                             </div>
+                           </div>
+
+                      
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+      el: '#content',
+      data: {
+        job_info:<?=vendor\tpl::get_assign_json("job_info")?>,
+        info:<?=vendor\tpl::get_assign_json("info")?>,
+        option_data:<?=vendor\tpl::get_assign_json("mechanism_list")?>,
+       
+      },
+      computed:{
+        
+      }
+    })
+
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>
+
+
+
+
+
+
+

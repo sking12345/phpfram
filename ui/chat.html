@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>用户列表</title>
+    <link href="static/frame/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+    <link href="static/frame/css/main.css" rel="stylesheet">
+    <script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+</head>
+
+<body>
+
+<div id="content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-sm-12">
+                <div class="widget-box widget-chat">
+                    <div class="widget-title bg_lb">
+                        <span class="icon"> <i class="fa fa-comment"></i> </span>
+                        <h5>Chat Option</h5>
+                    </div>
+                    <div class="widget-content nopadding collapse in" id="collapseG4">
+                        <div class="chat-users panel-right2">
+                            <div class="panel-title">
+                                <h5>Online Users</h5>
+                            </div>
+                            <div class="panel-content nopadding">
+                                <ul class="contact-list">
+                                    <li id="user-Alex" class="online">
+                                        <a href="#">
+                                            <img alt="" src="static/frame/img/demo/av1.jpg">
+                                            <span>Alex</span>
+                                        </a>
+                                    </li>
+                                    <li id="user-John" class="online new">
+                                        <a href="#">
+                                            <img alt="" src="static/frame/img/demo/av3.jpg">
+                                            <span>John</span>
+                                        </a>
+                                        <span class="msg-count badge badge-info">3</span>
+                                    </li>
+                                    <li id="user-Mark" class="online">
+                                        <a href="#">
+                                            <img alt="" src="static/frame/img/demo/av4.jpg">
+                                            <span>Mark</span>
+                                        </a>
+                                    </li>
+                                    <li id="user-Maxi" class="online">
+                                        <a href="#">
+                                            <img alt="" src="static/frame/img/demo/av5.jpg">
+                                            <span>Maxi</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="chat-content panel-left2">
+                            <div class="chat-messages" id="chat-messages">
+                                <div id="chat-messages-inner">
+                                    <p id="msg-1" class="user-linda" style="display: block;">
+                                        <span class="msg-block">
+                                            <img src="static/frame/img/demo/av2.jpg" alt="">
+                                            <strong>Linda</strong>
+                                            <span class="time">- 14:40</span>
+                                            <span class="msg">Hello Every one do u want to freindship with me?</span>
+                                        </span>
+                                    </p>
+                                    <p id="msg-2" class="user-mark" style="display: block;">
+                                        <span class="msg-block">
+                                            <img src="static/frame/img/demo/av3.jpg" alt="">
+                                            <strong>Mark</strong>
+                                            <span class="time">- 14:40</span>
+                                            <span class="msg">Yuppi! why not sirji!!.</span>
+                                        </span>
+                                    </p>
+                                    <p id="msg-3" class="user-linda" style="display: block;">
+                                        <span class="msg-block">
+                                            <img src="static/frame/img/demo/av2.jpg" alt="">
+                                            <strong>Linda</strong>
+                                            <span class="time">- 14:40</span>
+                                            <span class="msg">Thanks!!! See you soon than</span>
+                                        </span>
+                                    </p>
+                                    <p id="msg-4" class="user-mark" style="display: block;">
+                                        <span class="msg-block">
+                                            <img src="static/frame/img/demo/av3.jpg" alt="">
+                                            <strong>Mark</strong>
+                                            <span class="time">- 14:40</span>
+                                            <span  class="msg">ok Bye than!!!.</span>
+                                        </span>
+                                    </p>
+                                    <p class="offline" id="msg-5" style="display: block;">
+                                        <span>User Linda left the chat</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="chat-message chat-footer" id="footer-wrap">
+                                <!--<button class="btn btn-success btn-sm">Send</button>-->
+                                <div class="file-wrap uploader-group"  data-auto="true" >
+                                    <div class="uploader-list"></div>
+                                    <img src="static/frame/img/file-icon.png" alt="" >
+                                    <a  id="inputImage" class="uploader-picker" class="hidden "></a>
+                                </div>
+                                <textarea name="msg-box" id="msg-box" ></textarea>
+                                <div class="face-wrap">
+                                    <img src="static/frame/img/smile-icon.png" alt="" id="face-btn">
+                                </div>
+                                <div class="voice-wrap">
+                                    <img src="static/frame/img/voice-icon.png" alt="" class="voice">
+                                    <button><img src="static/frame/img/send-btn-icon.png" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="static/frame/js/plugins/layer/laypage/laypage.js"></script>
+<script src="static/webuploader/webuploader.min.js"></script>
+<script src="static/frame/js/matrix.chat.js"></script>
+
+<script>
+
+
+
+    $(function () {
+        $('#msg-box').flexText();
+
+        $("#face-btn").smohanfacebox({
+
+            Event : "click",	//触发事件
+
+            divid : "footer-wrap", //外层DIV ID
+
+            textid : "msg-box" //文本框 ID
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

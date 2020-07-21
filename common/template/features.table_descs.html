@@ -1,0 +1,242 @@
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["system_set","features-table_list"=>['table_name']],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <div class="widget-content p-b-none">
+                    <form class="form-inline"  method="post">
+                        <div class="form-group">
+                            <!--<label>关键字</label>-->
+                            <input type='text' name='keyword' value="<?=vendor\req::$instance->item('keyword')?>" class='form-control' value="" placeholder="<?=common\model\mod_language::$instance->get_system_language(_CODE_INPUT_KEYWROD_)?>" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-white">
+                                 <?=common\model\mod_language::$instance->get_system_language(_CODE_SEARCH_)?>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-hover table-agl-c">
+                        <thead>
+                            <tr>
+                                <th v-for="(value,key) in header">
+                                    {{value}}
+                                </th>
+                                <th v-for="(val,key) in language">
+                                    {{val}}
+                                </th>
+                                <th>管理</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="(item,key) in list">
+                                <tr>
+                                    <td v-if="item.column_key=='PRI'">
+                                        <i class="fa fa-key"></i>
+                                    </td>
+                                    <td v-else>
+                                        {{key+1}}
+                                    </td>
+                                    <td>{{item.column_name}}</td>
+                                
+                                    <td>{{item.column_type}}</td>
+                                    <td>{{item.column_default}}</td>
+                                    <td>{{item.column_comment}}</td>
+                                    <template v-for="(val,key) in language">
+                                        <td v-if="system_language[item.column_name]">
+                                            <span v-if="system_language[item.column_name][key]" :id="item.column_name+key">
+                                                <div>language: {{system_language[item.column_name][key].language}}</div>
+                                                <div>placeholder: {{system_language[item.column_name][key].placeholder}}</div>
+                                            </span>
+                                             <template  v-if="tables_rules[item.column_name]">
+                                                <div v-if="tables_rules[item.column_name].values">
+                                                   <div v-for="(enum_val,enum_key) in tables_rules[item.column_name].values">
+                                                       {{enum_val}}:  
+                                                       <template v-if="system_language[item.column_name+'-'+key]">
+                                                           <span v-if="system_language[item.column_name+'-'+key][enum_key]">
+                                                            {{system_language[item.column_name+'-'+key][enum_key]["language"]}}
+                                                       </span>
+                                                       </template>
+                                                       
+                                                   </div>
+                                                </div>
+                                            </template>
+                                        </td>
+
+                                        <td v-else >
+                                            <span :id="item.column_name+key">&nbsp;</span>
+                                            <template  v-if="tables_rules[item.column_name]">
+                                                <div v-if="tables_rules[item.column_name].values">
+                                                   <div v-for="(enum_val,enum_key) in tables_rules[item.column_name].values">
+                                                       {{enum_val}}:  {{enum_val}}
+                                                   </div>
+                                                </div>
+                                            </template>
+                                        </td>
+                                    </template>
+                                    <td>
+                                        <a v-on:click="set_table_field(item.table_name,item.column_name)" class="btn btn-outline btn-info">
+                                            设置字段
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
+                            <tr>
+                                <td colspan="11">
+                                    <?=common\helpers\html_base::$instance->create_pages("pages")?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">设置</h4>
+                </div>
+                <div class="modal-body" id="set_info">
+                    <form class="form-horizontal Validform" id="form_table_field" method="AJAX">
+                        
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">db :</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">{{info.TABLE_SCHEMA}}</p>
+                                </div>
+                                 <label class="col-sm-2 control-label"> table :</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">{{info.TABLE_NAME}}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Column :</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">{{info.COLUMN_NAME}}</p>
+                                </div>
+                                <label class="col-sm-2 control-label"> DataType :</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">{{info.COLUMN_TYPE}}</p>
+                                </div>
+                            </div>
+                             <template v-for="(val,key) in language">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{val}} :</label>
+                                    <div class="col-sm-5"  v-if="field_languages[info.COLUMN_NAME]">
+                                        <template v-if="field_languages[info.COLUMN_NAME][key]">
+                                            <input type="text" :placeholder="val" :value="field_languages[info.COLUMN_NAME][key]['language']" class="form-control modal_input" :name="'language[' + key+ ']'" :id="'language'+key">
+                                        </template>
+                                        <template v-else>
+                                            <input type="text" :placeholder="val" class="form-control modal_input" :name="'language[' + key+ ']'" :id="'language'+key">
+                                        </template>
+                                    </div>
+                                     <div class="col-sm-5"  v-else>
+                                            <input type="text" :placeholder="val" class="form-control modal_input" :name="'language[' + key+ ']'" :id="'language'+key">
+                                    </div>
+                                    <div class="col-sm-5" v-if="field_languages[info.COLUMN_NAME]">
+                                        <template v-if="field_languages[info.COLUMN_NAME][key]">
+                                         <input type="text" class="form-control modal_input" :value="field_languages[info.COLUMN_NAME][key]['placeholder']" placeholder="placeholder"  :name="'placeholder[' + key+ ']'" :id="'placeholder'+key">
+                                        </template>
+                                         <template v-else>
+                                           <input type="text" class="form-control modal_input"  placeholder="placeholder"  :name="'placeholder[' + key+ ']'" :id="'placeholder'+key">
+                                        </template>
+                                    </div>
+                                    <div class="col-sm-5" v-else>
+                                           <input type="text" class="form-control modal_input"  placeholder="placeholder"  :name="'placeholder[' + key+ ']'" :id="'placeholder'+key">
+                                    </div>
+                                </div>
+                            </template>
+
+                              <template v-if="tables_rules[info.COLUMN_NAME]">
+                                <template v-if="tables_rules[info.COLUMN_NAME].values">
+                                    
+                                     <div v-for="(rules_val,rules_key) in tables_rules[info.COLUMN_NAME].values">
+                                        <template v-for="(val,key) in language">
+                                             <div class="form-group">
+                                              <label class="col-sm-2 control-label">{{rules_val}} :</label>
+
+                                               <div class="col-sm-10" v-if="field_languages[info.COLUMN_NAME+'-'+rules_key]">
+                                                <input type="text" :value="field_languages[info.COLUMN_NAME+'-'+rules_key][key]['language']" class="form-control modal_input" :placeholder="val" :name="'enums['+rules_key+']['+key+']'">
+                                               </div>
+                                                <div class="col-sm-10" v-else>
+                                                      <input type="text" class="form-control modal_input" :placeholder="val" :name="'enums['+rules_key+']['+key+']'">
+                                                 </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                              </template>
+
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" v-on:click="save(form_table_field,info.TABLE_NAME,info.COLUMN_NAME)">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: "#content",
+    data: {
+        header: ["id", "column_name", "column_type", 'column_default',  'column_comment'],
+        language: <?=vendor\tpl::get_assign_json("language")?>,
+        list: <?=vendor\tpl::get_assign_json("table_infos")?>,
+        system_language: <?=vendor\tpl::get_assign_json("system_language")?>,
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        language: <?=vendor\tpl::get_assign_json("language")?>,
+        field_languages: <?=vendor\tpl::get_assign_json("field_languages")?>,
+        tables_rules:<?=vendor\tpl::get_assign_json("tables_rules")?>,
+    },
+    methods: {
+        set_table_field: function(table_name, column_name) {
+            $('#myModal').modal();
+            var obj = this;
+            $(".modal_input").val('');
+            var url = "<?=vendor\req::$instance->create_url(['ct'=>'features','ac'=>'set_field'])?>&table_name=" + table_name + "&column_name=" + column_name;
+            axios.get(url)
+                .then(function(response) {
+                    obj.info = response.data.info;
+                    obj.field_languages = response.data.field_languages;
+                    var result = $("form").serialize();
+                    
+                })
+                .catch(function(error) {});
+        },
+        save:function(lable,table_name, column_name){
+            var result = $("form").serialize();
+            $.each(this.language,function(index,val){
+               var str =  $("#language"+index).val();
+                console.log(str);
+                $("#"+column_name+index).text(str);
+            })
+
+            var url = "<?=vendor\req::$instance->create_url(['ct'=>'features','ac'=>'set_field'])?>&table_name=" + table_name + "&column_name=" + column_name;
+            axios.post(url,result)
+              .then(function (response) {
+                 $('#myModal').modal("hide");
+               
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        }   
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>
+
+
+
+

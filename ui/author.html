@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>表单</title>
+    <link href="static/frame/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/author.css" rel="stylesheet">
+    <script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+    <script>
+        //使用rem策略，不断更新html的fontsize
+        (function(){
+            function sizeHtml(){
+                window.mtSizeBase = $(window).width()/32;
+                //window.mtSizeBase = window.mtSizeBase>45?45:window.mtSizeBase;
+                $("html").css("font-size",window.mtSizeBase+"px");
+            }
+            sizeHtml();
+            $(window).resize(function(){
+                setTimeout(function(){
+                    sizeHtml();
+                },300);
+            });
+        })();
+
+
+    </script>
+
+</head>
+<body id="author">
+<div id="content">
+    <div class="header">
+        <div class="header-inner">
+            <div class="pull-left">
+                <div class="img">
+                    <img src="static/img/logo.png" alt="">
+                </div>
+            </div>
+            <div class="pull-right">
+                <a href="">立即注册账号 <i class="fa fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="author-con">
+        <form class="form-horizontal">
+            <div class="pull-left author-con-left">
+                <h4>账号密码登录</h4>
+                <p class="tip">
+                    推荐使用 <span> 快速安全登录</span>，防止盗号
+                    <span class="error"><i class="fa fa-info-circle"></i> 页面过期，请刷新页面 （09099999）</span>
+                </p>
+
+                <div class="form-group">
+                    <lable class="control-label pull-left">账号:</lable>
+                    <div class="pull-left form-item">
+                        <input type="text" class="form-control" datatype="*" nullmsg="请输入账号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable class="control-label pull-left">密码:</lable>
+                    <div class="pull-left form-item">
+                        <input type="password" class="form-control" datatype="*" nullmsg="请输入密码">
+                    </div>
+                </div>
+                <!--成功部分---------------start-->
+                <div class="success-wrap" style="display: none;">
+                    <img src="static/img/success-icon.png" alt="">
+                    <h6>还差一步，就能完成授权</h6>
+                </div>
+                <!--成功部分---------------end-->
+                <div class="btn-wrap">
+                    <button>登录</button>
+                </div>
+                <ul>
+                    <li><a href="">忘了密码？</a>&nbsp;&nbsp;| </li>
+                    <li><a href="">&nbsp;&nbsp;注册新账号</a>  &nbsp;&nbsp;| </li>
+                    <li><a href="">&nbsp;&nbsp;意见反馈</a></li>
+                </ul>
+            </div>
+            <div class="pull-left author-con-right">
+                <h6> <i></i> XXXX  将获取以下权限：</h6>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            获取个人资料以及好友关系
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            分享内容到皇玺会
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            获取你的评论
+                        </label>
+                    </div>
+                    <p>已有 <b>7800</b>人授权</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="static/frame/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="static/frame/js/plugins/layer/laypage/laypage.js"></script>
+<script src="static/frame/js/validform.js"></script>
+<script src="static/frame/js/newvalidform.js"></script>
+</body>
+</html>

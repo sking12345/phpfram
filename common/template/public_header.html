@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+     <title><?=vendor\configs::$instance->get("app_name")?></title>
+    <link href="static/frame/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/frame/css/animate.min.css" rel="stylesheet">
+     <link href="static/frame/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="static/frame/css/main.css" rel="stylesheet">
+    <script src="static/frame/js/jquery.min.js?v=2.1.4"></script>
+    <?php foreach($other_parames as $key=>$val){ ?>
+    <link href='<?=vendor\configs::$instance->static_url->get($val)?>' rel="stylesheet">
+    <?php } ?>
+    <script src="static/js/vue.min.js"></script>
+    <script src="static/js/vue.filter.js"></script>
+</head>
+<body class="hide">
+
+

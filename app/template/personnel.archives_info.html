@@ -1,0 +1,360 @@
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["personnel","personnel-archives_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#base_info" data-toggle="tab">基本信息</a>
+                            </li>
+                            <li><a href="#education_experience" data-toggle="tab">教育经历</a></li>
+                            <li><a href="#work_experience" data-toggle="tab">工作简历</a></li>
+                            <li><a href="#skill" data-toggle="tab">技能证信息</a></li>
+                            <li><a href="#other_info" data-toggle="tab">其他</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-content tab-content">
+                        <div id="base_info" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.name.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.name}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.used_name.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.used_name}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.sex.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.sex}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.education.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.education}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.vocational.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.vocational}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.graduated_school.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.graduated_school}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.org_mechanism_id.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.org_mechanism_id}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.org_jobs_id.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.org_jobs_id}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.interviewer.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.interviewer}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.interviewer.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.bank}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.bank_account.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.bank_account}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.salary.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.salary}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.social_security_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.social_security_number}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.fund_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.fund_number}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">  {{table_language.entry_date.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.entry_date|dateFormat('Y-M-D')}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.positive_date.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.positive_date|dateFormat('Y-M-D')}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.departure_date.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.departure_date|dateFormat('Y-M-D')}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">  {{table_language.cate.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.cate}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.status.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.status}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.email.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.email}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.certificate_type.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.certificate_type}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.certificate_number.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.certificate_number}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.phone.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.phone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="other_info" class="tab-pane fade ">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.citizenship.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.citizenship}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.hometown.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.hometown}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.nationality.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.nationality}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.height.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.height}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">  {{table_language.weight.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.weight}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.vision.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.vision}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.health_status.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.health_status}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">  {{table_language.hukou_nature.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.hukou_nature}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.passport.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.passport}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{{table_language.religion.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.religion}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.political_cate.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.political_cate}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">{{table_language.marital_status.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.marital_status}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.contact_name.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.contact_name}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label">  {{table_language.contact_phone.language}}:</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.contact_phone}}</p>
+                                </div>
+                                <label class="col-sm-1 control-label"> {{table_language.contact_elationship.language}} :</label>
+                                <div class="col-sm-3">
+                                    <p class="form-control-static">{{info.contact_elationship}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">  {{table_language.home_addr.language}}:</label>
+                                <div class="col-sm-11">
+                                    <p class="form-control-static">{{info.home_addr}}</p>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.addr.language}}:</label>
+                                <div class="col-sm-11">
+                                    <p class="form-control-static">{{info.addr}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"> {{table_language.remark.language}}:</label>
+                                <div class="col-sm-11">
+                                    <p class="form-control-static">{{info.remark}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="skill" class="tab-pane fade ">
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th>证书名称</th>
+                                            <th>证书编码</th>
+                                            <th>发证单位</th>
+                                            <th>发证日期</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="skill_tbody">
+                                        <template v-for="(item,key) in info.skill.certificate_name">
+                                            <tr v-if="item&&item!=''">
+                                                <td>
+                                                    {{item}}
+                                                </td>
+                                                <td>
+                                                    {{info.skill.certificate_number[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.skill.issuing_unit[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.skill.issuing_date[key]}}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="work_experience" class="tab-pane fade ">
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th>开始日期</th>
+                                            <th>结束日期</th>
+                                            <th>工作单位</th>
+                                            <th>部门</th>
+                                            <th>离职原因</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="work_experience_tbody">
+                                        <template v-for="(item,key) in info.work_experience.start_date">
+                                            <tr v-if="item&&item!=''">
+                                                <td>
+                                                    {{item}}
+                                                </td>
+                                                <td>
+                                                    {{info.work_experience.end_date[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.work_experience.uint[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.work_experience.department[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.work_experience.leaving_reason[key]}}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="education_experience" class="tab-pane fade ">
+                            <div class="form-group">
+                                <table class="table table-bordered table-hover table-agl-c">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 100px">开始日期</th>
+                                            <th>结束日期</th>
+                                            <th>学校名称</th>
+                                            <th>专业</th>
+                                            <th>学历</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="education_experience_tbody">
+                                        <template v-for="(item,key) in info.education_experience.start_date">
+                                            <tr v-if="item&&item!=''">
+                                                <td style="width: 100px">
+                                                    {{item}}
+                                                <td>
+                                                    {{info.education_experience.end_date[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.education_experience.school_name[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.education_experience.profession[key]}}
+                                                </td>
+                                                <td>
+                                                    {{info.education_experience.education[key]}}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+
+        mechanism: '',
+        define_data: <?=vendor\tpl::get_assign_json("define_data")?>,
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+    },
+    computed: {
+
+    }
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>

@@ -1,0 +1,295 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["personnel","personnel-assessment_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#base_info" data-toggle="tab">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?></a>
+                            </li>
+                            <li>
+                                <a href="#project_description" data-toggle="tab">
+                                    {{table_language['project_description'].language}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#rating_content" data-toggle="tab">
+                                    {{table_language['rating_content'].language}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget-content tab-content">
+                        <div id="base_info" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['name'].language}} :</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" :value="info.name" name="name">
+                                </div>
+                                <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['start_date'].language}} :</label>
+                                <div class="col-sm-4">
+                                    <div class="input-daterange" data-language="zh-CN" style="overflow: hidden">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="text" class="form-control" :value="info.start_date|dateFormat('Y-M-D')" name="start_date" data-plugin="start">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"> To </span>
+                                            <input type="text" class="form-control" :value="info.end_date|dateFormat('Y-M-D')" name="end_date" data-plugin="start">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['archives_ids'].language}} :</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" multiple datatype="*" :data-placeholder="table_language['archives_ids'].placeholder" data-plugin="select2" name="archives_ids[]">
+                                        <option value=" ">{{table_language['archives_ids'].placeholder}}</option>
+                                        <template v-for="(item,key) in personnel_archives">
+                                            <option v-if="item.id==info.archives_ids" selected :value="item.id">{{item.name}}</option>
+                                            <option v-else :value="item.id">{{item.name}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['frequency'].language}} :</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" datatype="*" :data-placeholder="table_language['frequency'].placeholder" data-plugin="select2" name="frequency">
+                                        <option value=" ">{{table_language['frequency'].placeholder}}</option>
+                                        <template v-for="(item,key) in table_enum.frequency">
+                                            <option v-if="key==info.frequency" selected :value="key">{{item}}</option>
+                                            <option v-else :value="key">{{item}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['build_time'].language}} :</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" :value="info.build_time|dateFormat('Y-M-D')" name="build_time" data-plugin="start">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="project_description" class="tab-pane fade">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language['status'].language}} :</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" datatype="*" :data-placeholder="table_language['status'].placeholder" data-plugin="select2" name="status">
+                                        <option value=" ">{{table_language['status'].placeholder}}</option>
+                                        <template v-for="(item,key) in table_enum.status">
+                                            <option v-if="key==info.status" selected :value="key">{{item}}</option>
+                                            <option v-else :value="key">{{item}}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language['highest_score'].language}} :</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" datatype="n" :value="info.highest_score" name="highest_score">
+                                </div>
+                                <label class="col-sm-1 control-label"><code class="">*</code>{{table_language['passing_score'].language}} :</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" datatype="n" :value="info.passing_score" name="passing_score">
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover table-agl-c">
+                                <thead>
+                                    <tr>
+                                        <th>{{table_language.project_description.language}}</th>
+                                        <th style="width: 20%">{{table_language.proportion.language}}</th>
+                                        <th>
+                                            <?=common\model\mod_language::$instance->get_system_language(_CODE_MGT_)?>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="project_description_tr" class="hide">
+                                    <tr>
+                                        <td><input type="text" name="project_description[connect][]" class="form-control"></td>
+                                        <td>
+                                            <input type="text" name="project_description[proportion][]" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger btn-outline" onclick="del_project_description(this)">
+                                                <?=common\model\mod_language::$instance->get_system_language(_CODE_DEL_)?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody id="project_description_tbody">
+                                    <template v-if="info.project_description">
+                                        <template v-for="(item,key) in info.project_description.connect">
+                                            <tr v-if="item">
+                                                <td><input type="text" :value="item" name="project_description[connect][]" class="form-control"></td>
+                                                <td>
+                                                    <input type="text" :value=" info.project_description.proportion[key]" name="project_description[proportion][]" class="form-control">
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger btn-outline" onclick="del_project_description(this)">
+                                                        <?=common\model\mod_language::$instance->get_system_language(_CODE_DEL_)?>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </template>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="10">
+                                            <a class="btn btn-info btn-outline pull-left" v-on:click="add_project_description(this)">
+                                                <?=common\model\mod_language::$instance->get_system_language(_CODE_ADD_)?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div id="rating_content" class="tab-pane fade">
+                            <table class="table table-bordered table-hover table-agl-c">
+                                <thead>
+                                    <tr>
+                                        <th>{{table_language.rating_content.language}}</th>
+                                        <th>{{table_language.rating_type.language}}</th>
+                                        <th>{{table_language.rating_archives.language}}</th>
+                                        <th style="width: 10%">{{table_language.weights.language}}</th>
+                                        <th>
+                                            <?=common\model\mod_language::$instance->get_system_language(_CODE_MGT_)?>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rating_content_tr" class="hide">
+                                    <tr>
+                                        <td><input type="text" name="rating_content[name][]" class="form-control"></td>
+                                        <td>
+                                            <select class="form-control" :data-placeholder="table_language['rating_type'].placeholder" data-plugin="select2" name="rating_content[rating_type][]">
+                                                <option value=" ">{{table_language['rating_type'].placeholder}}</option>
+                                                <template v-for="(item,key) in table_enum.rating_type">
+                                                    <option v-if="key==info.rating_type" selected :value="key">{{item}}</option>
+                                                    <option v-else :value="key">{{item}}</option>
+                                                </template>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" :data-placeholder="table_language['rating_archives'].placeholder" data-plugin="select2" name="rating_content[rating_archives][]">
+                                                <option value=" ">{{table_language['rating_archives'].placeholder}}</option>
+                                                <template v-for="(item,key) in personnel_archives">
+                                                    <option v-if="item.id==info.rating_archives" selected :value="item.id">{{item.name}}</option>
+                                                    <option v-else :value="item.id">{{item.name}}</option>
+                                                </template>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="rating_content[weights][]" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger btn-outline" onclick="del_project_description(this)">
+                                                <?=common\model\mod_language::$instance->get_system_language(_CODE_DEL_)?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody id="rating_content_tbody">
+                                    <template v-if="info.rating_content">
+                                        <template v-for="(item,key) in info.rating_content.name">
+                                            <tr v-if="item">
+                                                <td><input type="text" :value="item" name="rating_content[name][]" class="form-control"></td>
+                                                <td>
+                                                    <select class="form-control" :data-placeholder="table_language['rating_type'].placeholder" data-plugin="select2" name="rating_content[rating_type][]">
+                                                        <option value=" ">{{table_language['rating_type'].placeholder}}</option>
+                                                        <template v-for="(item1,key1) in table_enum.rating_type">
+                                                            <option v-if="key1==info.rating_content.rating_type[key]" selected :value="key1">{{item1}}</option>
+                                                            <option v-else :value="key1">{{item1}}</option>
+                                                        </template>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" :data-placeholder="table_language['rating_archives'].placeholder" data-plugin="select2" name="rating_content[rating_archives][]">
+                                                        <option value=" ">{{table_language['rating_archives'].placeholder}}</option>
+                                                        <template v-for="(item1,key1) in personnel_archives">
+                                                            <option v-if="item1.id==info.rating_content.rating_archives[key]" selected :value="item1.id">{{item1.name}}</option>
+                                                            <option v-else :value="item1.id">{{item1.name}}</option>
+                                                        </template>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" :value="info.rating_content.weights[key]" name="rating_content[weights][]" class="form-control">
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger btn-outline" onclick="del_project_description(this)">
+                                                        <?=common\model\mod_language::$instance->get_system_language(_CODE_DEL_)?>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </template>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="10">
+                                            <a class="btn btn-info btn-outline pull-left" v-on:click="add_rating_content(this)">
+                                                <?=common\model\mod_language::$instance->get_system_language(_CODE_ADD_)?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+        personnel_archives: <?=vendor\tpl::get_assign_json("personnel_archives")?>,
+        project_description_tr: '',
+        rating_content_tr: '',
+
+    },
+    methods: {
+        add_project_description: function(obj) {
+            $("#project_description_tbody").append(this.project_description_tr);
+        },
+        add_rating_content: function(obj) {
+            $("#rating_content_tbody").append(this.rating_content_tr);
+            $("select").select2();
+        }
+    },
+    mounted: function() {
+
+        this.project_description_tr = $("#project_description_tr").html();
+        this.rating_content_tr = $("#rating_content_tr").html();
+        $("#project_description_tbody").append(this.project_description_tr);
+        $("#rating_content_tbody").append(this.rating_content_tr);
+    }
+})
+
+function del_project_description(obj) {
+    $(obj).parents("tr").remove();
+}
+</script>
+<script type="text/javascript" src="static/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="static/frame/js/webuploader.own.js"></script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>

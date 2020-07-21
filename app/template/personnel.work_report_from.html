@@ -1,0 +1,95 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["work_report","personnel-work_report_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <h5>
+                            <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?>
+                        </h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['type'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="type" datatype="*" :data-placeholder="table_language['type'].placeholder" data-plugin="select2">
+                                    <option value=" ">{{table_language['type'].placeholder}}</option>
+                                    <template v-for="(item,key) in table_enum.type">
+                                        <option v-if="key==info.type" selected :value="key">{{item}}</option>
+                                        <option v-else :value="key">{{item}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['send_leaders'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['send_leaders'].placeholder" data-plugin="select2" name="send_leaders">
+                                    <option value=" ">{{table_language['send_leaders'].placeholder}}</option>
+                                    <template v-for="(item,key) in personnel_archives">
+                                        <option v-if="item.id==info.send_leaders" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language.date_start.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="date_start" :value="info.date_start|dateFormat('Y-M-D')" type="text" class="form-control" placeholder="" nullmsg="" data-plugin="start" />
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language.date_end.language}} :</label>
+                            <div class="col-sm-4">
+                                <input name="date_end" :value="info.date_end|dateFormat('Y-M-D')" type="text" class="form-control" placeholder="" nullmsg="" data-plugin="end" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['contents'].language}} :</label>
+                            <div class="col-sm-10">
+                                <textarea name="contents" class="form-control">{{info.contents}}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['tomorrow_plan'].language}} :</label>
+                            <div class="col-sm-10">
+                                <textarea name="tomorrow_plan" class="form-control">{{info.tomorrow_plan}}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+      
+
+    },
+    computed: {
+
+    }
+})
+</script>
+<script type="text/javascript" src="static/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="static/frame/js/webuploader.own.js"></script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>

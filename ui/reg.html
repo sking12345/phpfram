@@ -1,0 +1,276 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="static/frame/css/reg.css"/>
+    <link href="static/frame/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <title>注册</title>
+</head>
+
+<body class="reg-body">
+<div id="reg">
+    <header>客户管理系统注册</header>
+    <div class="reg-wrap">
+        <div class="role-wrap">
+            <span class="form-txt">我的身份是：</span>
+            <div class="form-right">
+                <a class="btn role-btn active">单位用户</a>
+                <a class="btn role-btn">个人用户</a>
+            </div>
+        </div>
+        <form action="" class="conpany-form">
+            <div class="form-item">
+                <span class="form-txt">*单位账号：</span>
+                <div class="form-right">
+                    <input type="text" name="account" placeholder="请输入账号" required>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*单位密码：</span>
+                <div class="form-right">
+                    <input type="password" name="password" placeholder="请输入密码" required>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*单位名称：</span>
+                <div class="form-right">
+                    <input type="text" name="name" placeholder="请输入单位名称" required>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">单位类型：</span>
+                <div class="form-right">
+                    <select name="" id="company-type">
+                        <option value="">事业单位</option>
+                        <option value="">事业单位2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">证件类型：</span>
+                <div class="form-right">
+                    <select name="" id="card-type">
+                        <option value="">事业单位</option>
+                        <option value="">事业单位2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*集团注册号：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入单位名称" required>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*证件照片：</span>
+                <div class="form-right">
+                    <div class="controls more-img-wrap">
+                        <div class="pro-wrap">
+                            <!--<div class=" pre-img-wrap">-->
+                            <!--<img src="static/images/img.png" alt="" class="">-->
+                            <!--<i class="fa fa-close"></i>-->
+                            <!--<div></div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="add-img-wrap  " id="drop_area_more">
+                            <input type="file" name="image_img_upload" id="img_upload_more" aria-invalid="false"
+                                   class="help-block m-b-none more-img-updata">
+                            <img src="static/img/add-img.png" alt="" class="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*联系人姓名：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名" required>
+                </div>
+            </div>
+            <div class="form-item add-contact-wrap">
+                <div class="copy-wrap">
+                    <span class="form-txt">*联系方式：</span>
+                    <div class="form-right">
+                        <select name="" id="">
+                            <option value="">手机号码</option>
+                            <option value="">手机号码</option>
+                        </select>
+                        <input type="text" name="contact" placeholder="请输入联系方式" required>
+                    </div>
+                </div>
+                <div class="add-contact">
+                    <i class="fa fa-plus"></i>添加联系方式
+                </div>
+                <!--<div class="copy-wrap copy-wrap2">
+                    <span class="form-txt">*联系方式：</span>
+                    <div class="form-right">
+                        <input type="text" name="contact" placeholder="请输入联系方式" required>
+                    </div>
+                </div>-->
+
+            </div>
+            <div class="form-item">
+                <span class="form-txt">性别：</span>
+                <div class="form-right">
+                    <label>
+                        <input type="radio" name="sex">小姐/女士
+                    </label>
+                    <label>
+                        <input type="radio" name="sex">男士
+                    </label>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">公司地址：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">上线：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-outline btn-default">取消</button>
+                <button class="btn btn-info">注册</button>
+            </div>
+        </form>
+        <form action="" class="peoson-form">
+            <div class="form-item">
+                <span class="form-txt">*单位账号：</span>
+                <div class="form-right">
+                    <input type="text" name="account" placeholder="请输入账号">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*单位密码：</span>
+                <div class="form-right">
+                    <input type="password" name="account" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*单位名称：</span>
+                <div class="form-right">
+                    <input type="text" name="account" placeholder="请输入单位名称">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">单位类型：</span>
+                <div class="form-right">
+                    <select name="">
+                        <option value="">事业单位</option>
+                        <option value="">事业单位2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">证件类型：</span>
+                <div class="form-right">
+                    <select name="">
+                        <option value="">事业单位</option>
+                        <option value="">事业单位2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*集团注册号：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入单位名称">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">身份证：</span>
+                <div class="form-right">
+                    <div class="controls more-img-wrap">
+                        <div class="pro-wrap">
+
+                        </div>
+                        <div class="add-img-wrap  " id="drop_area_more2">
+                            <input type="file" name="image_img_upload2" id="img_upload_more2" aria-invalid="false"
+                                   class="help-block m-b-none more-img-updata">
+                            <img src="static/frame/img/add-img.png" alt="" class="">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*联系人姓名：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*性别：</span>
+                <div class="form-right">
+                    <label>
+                        <input type="radio" name="sex">小姐/女士
+                    </label>
+                    <label>
+                        <input type="radio" name="sex">小姐/女士
+                    </label>
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">*公司地址：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名">
+                </div>
+            </div>
+            <div class="form-item">
+                <span class="form-txt">上线：</span>
+                <div class="form-right">
+                    <input type="text" name="reg-number" placeholder="请输入联系人姓名">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-outline btn-default">取消</button>
+                <button class="btn btn-info">注册</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+
+
+<script src="static/frame/js/jquery.min.js"></script>
+<script src="static/frame/js/plugins/reg/ajaxfileupload.js"></script>
+<script src="static/frame/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="static/frame/js/plugins/validate/messages_zh.min.js"></script>
+<script src="static/frame/js/plugins/reg/validate.js"></script>
+<script>
+    $(function () {
+        $("body").on("click", ".role-btn", function () {
+            var _this = $(this);
+            _this.addClass("active").siblings("a").removeClass("active");
+            var ind = _this.index();
+            $("#reg").find("form").eq(ind).show().siblings("form").hide();
+            $(".pro-wrap").empty();
+        })
+
+
+        //添加联系方式
+        var i = 1;
+        var str = "";
+        $("body").on("click", ".add-contact", function () {
+            i++;
+            str = '<div class="copy-wrap copy-wrap2">' +
+                    '<span class="form-txt">联系方式'+i+'：</span>'+
+                    '<div class="form-right">'+
+                    ' <select name="" id=""><option value="">手机号码</option> <option value="">手机号码</option> </select>'+
+                    '<input type="text" name="contact'+i+'" placeholder="请输入联系方式" >'+
+                    '</div>' +
+                    '<a class="contact-btn" herf="javascript:;">删除</a>'+
+                    '</div>';
+            $(".add-contact-wrap").append(str)
+        })
+        $("body").on("click",".contact-btn",function(){
+            $(this).parents(".copy-wrap").remove();
+        })
+    })
+</script>
+</html>

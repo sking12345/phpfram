@@ -1,0 +1,77 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css'])?>
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <form class="form-horizontal Validform"  method="AJAX">
+                    <div class="widget-title">
+                        <h5>基本信息</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">db_name :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.TABLE_SCHEMA}}</p>
+                            </div>
+                            <label class="col-sm-2 control-label"> table_name :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.TABLE_NAME}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Column :</label>
+                            <div class="col-sm-4">
+                                <p class="form-control-static">{{info.COLUMN_NAME}}</p>
+                                
+                            </div>
+                            <label class="col-sm-2 control-label"> DataType :</label>
+                            <div class="col-sm-4">
+                                 <p class="form-control-static">{{info.COLUMN_TYPE}}</p>
+                            </div>
+                            
+                        </div>
+                        <template  v-for="(val,key) in language">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{val}} :</label>
+                                <div class="col-sm-10">
+                                    <template v-if="field_languages[key]">
+                                         <input type="text" :value="field_languages[key]['language']" class="form-control" :name="'language[' + key+ ']'">
+                                    </template>
+                                    <template v-else>
+                                        <input type="text"  class="form-control" :name="'language[' + key+ ']'">
+                                    </template>
+                                  
+                                </div>
+                            </div>
+                        </template>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: "#content",
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        language:<?=vendor\tpl::get_assign_json("language")?>,
+        field_languages:<?=vendor\tpl::get_assign_json("field_languages")?>,
+    },
+    methods: {}
+})
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js'])?>
+
+
+
+
+
+
+

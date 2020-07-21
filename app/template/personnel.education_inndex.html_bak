@@ -1,0 +1,92 @@
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+      <?=common\helpers\html_base::$instance->menu_navigation(["organization","organization-mechanism_index"])?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box">
+                <div class="widget-content p-b-none">
+                    <div class="btn-outline-wrap">
+                         <?=common\helpers\html_base::$instance->create_link1("organization-add_mechanism")?>
+                    </div>
+                </div>
+                <div class="widget-content p-b-none">
+                    <form class="form-inline"  method="post">
+                        <div class="form-group">
+                            <!--<label>关键字</label>-->
+                            <input type='text' name='keyword' value="<?=vendor\req::$instance->item('keyword')?>" class='form-control' value="" placeholder="请输入名称" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-white">搜索</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-hover table-agl-c">
+                    <thead>
+                        <tr>
+                            <th v-for="(value,key) in header">
+                                {{value}}
+                            </th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr v-for="item in list">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.parent_name}}</td>
+                            <td>{{item.code}}</td>
+                            <td>{{item.number}}</td>
+                            <td>{{item.principal}}</td>
+                            <td>{{item.phone}}</td>
+                            <td>{{option_data[item.is_sub_company]}}</td>
+                            <td>{{option_data[item.is_sub_store]}}</td>
+                             <td>{{item.create_time|dateFormat('Y-M-D')}}</td>
+                            <td>
+                                 <?=common\helpers\html_base::$instance->create_link1("organization-structure_diagram_info",["id"=>"item"])?>
+                                <?=common\helpers\html_base::$instance->create_link1("organization-edit_mechanism",["id"=>"item"],'btn-primary')?>
+                                <?=common\helpers\html_base::$instance->create_link1("organization-del_mechanism",["id"=>"item"],'btn-danger')?>
+                            </td>
+                         </tr>
+                         <tr>
+                            <td colspan="10">
+                                 <?=common\helpers\html_base::$instance->create_pages("pages")?>
+                            </td>
+                         </tr>
+                    </tbody>
+                </table>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+new Vue({
+    el: "#content",
+    data: {
+        header:["序号","名称","上级机构名称","助记码","机构编号",'负责人','联系电话',"是否分公司","是否分店","创建日期"],
+        list:<?=vendor\tpl::get_assign_json("list")?>,
+        option_data:{"1":'是',"2":'否'},
+    },
+    methods:{
+    }
+})
+</script>
+
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>
+
+
+
+
+
+
+
+
+
+
+
+

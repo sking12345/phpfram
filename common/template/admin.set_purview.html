@@ -1,0 +1,96 @@
+
+<?=vendor\tpl::include_tpl("public_header.html",true)?>
+<div id="content">
+    <div class="content-header">
+    
+         <?=common\helpers\html_base::$instance->menu_navigation(["user_group","admin-index","admin-set_purview"])?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+              <div class="widget-box">
+                <form class="form-horizontal Validform"  novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                    <h5>基本信息</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> 用户名 :</label>
+                            <div class="col-sm-4">
+                               <p class="form-control-static">{{admin_info.name}}</p>
+                            </div>
+                             <label class="col-sm-2 control-label"> 安全ip :</label>
+                            <div class="col-sm-4">
+                                 <p class="form-control-static">{{admin_info.safety_ip}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> 用户组名 :</label>
+                            <div class="col-sm-4">
+                               <p class="form-control-static">{{group_info.name}}</p>
+                            </div>
+                             <label class="col-sm-2 control-label"> 安全ip :</label>
+                            <div class="col-sm-4">
+                                 <p class="form-control-static">{{group_info.safety_ip}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title purview_label">
+                        <h5>权限管理</h5>
+                    </div>
+                    <div class="widget-content purview_label">
+
+                        <div id="checkbox-group">
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+   var MenuData =  <?=vendor\tpl::get_assign_json("MenuData")?>;
+   var MenuDataCheck =<?=vendor\tpl::$instance->admin_info->get_json("purviews")?>;
+
+    new Vue({
+      el: '#content',
+      data: {
+        group_info:<?=vendor\tpl::$instance->group_info->get_json()?>,
+        admin_info:<?=vendor\tpl::$instance->admin_info->get_json()?>      
+      },
+      computed:{
+        
+      }
+    })
+
+
+</script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true)?>
+
+<script type="text/javascript">
+$("input[name=is_root").change(function() {
+    if ($(this).val() == "1") {
+        $(".purview_label").addClass("hide");
+        $(".purview_submit").removeClass("hide");
+    } else {
+        $(".purview_label").removeClass("hide");
+        $(".purview_submit").addClass("hide");
+    }
+})
+</script>
+
+
+
+
+
+
+
+
+
+

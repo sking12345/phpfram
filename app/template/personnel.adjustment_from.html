@@ -1,0 +1,107 @@
+<?=vendor\tpl::include_tpl("public_header.html",true,['select2_css','datetimepicker_css'])?>
+<div id="content">
+    <div class="content-header">
+        <?=common\helpers\html_base::$instance->menu_navigation(["personnel","personnel-transfer_index"],true)?>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="widget-box" id="widget_box">
+                <form class="form-horizontal Validform" novalidate="novalidate" action="" method="POST">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="fa fa-align-justify"></i> </span>
+                        <h5>
+                            <?=common\model\mod_language::$instance->get_system_language(_CODE_BASE_INFO_)?>
+                        </h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['archives_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['archives_id'].placeholder" data-plugin="select2" name="archives_id">
+                                    <option value=" ">{{table_language['archives_id'].placeholder}}</option>
+                                    <template v-for="(item,key) in personnel_archives">
+                                        <option v-if="item.id==info.archives_id" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label">{{table_language['org_mechanism_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['org_mechanism_id'].placeholder" data-plugin="select2">
+                                    <option value=" ">{{table_language['org_mechanism_id'].placeholder}}</option>
+                                    <template v-for="(item,key) in mechanism">
+                                        <option v-if="item.id==info.org_mechanism_id" selected :value="key">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['org_jobs_id'].language}} :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" datatype="*" :data-placeholder="table_language['org_jobs_id'].placeholder" data-plugin="select2">
+                                    <option value=" ">{{table_language['org_jobs_id'].placeholder}}</option>
+                                    <template v-for="(item,key) in jobs">
+                                        <option v-if="item.id==info.org_jobs_id" selected :value="item.id">{{item.name}}</option>
+                                        <option v-else :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['effective_date'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" :value="info.effective_date|dateFormat('Y-M-D')" readonly="true" name="effective_date" data-plugin="start">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['salary_defore'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" :value="info.salary_defore" name="salary_defore">
+                            </div>
+                            <label class="col-sm-2 control-label"><code class="">*</code>{{table_language['salary_after'].language}} :</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" :value="info.salary_after" name="salary_after">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{table_language['remark'].language}} :</label>
+                            <div class="col-sm-10">
+                                <textarea name="remark" class="form-control">{{info.remark}}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-success">
+                                    <?=common\model\mod_language::$instance->get_system_language(_CODE_SUBMIT_)?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+new Vue({
+    el: '#content',
+    data: {
+        info: <?=vendor\tpl::get_assign_json("info")?>,
+        table_language: <?=vendor\tpl::get_assign_json("table_language")?>,
+        table_enum: <?=vendor\tpl::get_assign_json("table_enum")?>,
+        personnel_archives: <?=vendor\tpl::get_assign_json("personnel_archives")?>,
+        mechanism: <?=vendor\tpl::get_assign_json("mechanism")?>,
+        jobs: <?=vendor\tpl::get_assign_json("jobs")?>,
+
+    },
+    computed: {
+
+    }
+})
+</script>
+<script type="text/javascript" src="static/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="static/frame/js/webuploader.own.js"></script>
+<?=vendor\tpl::include_tpl("public_bottom.html",true,['select2_js','datetimepicker_js'])?>
